@@ -25,10 +25,6 @@ window.REHBER_VERISI = {
       { ad: "Kıyı Emniyet", tel: "0266 885 56 20" },
       { ad: "Marmara Liman Başkanlığı", tel: "0266 885 59 95" }
     ] },
-    { baslik: "Belediye hizmet binaları", kalemler: [
-      { ad: "Avşa Ek Hizmet Binası", tel: "0266 896 33 01" },
-      { ad: "Saraylar Ek Hizmet Binası", tel: "0266 887 73 35", not: "Marmara Adası" }
-    ] },
     { baslik: "Altyapı ve hizmetler", kalemler: [
       { ad: "BASKİ (su)", tel: "0266 885 57 50" },
       { ad: "TEDAŞ İşletme Şefliği (elektrik)", tel: "0266 202 22 27" },
