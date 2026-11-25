@@ -30,7 +30,7 @@
    "arac": true,
    "ad": "Güney Marmara Adalar Hattı",
    "aciklama": "Erdek - Avşa - Marmara - Paşalimanı (Balıklı) - Ekinlik",
-   "tarife": "Yürürlük tarihi belirtilmemiş",
+   "tarife": "Firmanın sitesinden saatte bir otomatik alınır",
    "kaynak": "https://gdu.com.tr/sefer-tarifeleri",
    "duyurular": "https://www.gdu.com.tr/gduonline/duyurular",
    "bilet": "https://online.gdu.com.tr/bilet-al#bilet",
@@ -192,7 +192,8 @@
      null,
      "21:45"
     ]
-   ]
+   ],
+   "tarifeDurum": "ok"
   },
   {
    "id": "marmara-roro",
@@ -204,6 +205,10 @@
    "aciklama": "Tekirdağ - Erdek - Marmara Adası - Avşa - Bandırma",
    "tarife": "01.11.2026 tarihli kış tarifesi",
    "kaynak": "https://www.marmararoro.com/seferlerimiz.html",
+   "tarifeGorselleri": [
+    "https://www.marmararoro.com/uploads/images/2026-07/6a44e99d1bf31.jpeg",
+    "https://www.marmararoro.com/uploads/images/2026-11/6ae6ec0f7becb.jpeg"
+   ],
    "duyurular": "https://www.marmararoro.com/seferlerimiz.html",
    "bilet": "https://bilet.erdekroro.com/",
    "telefon": {
@@ -623,7 +628,8 @@
    ],
    "notlar": [
     "Gerekli hallerde (aşırı yoğunluk, geminin bir tarafta kalması gibi) ek sefer düzenlenir."
-   ]
+   ],
+   "tarifeDurum": "ok"
   },
   {
    "id": "cnr-roro",
@@ -633,7 +639,7 @@
    "arac": true,
    "ad": "Ciner Ro-Ro",
    "aciklama": "Erdek - Marmara - Avşa · Saraylar - Bandırma · Tekirdağ - Avşa",
-   "tarife": "Sitede tarih ve gün bilgisi yok, her gün geçerli kabul edildi",
+   "tarife": "Firmanın sitesinden saatte bir otomatik alınır",
    "kaynak": "https://cnrroro.com/#saatler",
    "duyurular": "https://cnrroro.com/",
    "bilet": "https://ciner.biletin.org",
@@ -794,7 +800,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "tarifeDurum": "ok"
   }
  ]
 }
