@@ -1,300 +1,300 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-    "guncelleme":  "2026-11-25T13:07",
-    "yayin":  "26.11.2026",
-    "durum":  "ok",
-    "gunler":  [
-                   {
-                       "tarih":  "2026-11-26",
-                       "baslik":  "26 Kasım 2026, Perşembe",
-                       "firtina":  "Fırtına beklenmiyor.",
-                       "firtinaMarmara":  false,
-                       "hava":  "Parçalı ve az bulutlu, batısı puslu, yer yer sisli",
-                       "ruzgar":  "Güney ve güneydoğudan, akşam saatlerinde güneybatıdan 3 ila 5 kuvvetinde",
-                       "dalga":  "0,5 ila 1,5 m",
-                       "gorus":  "İyi, pus anında orta, sis anında zayıf."
-                   },
-                   {
-                       "tarih":  "2026-11-27",
-                       "baslik":  "27 Kasım 2026, Cuma",
-                       "firtina":  "Kuzey Ege ve Doğu Akdeniz\u0027de fırtınamsı rüzgar bekleniyor.",
-                       "firtinaMarmara":  false,
-                       "hava":  "Parçalı ve az bulutlu",
-                       "ruzgar":  "Güneyli yönlerden 3 ila 5 kuvvetinde",
-                       "dalga":  "0,5 ila 1,5 m",
-                       "gorus":  "İyi."
-                   },
-                   {
-                       "tarih":  "2026-11-28",
-                       "baslik":  "28 Kasım 2026, Cumartesi",
-                       "firtina":  "Batı Karadeniz\u0027de fırtına; Kuzey Ege\u0027nin kuzeyi ile Doğu Akdeniz\u0027in doğusunda fırtınamsı rüzgar bekleniyor.",
-                       "firtinaMarmara":  false,
-                       "hava":  "Parçalı bulutlu",
-                       "ruzgar":  "Kuzey ve kuzeydoğudan 3 ila 5, akşam saatlerinden itibaren yer yer 6 kuvvetinde",
-                       "dalga":  "0,5 ila 1,5 m, yer yer 2,0 m",
-                       "gorus":  "İyi."
-                   }
-               ],
-    "lokasyon":  {
-                     "91008":  {
-                                   "ad":  "Erdek",
-                                   "gunler":  [
-                                                  {
-                                                      "tarih":  "2026-11-25",
-                                                      "enDusuk":  6,
-                                                      "enYuksek":  10,
-                                                      "hadise":  "PUS",
-                                                      "ruzgarHiz":  10,
-                                                      "ruzgarYon":  18,
-                                                      "nemMin":  44,
-                                                      "nemMax":  85
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-26",
-                                                      "enDusuk":  5,
-                                                      "enYuksek":  14,
-                                                      "hadise":  "PB",
-                                                      "ruzgarHiz":  10,
-                                                      "ruzgarYon":  129,
-                                                      "nemMin":  44,
-                                                      "nemMax":  94
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-27",
-                                                      "enDusuk":  10,
-                                                      "enYuksek":  18,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  14,
-                                                      "ruzgarYon":  136,
-                                                      "nemMin":  59,
-                                                      "nemMax":  74
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-28",
-                                                      "enDusuk":  11,
-                                                      "enYuksek":  16,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  18,
-                                                      "ruzgarYon":  39,
-                                                      "nemMin":  68,
-                                                      "nemMax":  89
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-29",
-                                                      "enDusuk":  10,
-                                                      "enYuksek":  12,
-                                                      "hadise":  "SY",
-                                                      "ruzgarHiz":  43,
-                                                      "ruzgarYon":  40,
-                                                      "nemMin":  75,
-                                                      "nemMax":  92
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-30",
-                                                      "enDusuk":  5,
-                                                      "enYuksek":  9,
-                                                      "hadise":  "Y",
-                                                      "ruzgarHiz":  39,
-                                                      "ruzgarYon":  43,
-                                                      "nemMin":  62,
-                                                      "nemMax":  78
-                                                  }
-                                              ]
-                               },
-                     "91018":  {
-                                   "ad":  "Marmara",
-                                   "gunler":  [
-                                                  {
-                                                      "tarih":  "2026-11-25",
-                                                      "enDusuk":  6,
-                                                      "enYuksek":  11,
-                                                      "hadise":  "PUS",
-                                                      "ruzgarHiz":  17,
-                                                      "ruzgarYon":  19,
-                                                      "nemMin":  46,
-                                                      "nemMax":  61
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-26",
-                                                      "enDusuk":  6,
-                                                      "enYuksek":  15,
-                                                      "hadise":  "PB",
-                                                      "ruzgarHiz":  10,
-                                                      "ruzgarYon":  158,
-                                                      "nemMin":  53,
-                                                      "nemMax":  76
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-27",
-                                                      "enDusuk":  11,
-                                                      "enYuksek":  19,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  17,
-                                                      "ruzgarYon":  164,
-                                                      "nemMin":  67,
-                                                      "nemMax":  78
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-28",
-                                                      "enDusuk":  12,
-                                                      "enYuksek":  16,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  28,
-                                                      "ruzgarYon":  37,
-                                                      "nemMin":  79,
-                                                      "nemMax":  90
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-29",
-                                                      "enDusuk":  11,
-                                                      "enYuksek":  12,
-                                                      "hadise":  "SY",
-                                                      "ruzgarHiz":  53,
-                                                      "ruzgarYon":  36,
-                                                      "nemMin":  75,
-                                                      "nemMax":  87
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-30",
-                                                      "enDusuk":  5,
-                                                      "enYuksek":  10,
-                                                      "hadise":  "Y",
-                                                      "ruzgarHiz":  51,
-                                                      "ruzgarYon":  41,
-                                                      "nemMin":  62,
-                                                      "nemMax":  75
-                                                  }
-                                              ]
-                               },
-                     "91003":  {
-                                   "ad":  "Bandırma",
-                                   "gunler":  [
-                                                  {
-                                                      "tarih":  "2026-11-25",
-                                                      "enDusuk":  3,
-                                                      "enYuksek":  10,
-                                                      "hadise":  "SIS",
-                                                      "ruzgarHiz":  6,
-                                                      "ruzgarYon":  155,
-                                                      "nemMin":  42,
-                                                      "nemMax":  81
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-26",
-                                                      "enDusuk":  1,
-                                                      "enYuksek":  14,
-                                                      "hadise":  "PB",
-                                                      "ruzgarHiz":  8,
-                                                      "ruzgarYon":  166,
-                                                      "nemMin":  45,
-                                                      "nemMax":  95
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-27",
-                                                      "enDusuk":  7,
-                                                      "enYuksek":  18,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  11,
-                                                      "ruzgarYon":  146,
-                                                      "nemMin":  53,
-                                                      "nemMax":  71
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-28",
-                                                      "enDusuk":  8,
-                                                      "enYuksek":  16,
-                                                      "hadise":  "CB",
-                                                      "ruzgarHiz":  18,
-                                                      "ruzgarYon":  25,
-                                                      "nemMin":  69,
-                                                      "nemMax":  90
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-29",
-                                                      "enDusuk":  8,
-                                                      "enYuksek":  11,
-                                                      "hadise":  "SY",
-                                                      "ruzgarHiz":  41,
-                                                      "ruzgarYon":  32,
-                                                      "nemMin":  72,
-                                                      "nemMax":  92
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-30",
-                                                      "enDusuk":  4,
-                                                      "enYuksek":  7,
-                                                      "hadise":  "Y",
-                                                      "ruzgarHiz":  36,
-                                                      "ruzgarYon":  39,
-                                                      "nemMin":  65,
-                                                      "nemMax":  83
-                                                  }
-                                              ]
-                               },
-                     "95901":  {
-                                   "ad":  "Süleymanpaşa",
-                                   "gunler":  [
-                                                  {
-                                                      "tarih":  "2026-11-25",
-                                                      "enDusuk":  2,
-                                                      "enYuksek":  11,
-                                                      "hadise":  "PB",
-                                                      "ruzgarHiz":  10,
-                                                      "ruzgarYon":  321,
-                                                      "nemMin":  46,
-                                                      "nemMax":  66
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-26",
-                                                      "enDusuk":  5,
-                                                      "enYuksek":  14,
-                                                      "hadise":  "PUS",
-                                                      "ruzgarHiz":  11,
-                                                      "ruzgarYon":  156,
-                                                      "nemMin":  56,
-                                                      "nemMax":  77
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-27",
-                                                      "enDusuk":  8,
-                                                      "enYuksek":  19,
-                                                      "hadise":  "PB",
-                                                      "ruzgarHiz":  11,
-                                                      "ruzgarYon":  210,
-                                                      "nemMin":  64,
-                                                      "nemMax":  82
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-28",
-                                                      "enDusuk":  10,
-                                                      "enYuksek":  18,
-                                                      "hadise":  "KGY",
-                                                      "ruzgarHiz":  19,
-                                                      "ruzgarYon":  31,
-                                                      "nemMin":  76,
-                                                      "nemMax":  94
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-29",
-                                                      "enDusuk":  7,
-                                                      "enYuksek":  11,
-                                                      "hadise":  "SY",
-                                                      "ruzgarHiz":  38,
-                                                      "ruzgarYon":  32,
-                                                      "nemMin":  68,
-                                                      "nemMax":  88
-                                                  },
-                                                  {
-                                                      "tarih":  "2026-11-30",
-                                                      "enDusuk":  4,
-                                                      "enYuksek":  9,
-                                                      "hadise":  "Y",
-                                                      "ruzgarHiz":  34,
-                                                      "ruzgarYon":  29,
-                                                      "nemMin":  71,
-                                                      "nemMax":  85
-                                                  }
-                                              ]
-                               }
-                 }
+  "guncelleme": "2026-11-25T13:17",
+  "yayin": "26.11.2026",
+  "durum": "ok",
+  "gunler": [
+    {
+      "tarih": "2026-11-26",
+      "baslik": "26 Kasım 2026, Perşembe",
+      "firtina": "Fırtına beklenmiyor.",
+      "firtinaMarmara": false,
+      "hava": "Parçalı ve az bulutlu, batısı puslu, yer yer sisli",
+      "ruzgar": "Güney ve güneydoğudan, akşam saatlerinde güneybatıdan 3 ila 5 kuvvetinde",
+      "dalga": "0,5 ila 1,5 m",
+      "gorus": "İyi, pus anında orta, sis anında zayıf."
+    },
+    {
+      "tarih": "2026-11-27",
+      "baslik": "27 Kasım 2026, Cuma",
+      "firtina": "Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+      "firtinaMarmara": false,
+      "hava": "Parçalı ve az bulutlu",
+      "ruzgar": "Güneyli yönlerden 3 ila 5 kuvvetinde",
+      "dalga": "0,5 ila 1,5 m",
+      "gorus": "İyi."
+    },
+    {
+      "tarih": "2026-11-28",
+      "baslik": "28 Kasım 2026, Cumartesi",
+      "firtina": "Batı Karadeniz'de fırtına; Kuzey Ege'nin kuzeyi ile Doğu Akdeniz'in doğusunda fırtınamsı rüzgar bekleniyor.",
+      "firtinaMarmara": false,
+      "hava": "Parçalı bulutlu",
+      "ruzgar": "Kuzey ve kuzeydoğudan 3 ila 5, akşam saatlerinden itibaren yer yer 6 kuvvetinde",
+      "dalga": "0,5 ila 1,5 m, yer yer 2,0 m",
+      "gorus": "İyi."
+    }
+  ],
+  "lokasyon": {
+    "91008": {
+      "ad": "Erdek",
+      "gunler": [
+        {
+          "tarih": "11/25/2026",
+          "enDusuk": 6,
+          "enYuksek": 10,
+          "hadise": "PUS",
+          "ruzgarHiz": 10,
+          "ruzgarYon": 18,
+          "nemMin": 44,
+          "nemMax": 85
+        },
+        {
+          "tarih": "11/26/2026",
+          "enDusuk": 5,
+          "enYuksek": 14,
+          "hadise": "PB",
+          "ruzgarHiz": 10,
+          "ruzgarYon": 129,
+          "nemMin": 44,
+          "nemMax": 94
+        },
+        {
+          "tarih": "11/27/2026",
+          "enDusuk": 10,
+          "enYuksek": 18,
+          "hadise": "CB",
+          "ruzgarHiz": 14,
+          "ruzgarYon": 136,
+          "nemMin": 59,
+          "nemMax": 74
+        },
+        {
+          "tarih": "11/28/2026",
+          "enDusuk": 11,
+          "enYuksek": 16,
+          "hadise": "CB",
+          "ruzgarHiz": 18,
+          "ruzgarYon": 39,
+          "nemMin": 68,
+          "nemMax": 89
+        },
+        {
+          "tarih": "11/29/2026",
+          "enDusuk": 10,
+          "enYuksek": 12,
+          "hadise": "SY",
+          "ruzgarHiz": 43,
+          "ruzgarYon": 40,
+          "nemMin": 75,
+          "nemMax": 92
+        },
+        {
+          "tarih": "11/30/2026",
+          "enDusuk": 5,
+          "enYuksek": 9,
+          "hadise": "Y",
+          "ruzgarHiz": 39,
+          "ruzgarYon": 43,
+          "nemMin": 62,
+          "nemMax": 78
+        }
+      ]
+    },
+    "91018": {
+      "ad": "Marmara",
+      "gunler": [
+        {
+          "tarih": "11/25/2026",
+          "enDusuk": 6,
+          "enYuksek": 11,
+          "hadise": "PUS",
+          "ruzgarHiz": 17,
+          "ruzgarYon": 19,
+          "nemMin": 46,
+          "nemMax": 61
+        },
+        {
+          "tarih": "11/26/2026",
+          "enDusuk": 6,
+          "enYuksek": 15,
+          "hadise": "PB",
+          "ruzgarHiz": 10,
+          "ruzgarYon": 158,
+          "nemMin": 53,
+          "nemMax": 76
+        },
+        {
+          "tarih": "11/27/2026",
+          "enDusuk": 11,
+          "enYuksek": 19,
+          "hadise": "CB",
+          "ruzgarHiz": 17,
+          "ruzgarYon": 164,
+          "nemMin": 67,
+          "nemMax": 78
+        },
+        {
+          "tarih": "11/28/2026",
+          "enDusuk": 12,
+          "enYuksek": 16,
+          "hadise": "CB",
+          "ruzgarHiz": 28,
+          "ruzgarYon": 37,
+          "nemMin": 79,
+          "nemMax": 90
+        },
+        {
+          "tarih": "11/29/2026",
+          "enDusuk": 11,
+          "enYuksek": 12,
+          "hadise": "SY",
+          "ruzgarHiz": 53,
+          "ruzgarYon": 36,
+          "nemMin": 75,
+          "nemMax": 87
+        },
+        {
+          "tarih": "11/30/2026",
+          "enDusuk": 5,
+          "enYuksek": 10,
+          "hadise": "Y",
+          "ruzgarHiz": 51,
+          "ruzgarYon": 41,
+          "nemMin": 62,
+          "nemMax": 75
+        }
+      ]
+    },
+    "91003": {
+      "ad": "Bandırma",
+      "gunler": [
+        {
+          "tarih": "11/25/2026",
+          "enDusuk": 3,
+          "enYuksek": 10,
+          "hadise": "SIS",
+          "ruzgarHiz": 6,
+          "ruzgarYon": 155,
+          "nemMin": 42,
+          "nemMax": 81
+        },
+        {
+          "tarih": "11/26/2026",
+          "enDusuk": 1,
+          "enYuksek": 14,
+          "hadise": "PB",
+          "ruzgarHiz": 8,
+          "ruzgarYon": 166,
+          "nemMin": 45,
+          "nemMax": 95
+        },
+        {
+          "tarih": "11/27/2026",
+          "enDusuk": 7,
+          "enYuksek": 18,
+          "hadise": "CB",
+          "ruzgarHiz": 11,
+          "ruzgarYon": 146,
+          "nemMin": 53,
+          "nemMax": 71
+        },
+        {
+          "tarih": "11/28/2026",
+          "enDusuk": 8,
+          "enYuksek": 16,
+          "hadise": "CB",
+          "ruzgarHiz": 18,
+          "ruzgarYon": 25,
+          "nemMin": 69,
+          "nemMax": 90
+        },
+        {
+          "tarih": "11/29/2026",
+          "enDusuk": 8,
+          "enYuksek": 11,
+          "hadise": "SY",
+          "ruzgarHiz": 41,
+          "ruzgarYon": 32,
+          "nemMin": 72,
+          "nemMax": 92
+        },
+        {
+          "tarih": "11/30/2026",
+          "enDusuk": 4,
+          "enYuksek": 7,
+          "hadise": "Y",
+          "ruzgarHiz": 36,
+          "ruzgarYon": 39,
+          "nemMin": 65,
+          "nemMax": 83
+        }
+      ]
+    },
+    "95901": {
+      "ad": "Süleymanpaşa",
+      "gunler": [
+        {
+          "tarih": "11/25/2026",
+          "enDusuk": 2,
+          "enYuksek": 11,
+          "hadise": "PB",
+          "ruzgarHiz": 10,
+          "ruzgarYon": 321,
+          "nemMin": 46,
+          "nemMax": 66
+        },
+        {
+          "tarih": "11/26/2026",
+          "enDusuk": 5,
+          "enYuksek": 14,
+          "hadise": "PUS",
+          "ruzgarHiz": 11,
+          "ruzgarYon": 156,
+          "nemMin": 56,
+          "nemMax": 77
+        },
+        {
+          "tarih": "11/27/2026",
+          "enDusuk": 8,
+          "enYuksek": 19,
+          "hadise": "PB",
+          "ruzgarHiz": 11,
+          "ruzgarYon": 210,
+          "nemMin": 64,
+          "nemMax": 82
+        },
+        {
+          "tarih": "11/28/2026",
+          "enDusuk": 10,
+          "enYuksek": 18,
+          "hadise": "KGY",
+          "ruzgarHiz": 19,
+          "ruzgarYon": 31,
+          "nemMin": 76,
+          "nemMax": 94
+        },
+        {
+          "tarih": "11/29/2026",
+          "enDusuk": 7,
+          "enYuksek": 11,
+          "hadise": "SY",
+          "ruzgarHiz": 38,
+          "ruzgarYon": 32,
+          "nemMin": 68,
+          "nemMax": 88
+        },
+        {
+          "tarih": "11/30/2026",
+          "enDusuk": 4,
+          "enYuksek": 9,
+          "hadise": "Y",
+          "ruzgarHiz": 34,
+          "ruzgarYon": 29,
+          "nemMin": 71,
+          "nemMax": 85
+        }
+      ]
+    }
+  }
 };
