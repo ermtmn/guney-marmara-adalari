@@ -192,6 +192,13 @@ main { padding-top: 4px; }
   background: radial-gradient(120% 140% at 85% 0%, rgba(240,200,120,.38) 0%, transparent 50%), linear-gradient(160deg, #0b4a4f 0%, #0f6b6b 55%, #1b8f86 100%); }
 .tema-ada .menu a[aria-current="page"] { color: #0f6b6b; }
 .ada-atla { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* Rehber sayfası teması: açık kırmızı (logo ile aynı ton) */
+.tema-rehber { --accent: #c0504d; --accent-soft: #fbe9e8; }
+@media (prefers-color-scheme: dark) { .tema-rehber { --accent: #f19a97; --accent-soft: #3a1f1f; } }
+.tema-rehber .hero {
+  background: radial-gradient(120% 140% at 85% 0%, rgba(255,255,255,.22) 0%, transparent 50%), linear-gradient(160deg, #b84444 0%, #d65c5c 55%, #e98a87 100%); }
+.tema-rehber .menu a[aria-current="page"] { color: #b84444; }
 .ada-atla a { color: #fff; text-decoration: none; font-weight: 600; font-size: .88rem; padding: 6px 12px; border-radius: 8px; background: rgba(0,0,0,.18); }
 .ada-atla a:hover { background: rgba(0,0,0,.28); }
 .ada { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--adarenk); border-radius: 14px; padding: 18px 16px; margin-bottom: 18px; scroll-margin-top: 12px; }
