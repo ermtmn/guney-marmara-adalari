@@ -238,12 +238,18 @@ main { padding-top: 4px; }
 .rehber-acil { border-top: 4px solid #c8372d; }
 .rehber-grup { font-size: .8rem; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin: 14px 0 4px; }
 .tel-liste { display: grid; }
-.tel-satir { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap;
-  padding: 8px 0; border-bottom: 1px solid var(--line); }
+/* Her satır aynı düzen: ad solda (gerekirse alt satıra kayar), numara sağda düğme olarak */
+.tel-satir { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--line); }
 .tel-satir:last-child { border-bottom: 0; }
-.tel-ad { flex: 1 1 200px; font-size: .92rem; }
+.tel-ad { min-width: 0; font-size: .92rem; line-height: 1.3; overflow-wrap: anywhere; }
 .tel-ad .small { display: block; margin-top: 2px; }
-.tel-no { display: flex; gap: 10px; flex-wrap: wrap; }
+.tel-no { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.tel-no a.tel { display: inline-block; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); font-size: .88rem; text-decoration: none; }
+.tel-no a.tel:hover { border-color: var(--accent); }
+/* Çok dar ekranlarda numara adın altına, tüm satırlarda aynı şekilde */
+@media (max-width: 340px) { .tel-satir { grid-template-columns: 1fr; } .tel-no { align-items: flex-start; } }
 .eczane { border: 1px solid var(--line); border-left: 4px solid #1d7a46; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
 .eczane-alt { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
 a.eylem { display: inline-block; text-decoration: none; }
