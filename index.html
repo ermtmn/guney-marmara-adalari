@@ -6,6 +6,13 @@
 <title>Güney Marmara Adaları</title>
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/stil.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b3a5b">
+<link rel="apple-touch-icon" href="assets/ikon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Adalar">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="assets/pwa.js"></script>
 </head>
 <body>
 <header class="hero">
@@ -27,6 +34,8 @@
 </header>
 <main>
 
+  <section class="card" id="takipKart" hidden aria-live="polite"></section>
+
   <section class="card">
     <div class="row">
       <div><label class="l" for="nereden">Nereden</label><select id="nereden"></select></div>
@@ -45,7 +54,10 @@
   </section>
 
   <section class="card">
-    <h2 id="sonucBaslik">Seferler</h2>
+    <div class="sonuc-ust">
+      <h2 id="sonucBaslik">Seferler</h2>
+      <button type="button" class="takip-dugme" id="takipDugme" hidden></button>
+    </div>
     <div id="simdi" aria-live="polite"></div>
     <div id="sonuclar"></div>
     <p class="small">Gemilerin kalkış ve varış saatleri yanaşma sürelerine göre değişiklik gösterebilir.</p>
@@ -165,6 +177,24 @@
       if (d) { durum.gun = +d.dataset.gunGit; ciz(); }
     };
     setInterval(simdiCiz, 30000);   // kalan süre yarım dakikada bir yenilenir
+    setInterval(duyurulariTazele, 600000);   // sayfa açık kaldıkça iptal/ek sefer duyuruları 10 dakikada bir
+
+    // Yön takibi: düğme, takip kartındaki bağlantılar, ✕ ve bildirim izni
+    $("takipDugme").onclick = takipDegistir;
+    $("takipKart").onclick = async e => {
+      const ac = e.target.closest("[data-takip-ac]"), sil = e.target.closest("[data-takip-sil]");
+      if (ac) {
+        e.preventDefault();
+        const t = takipler[+ac.dataset.takipAc];
+        yonAc(t.nereden, t.nereye);
+        $("sonucBaslik").scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (sil) {
+        takipler.splice(+sil.dataset.takipSil, 1);
+        await takipKaydet(); takipCiz();
+      } else if (e.target.closest("#bildirimIzni")) {
+        await bildirimIzniIste(); takipCiz();
+      }
+    };
 
     duyurulariCiz();
 
@@ -335,6 +365,102 @@
     }
     if (!b) gosterilen = [];
     simdiCiz();
+    takipCiz();
+  }
+
+  // --- Yön takibi ve iptal/ek sefer uyarıları ---
+  // Takip listesi bu cihazda saklanır. Duyurular sayfa açılınca ve açık kaldıkça kontrol edilir;
+  // bildirim izni verilmişse service worker (sw.js) yeni duyuruyu telefon bildirimi olarak gösterir.
+
+  let takipler = [];
+  try { takipler = JSON.parse(localStorage.getItem("adalar-takip") || "[]").filter(t => iskeleler[t.nereden] && iskeleler[t.nereye]); } catch (e) {}
+  // Tarife değişmiş olabilir: o yönde sefer yapan firmaları güncel veriden yeniden hesapla
+  takipler = takipler.map(t => Motor.takipBilgisi(veri, t.nereden, t.nereye));
+  const takipVar = (a, b) => takipler.some(t => t.nereden === a && t.nereye === b);
+
+  async function takipKaydet() {
+    try { localStorage.setItem("adalar-takip", JSON.stringify(takipler)); } catch (e) {}
+    // service worker'ın okuyabilmesi için kopyası (önceden bildirilen duyurular korunur)
+    if (!("caches" in window)) return;
+    try {
+      const c = await caches.open("adalar-takip");
+      const eski = await c.match("__takip.json").then(r => r ? r.json() : {});
+      await c.put("__takip.json", new Response(JSON.stringify({ takip: takipler, gorulen: eski.gorulen || [] }),
+        { headers: { "Content-Type": "application/json" } }));
+    } catch (e) {}
+  }
+
+  // service worker'dan takip edilen yönleri kontrol etmesini iste (yeni duyuru varsa bildirim gösterir)
+  function bildirimKontrol() {
+    if (!("serviceWorker" in navigator)) return;
+    navigator.serviceWorker.ready.then(r => r.active && r.active.postMessage("duyuru-kontrol")).catch(() => {});
+  }
+
+  async function bildirimIzniIste() {
+    if (!("Notification" in window)) return;
+    if (Notification.permission === "default") { try { await Notification.requestPermission(); } catch (e) {} }
+    if (Notification.permission !== "granted") return;
+    // Android'de yüklenmiş uygulama: sayfa kapalıyken de tarayıcının uygun gördüğü aralıklarla kontrol
+    try {
+      const r = await navigator.serviceWorker.ready;
+      if (r.periodicSync) await r.periodicSync.register("duyuru-kontrol", { minInterval: 60 * 60 * 1000 });
+    } catch (e) {}
+    bildirimKontrol();
+  }
+
+  async function takipDegistir() {
+    const a = durum.nereden, b = durum.nereye;
+    if (!b) return;
+    if (takipVar(a, b)) takipler = takipler.filter(t => !(t.nereden === a && t.nereye === b));
+    else takipler.push(Motor.takipBilgisi(veri, a, b));
+    await takipKaydet();
+    takipCiz();
+    if (takipVar(a, b)) bildirimIzniIste();
+  }
+
+  // Takip kartından bir yöne geç: o yönde sefer olan ilk günü (bugünden başlayarak) seç
+  function yonAc(a, b) {
+    durum.nereden = a; durum.nereye = b;
+    const bugun = Motor.bugunGun();
+    for (let i = 0; i < 7; i++) if (gidilebilir((bugun + i) % 7, a).has(b)) { durum.gun = (bugun + i) % 7; break; }
+    $("nereden").value = a;
+    ciz();
+  }
+
+  function takipCiz() {
+    const d = $("takipDugme");
+    d.hidden = !durum.nereye;
+    const v = durum.nereye && takipVar(durum.nereden, durum.nereye);
+    d.textContent = v ? "🔔 Takip ediliyor" : "🔕 Bu yönü takip et";
+    d.title = v ? "Takibi bırakmak için dokunun" : "Bu yönde iptal/ek sefer duyurusu olursa haber verilir";
+    d.setAttribute("aria-pressed", v ? "true" : "false");
+
+    const k = $("takipKart");
+    k.hidden = !takipler.length;
+    if (!takipler.length) return;
+    const izin = !("Notification" in window) ? "Bu tarayıcı bildirim göstermiyor; uyarılar siteyi açtığınızda burada görünür."
+      : Notification.permission === "granted" ? ""
+      : Notification.permission === "denied" ? "Bildirim izni kapalı; uyarılar siteyi açtığınızda burada görünür."
+      : `<button type="button" class="eylem" id="bildirimIzni">🔔 Telefon bildirimlerine izin ver</button>`;
+    k.innerHTML = `<h2>Takip ettiğiniz yönler</h2>` + takipler.map((t, i) => {
+      const es = Motor.duyuruEslesir(t, window.DUYURU_VERISI);
+      return `<div class="takip${es.length ? " uyari" : ""}">
+        <div class="takip-ust">
+          <a href="?nereden=${t.nereden}&nereye=${t.nereye}" data-takip-ac="${i}">${kacis(t.ad)}</a>
+          <span class="takip-durum">${es.length ? `⚠️ ${es.length} iptal/ek sefer duyurusu` : "✅ Duyuru yok"}</span>
+          <button type="button" class="takip-sil" data-takip-sil="${i}" aria-label="${kacis(t.ad)} takibini bırak">✕</button>
+        </div>
+        ${es.map(x => `<div class="takip-duyuru" style="--opc:${x.renk}"><b>${kacis(x.isletmeci)}</b>${x.baslik ? ` · ${kacis(x.baslik)}` : ""}
+          <div>${kacis(x.metin).replace(/\n/g, "<br>")}</div></div>`).join("")}
+      </div>`;
+    }).join("") + (izin ? `<p class="small">${izin}</p>` : "");
+  }
+
+  async function duyurulariTazele() {
+    try {
+      const d = await fetch("api/v1/duyurular.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : null);
+      if (d && d.firmalar) { window.DUYURU_VERISI = d; duyurulariCiz(); takipCiz(); bildirimKontrol(); }
+    } catch (e) {}
   }
 
   // --- "Şimdi": seçilen yönde bir sonraki gemi ve kalan süre (Türkiye saatiyle) ---
@@ -467,6 +593,7 @@
 
   kur();
   ciz();
+  if (takipler.length) { takipKaydet(); bildirimKontrol(); }
 </script>
 </body>
 </html>

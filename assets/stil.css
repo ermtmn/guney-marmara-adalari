@@ -97,6 +97,31 @@ a.bilet:hover { filter: brightness(1.1); }
 .simdi.yakin b { color: var(--warn); }
 .simdi-git { font: inherit; font-size: .8rem; font-weight: 700; color: var(--accent); background: none;
   border: 1px solid var(--accent); border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+/* Yön takibi */
+.sonuc-ust { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.sonuc-ust h2 { margin: 0; }
+.takip-dugme { font: inherit; font-size: .82rem; font-weight: 700; color: var(--accent); background: var(--card);
+  border: 1px solid var(--accent); border-radius: 999px; padding: 6px 12px; cursor: pointer; white-space: nowrap; }
+.takip-dugme[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.takip { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+.takip.uyari { background: var(--warn-bg); border-color: var(--warn); }
+.takip-ust { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.takip-ust a { font-weight: 700; color: var(--text); text-decoration: none; }
+.takip-ust a:hover { text-decoration: underline; }
+.takip-durum { font-size: .82rem; color: var(--muted); }
+.takip.uyari .takip-durum { color: var(--warn); font-weight: 700; }
+.takip-sil { margin-left: auto; font: inherit; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 2px 6px; font-size: 1rem; }
+.takip-duyuru { margin-top: 8px; padding: 8px 10px; border-left: 4px solid var(--opc); background: var(--card); border-radius: 6px; font-size: .88rem; }
+/* Uygulama (PWA): yükleme önerisi ve internet yok uyarısı */
+.yukle-serit { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; max-width: 560px; margin: 0 auto;
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--card); color: var(--text);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 28px rgba(0, 0, 0, .18); font-size: .85rem; }
+.yukle-serit img { border-radius: 50%; flex: none; }
+.yukle-metin { flex: 1; min-width: 0; }
+.yukle-evet { font: inherit; font-weight: 700; color: #fff; background: #0b3a5b; border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer; }
+.yukle-kapat { font: inherit; background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 1rem; padding: 4px; }
+.cevrimdisi { position: sticky; top: 0; z-index: 60; background: var(--warn-bg); color: var(--warn); text-align: center;
+  font-size: .85rem; font-weight: 700; padding: 8px 12px; border-bottom: 1px solid var(--warn); }
 .trip.siradaki { box-shadow: 0 0 0 2px var(--opc); }
 .trip.siradaki .t-dep::after { content: "Sıradaki"; margin-left: 8px; vertical-align: middle; font-size: .7rem; font-weight: 700;
   color: #fff; background: var(--opc); padding: 2px 7px; border-radius: 6px; }

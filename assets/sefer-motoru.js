@@ -134,5 +134,45 @@
     return Object.assign({}, veri, { hatlar, guncelleme: tarife.guncelleme ? tarife.guncelleme.slice(0, 10) : veri.guncelleme });
   }
 
-  return { donguAra, kalkisAra, seferlerAra, ARAYICILAR, aktifHatlar, seferBul, gidilebilir, tumIskeleler, seferTelefonu, bugunGun, tarifeUygula };
+  // --- Takip edilen yön için iptal/ek sefer duyurusu eşleştirme ---
+  // Duyurular serbest metin olduğu için yaklaşık eşleşir: duyuru, o yönde sefer yapan bir firmadan (ya da İDO'dan)
+  // gelmeli, sefer durumu bildirmeli (iptal, ek sefer, hava muhalefeti...) ve kalkış ya da varış iskelesinin adını içermeli.
+
+  const normal = s => String(s || "").toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ı/g, "i");
+  // Kelime başında aranır ("Erdek seferleri" içindeki "ek sefer" eşleşmesin)
+  const SEFER_DURUMU = /\b(iptal|ek sefer|yapilama|yapilmay|muhalefet|firtina|ertelen|gecik|rotar|durduruldu|kaldirildi)/;
+  const EK_ADLAR = { BALIKLI: ["Balıklı", "Paşalimanı"] };
+
+  // Duyurularda aranacak iskele adları: "Saraylar (Marmara Adası)" -> ["Saraylar"]
+  const iskeleAdlari = (veri, k) => [(veri.iskeleler[k] || k).split("(")[0].trim(), ...(EK_ADLAR[k] || [])];
+
+  // Takip kaydı: yön, o yönde sefer yapan firmalar ve aranacak adlar (service worker sefer verisi olmadan kullanır)
+  function takipBilgisi(veri, a, b) {
+    const firmalar = new Set();
+    for (let g = 0; g < 7; g++) seferBul(veri, g, a, b).forEach(s => firmalar.add(s.hat.isletmeci));
+    return { nereden: a, nereye: b, ad: `${veri.iskeleler[a] || a} → ${veri.iskeleler[b] || b}`,
+      firmalar: [...firmalar], adlar: [...new Set([...iskeleAdlari(veri, a), ...iskeleAdlari(veri, b)])] };
+  }
+
+  // Kısa ve kararlı bir özet (aynı duyuruyu ikinci kez bildirmemek için)
+  const ozet = s => { let h = 0; for (const c of String(s)) h = (h * 31 + c.codePointAt(0)) | 0; return (h >>> 0).toString(36); };
+
+  function duyuruEslesir(takip, duyuruVeri) {
+    const sonuc = [];
+    if (!duyuruVeri || !duyuruVeri.firmalar) return sonuc;
+    const adlar = takip.adlar.map(normal);
+    duyuruVeri.firmalar.forEach(f => {
+      if (f.durum !== "ok" || !(takip.firmalar.includes(f.isletmeci) || f.isletmeci === "İDO")) return;
+      f.duyurular.forEach(d => {
+        const metin = normal(`${d.tur} ${d.baslik} ${d.metin}`);
+        if (!SEFER_DURUMU.test(metin) || !adlar.some(x => metin.includes(x))) return;
+        sonuc.push({ isletmeci: f.isletmeci, renk: f.renk, tur: d.tur, baslik: d.baslik, metin: d.metin, tarih: d.tarih,
+          anahtar: `${f.isletmeci}|${ozet(d.baslik + d.metin)}` });
+      });
+    });
+    return sonuc;
+  }
+
+  return { donguAra, kalkisAra, seferlerAra, ARAYICILAR, aktifHatlar, seferBul, gidilebilir, tumIskeleler, seferTelefonu, bugunGun, tarifeUygula,
+    takipBilgisi, duyuruEslesir };
 });

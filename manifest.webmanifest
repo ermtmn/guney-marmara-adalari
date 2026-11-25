@@ -1,0 +1,23 @@
+{
+  "name": "Güney Marmara Adaları",
+  "short_name": "Adalar",
+  "description": "Avşa, Marmara, Ekinlik ve Paşalimanı'na giden tüm gemi seferleri, iptal/ek sefer duyuruları ve hava durumu.",
+  "lang": "tr",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7fa",
+  "theme_color": "#0b3a5b",
+  "icons": [
+    { "src": "assets/ikon/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/ikon/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/ikon/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Seferler", "url": "./index.html" },
+    { "name": "Adalar", "url": "./adalar.html" },
+    { "name": "Dernekler", "url": "./dernekler.html" }
+  ]
+}

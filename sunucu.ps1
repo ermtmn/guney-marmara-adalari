@@ -1,7 +1,7 @@
 ﻿# Projeyi yerelde görüntülemek için basit sunucu: http://localhost:8080
 param([int]$Port = 8080)
 $kok = $PSScriptRoot
-$tipler = @{ ".html" = "text/html; charset=utf-8"; ".js" = "text/javascript; charset=utf-8"; ".json" = "application/json; charset=utf-8"; ".css" = "text/css; charset=utf-8"; ".png" = "image/png"; ".svg" = "image/svg+xml" }
+$tipler = @{ ".html" = "text/html; charset=utf-8"; ".js" = "text/javascript; charset=utf-8"; ".json" = "application/json; charset=utf-8"; ".css" = "text/css; charset=utf-8"; ".png" = "image/png"; ".svg" = "image/svg+xml"; ".webmanifest" = "application/manifest+json" }
 $l = New-Object System.Net.HttpListener
 $l.Prefixes.Add("http://localhost:$Port/")
 $l.Start()
