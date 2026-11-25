@@ -60,6 +60,7 @@
 </main>
 
 <script src="data/seferler.js"></script>
+<script src="assets/sefer-motoru.js"></script>
 <script>
   // Saatte bir güncellenen dosyalar: tarayıcı önbelleğinden eski kopyayı okumasın
   const tazele = "?t=" + Math.floor(Date.now() / 300000);   // 5 dakikada bir değişen ek
@@ -75,7 +76,7 @@
 
   const durum = {
     nereden: "ERDEK", nereye: "AVSA",
-    gun: (new Date().getDay() + 6) % 7,
+    gun: window.SeferMotoru.bugunGun(),
     kapaliFirmalar: [], sadeceArac: false
   };
 
@@ -91,104 +92,21 @@
   if (iskeleler[adresParam.get("nereden")]) durum.nereden = adresParam.get("nereden");
   if (iskeleler[adresParam.get("nereye")]) durum.nereye = adresParam.get("nereye");
 
-  // Telefon: "0541 960 99 33" -> tel:+905419609933, "444 0 752" -> tel:4440752
-  function telLink(numara, etiket) {
-    const rakam = numara.replace(/\D/g, "");
-    const href = rakam.startsWith("0") ? "+90" + rakam.slice(1) : rakam;
-    return `<a class="tel" href="tel:${href}">📞 ${etiket ? etiket + ": " : ""}${numara}</a>`;
-  }
-
-  // Bir seferde gösterilecek numara: kalkış iskelesinin gişesi, yoksa firmanın genel numarası
+  // Bir seferde gösterilecek numara (hesap assets/sefer-motoru.js'te)
   function seferTelefonu(hat, iskele) {
-    const t = hat.telefon || {};
-    if (t.iskele && t.iskele[iskele]) return telLink(t.iskele[iskele], `${ad(iskele)} gişe`);
-    if (t.genel) return telLink(t.genel, t.genelAd);
-    return "";
+    const t = Motor.seferTelefonu(veri, hat, iskele);
+    return t ? `<a class="tel" href="tel:${t.tel}">📞 ${t.etiket ? t.etiket + ": " : ""}${t.numara}</a>` : "";
   }
 
   const aracRozet = h => h.arac
     ? `<span class="badge car">🚗 Araç da taşır</span>`
     : `<span class="badge foot">🚶 Yalnız yolcu</span>`;
 
-  // --- Sefer arama ---
-
-  // "dongu" tipi: A'daki her kalkış için sonraki ilk B durağı.
-  // Arada gemi yine A'ya uğruyorsa daha geç A kalkışı kullanılır.
-  function donguAra(hat, gun, a, b) {
-    const saat = hat.saatler[gun], d = hat.duraklar, sonuc = [];
-    for (let i = 0; i < d.length; i++) {
-      if (d[i] !== a || !saat[i]) continue;
-      for (let j = i + 1; j < d.length; j++) {
-        if (!saat[j]) continue;
-        if (d[j] === a) break;
-        if (d[j] === b) {
-          const ara = [];
-          for (let k = i + 1; k < j; k++) if (saat[k]) ara.push(d[k]);
-          sonuc.push({ hat, kalkis: saat[i], varis: saat[j], varisKesin: j === d.length - 1, ara });
-          break;
-        }
-      }
-    }
-    return sonuc;
-  }
-
-  // "kalkislar" tipi: A'dan kalkan ve uğrak listesinde B olan seferler.
-  function kalkisAra(hat, gun, a, b) {
-    return hat.kalkislar
-      .filter(s => s.gunler.includes(gun) && s.kalkis === a && s.duraklar.includes(b))
-      .map(s => ({ hat, kalkis: s.saat, varis: null, ara: s.duraklar.slice(0, s.duraklar.indexOf(b)), sonra: s.duraklar.slice(s.duraklar.indexOf(b) + 1) }));
-  }
-
-  // "seferler" tipi: her seferde A'dan sonraki ilk B. Arada yine A varsa daha geç A kullanılır.
-  function seferlerAra(hat, gun, a, b) {
-    const sonuc = [];
-    hat.seferler.filter(s => s.gunler.includes(gun)).forEach(s => {
-      const d = s.duraklar;
-      for (let i = 0; i < d.length - 1; i++) {
-        if (d[i][0] !== a) continue;
-        for (let j = i + 1; j < d.length; j++) {
-          if (d[j][0] === a) break;
-          if (d[j][0] === b) {
-            sonuc.push({ hat, kalkis: d[i][2], varis: d[j][1], varisKesin: true, gemi: s.gemi,
-              ara: d.slice(i + 1, j).map(x => x[0]) });
-            break;
-          }
-        }
-      }
-    });
-    return sonuc;
-  }
-
-  const ARAYICILAR = { dongu: donguAra, kalkislar: kalkisAra, seferler: seferlerAra };
-  const siraSaati = s => s.kalkis || s.varis || "99:99";
-
-  function aktifHatlar() {
-    return veri.hatlar.filter(h => !durum.kapaliFirmalar.includes(h.id) && (!durum.sadeceArac || h.arac));
-  }
-
-  function seferBul(gun, a, b) {
-    return aktifHatlar()
-      .flatMap(h => ARAYICILAR[h.tip](h, gun, a, b))
-      .sort((x, y) => siraSaati(x).localeCompare(siraSaati(y)));
-  }
-
-  // Seçilen gün, A'dan sefer bulunan varış iskeleleri (aktif filtrelere göre)
-  function gidilebilir(gun, a) {
-    const hedef = new Set();
-    Object.keys(iskeleler).forEach(b => { if (b !== a && seferBul(gun, a, b).length) hedef.add(b); });
-    return hedef;
-  }
-
-  // Tarifelerde geçen tüm iskeleler
-  function tumIskeleler() {
-    const s = new Set();
-    veri.hatlar.forEach(h => {
-      if (h.tip === "dongu") h.duraklar.forEach(d => s.add(d));
-      else if (h.tip === "kalkislar") h.kalkislar.forEach(k => { s.add(k.kalkis); k.duraklar.forEach(d => s.add(d)); });
-      else h.seferler.forEach(k => k.duraklar.forEach(d => s.add(d[0])));
-    });
-    return [...s].sort((x, y) => ad(x).localeCompare(ad(y), "tr"));
-  }
+  // --- Sefer arama: assets/sefer-motoru.js (mobil uygulama da aynı dosyayı kullanır) ---
+  const Motor = window.SeferMotoru;
+  const seferBul = (gun, a, b) => Motor.seferBul(veri, gun, a, b, durum);
+  const gidilebilir = (gun, a) => Motor.gidilebilir(veri, gun, a, durum);
+  const tumIskeleler = () => Motor.tumIskeleler(veri);
 
   // --- Arayüz ---
 

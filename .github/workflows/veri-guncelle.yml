@@ -1,11 +1,19 @@
 # İptal/ek sefer duyurularını ve MGM hava tahminini saatte bir günceller.
 # scripts/duyurular-guncelle.ps1 betiğini çalıştırır; data/duyurular.js ve data/hava.js değiştiyse kaydeder.
+# Ardından scripts/json-uret.js ile mobil uygulama için api/v1/*.json dosyalarını üretir.
 name: Veri güncelle
 
 on:
   schedule:
     - cron: "5 * * * *"   # her saat başını 5 geçe (UTC)
   workflow_dispatch:        # Actions sekmesinden elle çalıştırmak için
+  push:                     # tarife/ada/dernek verisi elle değişince JSON hemen yenilensin
+    branches: [main]
+    paths:
+      - "data/seferler.js"
+      - "data/adalar.js"
+      - "data/dernekler.js"
+      - "scripts/json-uret.js"
 
 permissions:
   contents: write
@@ -26,14 +34,18 @@ jobs:
         shell: pwsh
         run: ./scripts/duyurular-guncelle.ps1
 
+      - name: Uygulama için JSON üret
+        run: node scripts/json-uret.js
+
       - name: Değişiklik varsa kaydet
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/duyurular.js data/hava.js
+          git add data/duyurular.js data/hava.js api/v1
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
           else
             git commit -m "Veri güncellemesi: $(date '+%d.%m.%Y %H:%M')"
+            git pull --rebase
             git push
           fi
