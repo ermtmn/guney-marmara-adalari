@@ -60,8 +60,12 @@
 </main>
 
 <script src="data/seferler.js"></script>
-<script src="data/duyurular.js"></script>
-<script src="data/hava.js"></script>
+<script>
+  // Saatte bir güncellenen dosyalar: tarayıcı önbelleğinden eski kopyayı okumasın
+  const tazele = "?t=" + Math.floor(Date.now() / 300000);   // 5 dakikada bir değişen ek
+  document.write('<script src="data/duyurular.js' + tazele + '"><\/script>');
+  document.write('<script src="data/hava.js' + tazele + '"><\/script>');
+</script>
 <script>
   const GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
   const veri = window.SEFER_VERISI;
