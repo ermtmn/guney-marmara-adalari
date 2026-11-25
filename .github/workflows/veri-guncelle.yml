@@ -1,4 +1,5 @@
-# İptal/ek sefer duyurularını ve MGM hava tahminini saatte bir günceller.
+# Sefer tarifelerini, iptal/ek sefer duyurularını ve MGM hava tahminini saatte bir günceller.
+# Tarife okunamazsa ya da Marmara RoRo yeni tarife resmi koyarsa depoda bir "issue" açar (e-posta gelir).
 # scripts/duyurular-guncelle.ps1 betiğini çalıştırır; data/duyurular.js ve data/hava.js değiştiyse kaydeder.
 # Ardından scripts/json-uret.js ile mobil uygulama için api/v1/*.json dosyalarını üretir.
 name: Veri güncelle
@@ -14,9 +15,11 @@ on:
       - "data/adalar.js"
       - "data/dernekler.js"
       - "scripts/json-uret.js"
+      - "scripts/tarife-guncelle.ps1"
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: veri-guncelle
@@ -34,6 +37,22 @@ jobs:
         shell: pwsh
         run: ./scripts/duyurular-guncelle.ps1
 
+      - name: Sefer tarifelerini firmaların sitesinden çek
+        shell: pwsh
+        env:
+          TARIFE_UYARI: ${{ runner.temp }}/tarife-uyari.md
+        run: ./scripts/tarife-guncelle.ps1
+
+      - name: Tarife sorunu varsa bildirim aç
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          f="${{ runner.temp }}/tarife-uyari.md"
+          if [ -s "$f" ]; then
+            printf '%s\n\nBu bildirim veri güncelleme iş akışı tarafından otomatik açıldı.\n' "$(cat "$f")" > "$f.body"
+            gh issue create --title "Tarife kontrolü: $(date '+%d.%m.%Y %H:%M')" --body-file "$f.body" --assignee "${{ github.repository_owner }}"
+          fi
+
       - name: Uygulama için JSON üret
         run: node scripts/json-uret.js
 
@@ -41,7 +60,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/duyurular.js data/hava.js api/v1
+          git add data/duyurular.js data/hava.js data/tarifeler.js api/v1
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
           else

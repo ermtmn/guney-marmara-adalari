@@ -110,5 +110,29 @@
   // Bugünün gün numarası (0=Pazartesi)
   const bugunGun = (tarih) => ((tarih || new Date()).getDay() + 6) % 7;
 
-  return { donguAra, kalkisAra, seferlerAra, ARAYICILAR, aktifHatlar, seferBul, gidilebilir, tumIskeleler, seferTelefonu, bugunGun };
+  // "2026-11-25T21:56" -> "25.11.2026"
+  const trTarih = s => s ? s.slice(0, 10).split("-").reverse().join(".") : "";
+
+  // Firmaların sitesinden saatte bir çekilen tarifeleri (data/tarifeler.js) elle girilmiş verinin üzerine uygular.
+  // Okunamayan firmada elle girilmiş saatler kalır ve hat.uyari ile kullanıcıya not gösterilir.
+  function tarifeUygula(veri, tarife) {
+    if (!tarife || !tarife.hatlar) return veri;
+    const hatlar = veri.hatlar.map(h => {
+      const t = tarife.hatlar[h.id];
+      if (!t) return h;
+      const k = Object.assign({}, h, { tarifeDurum: t.durum });
+      if (t.durum === "ok" || t.durum === "eski") {
+        if (h.tip === "dongu" && t.duraklar && t.saatler) { k.duraklar = t.duraklar; k.saatler = t.saatler; }
+        if (h.tip === "seferler" && t.seferler) k.seferler = t.seferler;
+      }
+      if (t.durum === "ok" && h.tip !== "kalkislar") k.tarife = "Firmanın sitesinden saatte bir otomatik alınır";
+      if (t.durum === "eski") k.uyari = `Tarife ${trTarih(t.sonBasarili)} tarihinde firmanın sitesinden alındı; kesin saat için firmayı arayın.`;
+      if (t.durum === "hata") k.uyari = "Tarife şu an firmanın sitesinden alınamadı; kesin saat için firmayı arayın.";
+      if (t.durum === "yeni-gorsel") k.uyari = "Firma yeni bir tarife yayımladı, bu saatler henüz güncellenmedi; kesin saat için firmayı arayın.";
+      return k;
+    });
+    return Object.assign({}, veri, { hatlar, guncelleme: tarife.guncelleme ? tarife.guncelleme.slice(0, 10) : veri.guncelleme });
+  }
+
+  return { donguAra, kalkisAra, seferlerAra, ARAYICILAR, aktifHatlar, seferBul, gidilebilir, tumIskeleler, seferTelefonu, bugunGun, tarifeUygula };
 });

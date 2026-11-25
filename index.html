@@ -66,10 +66,12 @@
   const tazele = "?t=" + Math.floor(Date.now() / 300000);   // 5 dakikada bir değişen ek
   document.write('<script src="data/duyurular.js' + tazele + '"><\/script>');
   document.write('<script src="data/hava.js' + tazele + '"><\/script>');
+  document.write('<script src="data/tarifeler.js' + tazele + '"><\/script>');
 </script>
 <script>
   const GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
-  const veri = window.SEFER_VERISI;
+  // Elle girilmiş veri (data/seferler.js) + firmaların sitesinden saatte bir çekilen tarifeler (data/tarifeler.js)
+  const veri = window.SeferMotoru.tarifeUygula(window.SEFER_VERISI, window.TARIFE_VERISI);
   const iskeleler = veri.iskeleler;
   const ad = k => iskeleler[k] || k;
   const $ = id => document.getElementById(id);
@@ -305,6 +307,7 @@
           </div>
           <div class="t-arr">${varis}</div>
           <div class="t-meta">${aracRozet(s.hat)}<span>${guzergah}${devam}</span></div>
+          ${s.hat.uyari ? `<div class="t-meta small">⚠️ ${s.hat.uyari}</div>` : ""}
           <div class="t-meta t-alt">${seferTelefonu(s.hat, a)}<a class="bilet" href="${s.hat.bilet}" target="_blank" rel="noopener" style="--opc:${s.hat.renk}">Bilet Al ↗</a></div>
         </div>`;
       }).join("")

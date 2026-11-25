@@ -22,7 +22,10 @@ const KAYNAKLAR = {
   dernekler: "DERNEK_VERISI",
   duyurular: "DUYURU_VERISI",
   hava: "HAVA_VERISI",
+  tarifeler: "TARIFE_VERISI",
 };
+const Motor = require(path.join(kok, "assets", "sefer-motoru.js"));
+const okunan = {};
 
 fs.mkdirSync(hedef, { recursive: true });
 
@@ -31,8 +34,13 @@ for (const [ad, degisken] of Object.entries(KAYNAKLAR)) {
   const kaynak = path.join(kok, "data", ad + ".js");
   const window = {};
   vm.runInNewContext(fs.readFileSync(kaynak, "utf8"), { window }, { filename: kaynak });
-  const veri = window[degisken];
-  if (!veri) throw new Error(`${ad}.js içinde window.${degisken} bulunamadı`);
+  okunan[ad] = window[degisken];
+  if (!okunan[ad]) throw new Error(`${ad}.js içinde window.${degisken} bulunamadı`);
+}
+
+for (const ad of Object.keys(KAYNAKLAR)) {
+  // seferler.json: elle girilmiş veri + siteden çekilen güncel tarifeler (uygulama doğrudan bunu kullanır)
+  const veri = ad === "seferler" ? Motor.tarifeUygula(okunan.seferler, okunan.tarifeler) : okunan[ad];
 
   const metin = JSON.stringify(veri, null, 1) + "\n";
   const dosya = path.join(hedef, ad + ".json");

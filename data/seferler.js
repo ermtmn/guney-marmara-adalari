@@ -89,6 +89,12 @@ window.SEFER_VERISI = {
       aciklama: "Tekirdağ - Erdek - Marmara Adası - Avşa - Bandırma",
       tarife: "01.11.2026 tarihli kış tarifesi",
       kaynak: "https://www.marmararoro.com/seferlerimiz.html",
+      // Firma tarifeyi resim olarak yayımlıyor; aşağıdaki saatler bu resimlerden elle girildi.
+      // Sitede listede olmayan yeni bir resim görülürse scripts/tarife-guncelle.ps1 uyarı açar.
+      tarifeGorselleri: [
+        "https://www.marmararoro.com/uploads/images/2026-07/6a44e99d1bf31.jpeg",
+        "https://www.marmararoro.com/uploads/images/2026-11/6ae6ec0f7becb.jpeg"
+      ],
       duyurular: "https://www.marmararoro.com/seferlerimiz.html",
       bilet: "https://bilet.erdekroro.com/",
       telefon: {
