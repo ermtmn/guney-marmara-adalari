@@ -16,7 +16,7 @@ window.REHBER_VERISI = {
 
   gruplar: [
     { baslik: "Sağlık", kalemler: [
-      { ad: "Marmara İlçe Hastanesi", tel: "0266 885 60 60", not: "Marmara Adası merkez" },
+      { ad: "Marmara Süleyman İlik İlçe Devlet Hastanesi", tel: "0266 885 60 60", not: "Okullar Mahallesi Aba Sokak No:100, Marmara Adası" },
       { ad: "Avşa Aile Sağlığı Merkezi (sağlık ocağı)", tel: "0266 896 12 62", not: "Avşa Mahallesi" }
     ] },
     { baslik: "Güvenlik ve deniz", kalemler: [
@@ -40,6 +40,7 @@ window.REHBER_VERISI = {
   not: "Marmara, Avşa ve Ekinlik Marmara ilçesine, Paşalimanı Erdek ilçesine bağlıdır. Paşalimanı için ayrı bir sağlık birimi listelenmiyor; acil durumda 112'yi arayın.",
 
   kaynaklar: [
+    { ad: "Marmara Süleyman İlik İlçe Devlet Hastanesi · Adres ve Telefon", url: "https://suleymanilikdh.saglik.gov.tr/TR-1018598/adres-ve-telefon.html", tarih: "2026-11-25" },
     { ad: "Marmara Belediyesi · Önemli Telefonlar", url: "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar", tarih: "2026-11-25" },
     { ad: "Balıkesir İl Sağlık Müdürlüğü · Aile Sağlığı Merkezleri", url: "https://balikesirism.saglik.gov.tr/TR-128167/aile-sagligi-merkezleri-asm.html", tarih: "2026-11-25" }
   ]
