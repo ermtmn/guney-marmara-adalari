@@ -131,7 +131,10 @@
       if (t.durum === "yeni-gorsel") k.uyari = "Firma yeni bir tarife yayımladı, bu saatler henüz güncellenmedi; kesin saat için firmayı arayın.";
       return k;
     });
-    return Object.assign({}, veri, { hatlar, guncelleme: tarife.guncelleme ? tarife.guncelleme.slice(0, 10) : veri.guncelleme });
+    // Sezonluk firmalar (İDO): data/seferler.js'te olmayan, tamamen siteden gelen hatlar ve iskeleleri
+    (tarife.ekHatlar || []).forEach(h => { if (!hatlar.some(x => x.id === h.id)) hatlar.push(Object.assign({ tarifeDurum: "ok" }, h)); });
+    const iskeleler = Object.assign({}, veri.iskeleler, tarife.ekIskeleler || {});
+    return Object.assign({}, veri, { hatlar, iskeleler, guncelleme: tarife.guncelleme ? tarife.guncelleme.slice(0, 10) : veri.guncelleme });
   }
 
   // --- Takip edilen yön için iptal/ek sefer duyurusu eşleştirme ---

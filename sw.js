@@ -7,16 +7,17 @@
 //  - Diğer her şey (sayfalar, stil, logolar, tarife): önce önbellek (hızlı açılış), arka planda tazelenir
 // Bu dosyada değişiklik yapınca SURUM'u artırın.
 
-const SURUM = "v1";
+const SURUM = "v2";
 const ONBELLEK = "adalar-" + SURUM;
 const UYGULAMA = [
-  "./", "index.html", "adalar.html", "dernekler.html", "manifest.webmanifest",
+  "./", "index.html", "adalar.html", "rehber.html", "dernekler.html", "manifest.webmanifest",
+  "data/rehber.js", "data/eczane.js",
   "assets/stil.css", "assets/sefer-motoru.js", "assets/pwa.js",
   "assets/logo.svg", "assets/logo-ada.svg", "assets/logo-dernek.svg", "assets/ikon/icon-192.png",
   "data/seferler.js", "data/adalar.js", "data/dernekler.js",
   "data/duyurular.js", "data/hava.js", "data/tarifeler.js"
 ];
-const CANLI = /\/(data\/(duyurular|hava|tarifeler)\.js|api\/)/;
+const CANLI = /\/(data\/(duyurular|hava|tarifeler|eczane)\.js|api\/)/;
 const TAKIP_ADRESI = "__takip.json";    // sayfanın kaydettiği takip listesi ve görülen duyurular
 
 importScripts("assets/sefer-motoru.js");

@@ -18,6 +18,7 @@
   "shortcuts": [
     { "name": "Seferler", "url": "./index.html" },
     { "name": "Adalar", "url": "./adalar.html" },
+    { "name": "Rehber", "url": "./rehber.html" },
     { "name": "Dernekler", "url": "./dernekler.html" }
   ]
 }

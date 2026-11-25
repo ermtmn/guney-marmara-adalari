@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Güney Marmara Adaları</title>
+<link rel="icon" href="assets/logo-ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/stil.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b3a5b">
+<link rel="apple-touch-icon" href="assets/ikon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Adalar">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="assets/pwa.js"></script>
+</head>
+<body class="tema-ada">
+<header class="hero">
+  <div class="hero-ic">
+    <nav class="menu" aria-label="Site menüsü">
+      <a href="index.html">⛴️ Seferler</a>
+      <a href="adalar.html">🏝️ Adalar</a>
+      <a href="rehber.html" aria-current="page">🧭 Rehber</a>
+      <a href="dernekler.html">🤝 Dernekler</a>
+    </nav>
+    <div class="hero-baslik">
+      <img class="logo" src="assets/logo-ada.svg" alt="" width="64" height="64">
+      <h1>Ada Rehberi</h1>
+    </div>
+    <p class="hero-alt">Nöbetçi eczane, önemli telefonlar, muhtarlıklar ve ada içi ulaşım. Adada ihtiyacınız olan bilgiler tek yerde.</p>
+  </div>
+  <svg class="hero-dalga" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C180,58 360,6 540,26 C720,46 900,10 1080,28 C1260,46 1350,22 1440,30 L1440,60 L0,60 Z"></path>
+  </svg>
+</header>
+<main>
+  <section class="card">
+    <div class="filters-title" style="margin-top:0">Ada</div>
+    <div class="chips" id="adaSec" role="group" aria-label="Ada seçimi"></div>
+  </section>
+
+  <section class="card rehber-acil">
+    <h2>🚨 Acil numaralar</h2>
+    <div class="tel-liste" id="acil"></div>
+  </section>
+
+  <div id="rehber"></div>
+
+  <footer>
+    <div>Telefonlar ve muhtarlıklar resmi kurum sitelerinden derlenmiştir. Gitmeden ya da aramadan önce değişmiş olabileceğini unutmayın; düzeltme ve önerileriniz için bize ulaşın.</div>
+  </footer>
+</main>
+
+<script src="data/adalar.js"></script>
+<script src="data/rehber.js"></script>
+<script>
+  // Nöbetçi eczaneler her gün değişir: tarayıcı önbelleğinden eski kopyayı okumasın
+  document.write('<script src="data/eczane.js?t=' + Math.floor(Date.now() / 300000) + '"><\/script>');
+</script>
+<script>
+  const $ = id => document.getElementById(id);
+  const kacis = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const R = window.REHBER_VERISI, ADALAR = window.ADA_VERISI.adalar;
+  const trTarih = s => s ? s.slice(0, 10).split("-").reverse().join(".") : "";
+
+  // "0266 885 50 06" -> tel:+902668855006, "112" -> tel:112
+  function telLink(numara) {
+    const rakam = numara.replace(/\D/g, "");
+    const href = rakam.startsWith("0") ? "+90" + rakam.slice(1) : rakam;
+    return `<a class="tel" href="tel:${href}">📞 ${kacis(numara)}</a>`;
+  }
+  const telSatiri = k => `<div class="tel-satir">
+      <div class="tel-ad">${kacis(k.ad)}${k.not ? `<span class="small">${kacis(k.not)}</span>` : ""}</div>
+      <div class="tel-no">${k.tel ? k.tel.split("|").map(telLink).join("") : ""}</div>
+    </div>`;
+
+  $("acil").innerHTML = R.acil.map(telSatiri).join("");
+
+  // Seçili ada: adres (?ada=avsa) > son seçim > ilk ada
+  let secili = new URLSearchParams(location.search).get("ada");
+  try { if (!R.adalar[secili]) secili = localStorage.getItem("adalar-rehber-ada"); } catch (e) {}
+  if (!R.adalar[secili]) secili = ADALAR[0].id;
+
+  function eczaneKart(ada) {
+    const e = window.ECZANE_VERISI;
+    let govde;
+    if (!e || e.durum !== "ok") {
+      govde = `<p class="empty">Nöbet listesi şu an alınamadı. Nöbetçi eczane için 182'yi arayabilirsiniz.</p>`;
+    } else {
+      const liste = e.eczaneler.filter(x => x.ada === ada.id);
+      govde = liste.length ? liste.map(x => `
+        <div class="eczane">
+          <b>${kacis(x.ad)}</b>
+          ${x.adres ? `<div class="small">${kacis(x.adres)}</div>` : ""}
+          <div class="eczane-alt">${x.tel ? telLink(x.tel) : ""}${x.konum ? `<a class="eylem" href="https://www.google.com/maps?q=${encodeURIComponent(x.konum)}" target="_blank" rel="noopener">📍 Haritada aç</a>` : ""}</div>
+        </div>`).join("")
+        : `<p class="empty">Bugün ${kacis(ada.ad)}'nda nöbetçi eczane listelenmiyor. Balıkesir Eczacı Odası'nın nöbet çizelgesinde ${ada.id === "pasalimani" ? "Paşalimanı'ndan" : "Marmara ilçesinden"} eczane yer almıyor.
+           Gece ve tatil günlerinde ilaç ihtiyacı için 182'yi ya da acil durumda 112'yi arayın.</p>`;
+    }
+    return `<section class="card">
+      <h2>💊 Bugünkü nöbetçi eczane</h2>
+      ${govde}
+      <p class="small">Kaynak: <a href="https://www.balikesireczaciodasi.org.tr/nobetci-eczaneler" target="_blank" rel="noopener">Balıkesir Eczacı Odası</a>${e ? ` · Son kontrol: ${trTarih(e.guncelleme)} ${e.guncelleme.slice(11, 16)}` : ""}</p>
+    </section>`;
+  }
+
+  function ciz() {
+    const ada = ADALAR.find(a => a.id === secili), r = R.adalar[secili];
+    document.body.style.setProperty("--adarenk", ada.renk);
+    try { localStorage.setItem("adalar-rehber-ada", secili); } catch (e) {}
+
+    $("adaSec").innerHTML = ADALAR.filter(a => R.adalar[a.id]).map(a =>
+      `<button type="button" class="chip ada-chip" data-ada="${a.id}" style="--adarenk:${a.renk}" aria-pressed="${a.id === secili}">${a.simge} ${kacis(a.ad)}</button>`).join("");
+
+    $("rehber").innerHTML = `
+      <div class="rehber-ada" style="--adarenk:${ada.renk}">
+        ${r.not ? `<section class="card rehber-not">ℹ️ ${kacis(r.not)}</section>` : ""}
+        ${eczaneKart(ada)}
+        <section class="card">
+          <h2>📞 Önemli telefonlar</h2>
+          ${r.gruplar.map(g => `<h3 class="rehber-grup">${kacis(g.baslik)}</h3><div class="tel-liste">${g.kalemler.map(telSatiri).join("")}</div>`).join("")}
+        </section>
+        <section class="card">
+          <h2>🏘️ Muhtarlıklar</h2>
+          <div class="muhtar-liste">${r.muhtarlar.map(m => `<div class="muhtar"><b>${kacis(m.mahalle)}</b><span>${kacis(m.muhtar)}</span></div>`).join("")}</div>
+          <p class="small">Muhtarlıkların telefonu resmi sitelerde yayımlanmıyor; ${r.ilce === "Erdek" ? "Erdek Kaymakamlığı" : "Marmara Belediyesi"} üzerinden ulaşabilirsiniz.</p>
+        </section>
+        <section class="card">
+          <h2>🚐 Ada içi ulaşım</h2>
+          <p>${kacis(r.ulasim.metin)}</p>
+          <a class="eylem" href="index.html?nereden=${ada.seferNereden}&nereye=${ada.iskeleler[0]}">⛴️ Adaya gemi seferleri</a>
+        </section>
+        <p class="small rehber-kaynak">Kaynaklar: ${r.kaynaklar.map(k => `<a href="${k.url}" target="_blank" rel="noopener">${kacis(k.ad)}</a> (${trTarih(k.tarih)})`).join(" · ")}</p>
+      </div>`;
+  }
+
+  $("adaSec").onclick = e => {
+    const b = e.target.closest("[data-ada]");
+    if (!b) return;
+    secili = b.dataset.ada;
+    history.replaceState(null, "", "?ada=" + secili);
+    ciz();
+  };
+  ciz();
+</script>
+</body>
+</html>

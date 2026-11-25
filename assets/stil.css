@@ -225,3 +225,25 @@ main { padding-top: 4px; }
   .dernek-renkli .ada-rozet { color: #fff; background: var(--accent); }
   .tema-dernek .dernek-renkli .dernek-linkler a.ana, .tema-dernek .ada-chip[aria-pressed="true"] { color: #fff; }
 }
+
+/* --- Ada rehberi (rehber.html) --- */
+.ada-chip[aria-pressed="true"] { background: var(--adarenk); border-color: var(--adarenk); color: #fff; }
+.rehber-ada .card { border-top: 4px solid var(--adarenk); }
+.rehber-acil { border-top: 4px solid #c8372d; }
+.rehber-not { background: var(--accent-soft); font-size: .92rem; }
+.rehber-grup { font-size: .8rem; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin: 14px 0 4px; }
+.tel-liste { display: grid; }
+.tel-satir { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap;
+  padding: 8px 0; border-bottom: 1px solid var(--line); }
+.tel-satir:last-child { border-bottom: 0; }
+.tel-ad { flex: 1 1 200px; font-size: .92rem; }
+.tel-ad .small { display: block; margin-top: 2px; }
+.tel-no { display: flex; gap: 10px; flex-wrap: wrap; }
+.muhtar-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+.muhtar { border: 1px solid var(--line); border-left: 4px solid var(--adarenk); border-radius: 8px; padding: 8px 10px; }
+.muhtar b { display: block; font-size: .92rem; }
+.muhtar span { font-size: .82rem; color: var(--muted); }
+.eczane { border: 1px solid var(--line); border-left: 4px solid #1d7a46; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+.eczane-alt { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+.rehber-kaynak { margin: 0 4px 18px; }
+a.eylem { display: inline-block; text-decoration: none; }

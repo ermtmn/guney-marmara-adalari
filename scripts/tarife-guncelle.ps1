@@ -183,7 +183,100 @@ try {
   if (-not $o -or $o.durum -ne "hata") { $uyarilar += "**Marmara RoRo** tarife sayfası okunamadı: $($_.Exception.Message)" }
 }
 
-$veri = [ordered]@{ guncelleme = $simdi; hatlar = $hatlar }
+# --- İDO: ada seferleri yalnızca yaz sezonunda. Liman listesinde ada iskelesi görününce seferler otomatik eklenir ---
+# Kaynak: İDO'nun kendi sitesinin kullandığı servis (api.ido.com.tr). Önümüzdeki 7 günün seferleri haftanın günlerine çevrilir.
+# Deneme için: $env:IDO_DENEME_DESEN = "Bandırma" (ada yerine bu limanları ada sayar, çıktıyı göndermeyin)
+$ekHatlar = @(); $ekIskeleler = [ordered]@{}
+$o = $onceki["ido"]
+try {
+  $IDO = "https://api.ido.com.tr/idows/v2/ido"
+  $basliklar = @{ Origin = "https://www.ido.com.tr"; Referer = "https://www.ido.com.tr/" }
+  function Get-Ido([string]$yol) {
+    $r = Invoke-WebRequest "$IDO/$yol" -UseBasicParsing -UserAgent $UA -TimeoutSec 30 -Headers $basliklar
+    [Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray()) | ConvertFrom-Json
+  }
+  $ADA_DESENI = if ($env:IDO_DENEME_DESEN) { $env:IDO_DENEME_DESEN } else { '(?i)avşa|avsa|marmara|ekinlik|saraylar|paşalimanı|balıklı' }
+  $limanlar = @((Get-Ido "locations").results | ForEach-Object { $_.port })
+  if ($limanlar.Count -lt 3) { throw "Liman listesi okunamadı" }
+  $adaLimanlari = @($limanlar | Where-Object { "$($_.name) $($_.displayName)" -match $ADA_DESENI })
+
+  if (-not $adaLimanlari.Count) {
+    $hatlar["ido"] = [ordered]@{ durum = "sezon-disi"; sonBasarili = $simdi; limanlar = @($limanlar | ForEach-Object { $_.name }) }
+  } else {
+    # İskele kodu: bilinen iskele ya da İDO liman adından yeni kod (YENIKAPI gibi)
+    $kodlar = @{}
+    function Get-IdoKodu($liman) {
+      if ($kodlar.ContainsKey($liman.code)) { return $kodlar[$liman.code] }
+      # Sefer kaydındaki limanda yalnızca kod ve ad var; görünen ad için liman listesindeki kaydı kullan
+      $tam = $limanlar | Where-Object { $_.code -eq $liman.code } | Select-Object -First 1
+      if ($tam) { $liman = $tam }
+      $k = Get-IskeleKodu $liman.name
+      if (-not $k) {
+        $n = $liman.name.Replace('İ', 'I').Replace('ı', 'i').Replace('Ş', 'S').Replace('ş', 's').Replace('Ğ', 'G').Replace('ğ', 'g')
+        $n = $n.Replace('Ç', 'C').Replace('ç', 'c').Replace('Ö', 'O').Replace('ö', 'o').Replace('Ü', 'U').Replace('ü', 'u')
+        $k = ($n -creplace '[^A-Za-z]', '').ToUpperInvariant()
+        $script:ekIskeleler[$k] = if ($liman.displayName -and $liman.displayName -ne $liman.name) { "$($liman.displayName) ($($liman.name))" } else { $liman.name }
+      }
+      $kodlar[$liman.code] = $k; $k
+    }
+    # Ada limanına giden ve ada limanından kalkan hatlar
+    $ciftler = @{}
+    foreach ($a in $adaLimanlari) {
+      foreach ($h in (Get-Ido "locations/$($a.code)/routes").results) {
+        $ciftler["$($a.code)>$($h.port.code)"] = $true
+        $ciftler["$($h.port.code)>$($a.code)"] = $true
+      }
+    }
+    $bugun = Get-Date
+    $bas = $bugun.ToString("yyyy-MM-dd"); $son = $bugun.AddDays(6).ToString("yyyy-MM-dd")
+    $gruplar = [ordered]@{}; $aracli = $false
+    foreach ($cift in $ciftler.Keys) {
+      $kalkis, $varis = $cift.Split(">")
+      $j = Get-Ido "voyages?arrivalLocation=$varis&departureLocation=$kalkis&fromDate=$bas&toDate=$son"
+      foreach ($v in @($j.voyages)) {
+        if (-not $v -or "$($v.status)" -match '(?i)iptal') { continue }
+        $gun = ([datetime]::ParseExact("$($v.date)".Substring(0, 10), "yyyy-MM-dd", $null).DayOfWeek.value__ + 6) % 7
+        $nereden = Get-IdoKodu $v.fromLocation; $nereye = Get-IdoKodu $v.toLocation
+        # Hat adındaki ara limanlar ("Yenikapı-Marmara-Avşa"): saatleri bilinmez
+        $parcalar = @("$($v.name)" -split '\s*-\s*')
+        $ara = @()
+        for ($i = 1; $i -lt $parcalar.Count - 1; $i++) {
+          $limanAdi = $parcalar[$i]
+          $l = $limanlar | Where-Object { $_.name -eq $limanAdi } | Select-Object -First 1
+          if ($l) { $ara += Get-IdoKodu $l }
+        }
+        # (Windows PowerShell'de "@(, @(...))" JSON'a {"value":..} diye yazılıyor; += ile kurulur)
+        $duraklar = @()
+        $duraklar += , @($nereden, $null, (ConvertTo-Saat "$($v.departureTime)"))
+        foreach ($x in $ara) { $duraklar += , @($x, $null, $null) }
+        $duraklar += , @($nereye, (ConvertTo-Saat "$($v.arrivalTime)"), $null)
+        if ($v.vessel.carriesVehicles) { $aracli = $true }
+        $anahtar = "$($v.name)|$($duraklar | ConvertTo-Json -Compress)"
+        if (-not $gruplar.Contains($anahtar)) { $gruplar[$anahtar] = [ordered]@{ gunler = @(); gemi = "$($v.name)"; duraklar = $duraklar } }
+        if ($gun -notin $gruplar[$anahtar].gunler) { $gruplar[$anahtar].gunler += $gun }
+      }
+    }
+    $seferler = @($gruplar.Values | ForEach-Object { $_.gunler = @($_.gunler | Sort-Object); $_ })
+    if (-not $seferler.Count) { throw "Ada limanı var ama önümüzdeki 7 gün için sefer bulunamadı" }
+    $ekHatlar += [ordered]@{
+      id = "ido"; tip = "seferler"; isletmeci = "İDO"; renk = "#1a3d8f"; arac = $aracli
+      ad = "İDO Adalar"; aciklama = (($adaLimanlari | ForEach-Object { $_.name }) -join ", ")
+      tarife = "İDO'nun sitesinden saatte bir otomatik alınır (önümüzdeki 7 gün)"
+      kaynak = "https://www.ido.com.tr/tr/sefer-saatleri"; bilet = "https://www.ido.com.tr/"
+      telefon = [ordered]@{ genel = "0850 222 44 36"; genelAd = "Çağrı merkezi" }
+      seferler = $seferler
+    }
+    $hatlar["ido"] = [ordered]@{ durum = "ok"; sonBasarili = $simdi; adaLimanlari = @($adaLimanlari | ForEach-Object { $_.name }); sefer = $seferler.Count }
+    if (-not $o -or $o.durum -ne "ok") {
+      $uyarilar += "**İDO** ada seferleri başladı ($(($adaLimanlari | ForEach-Object { $_.name }) -join ', ')). $($seferler.Count) sefer sitede otomatik gösterilmeye başlandı; bir göz atmanız iyi olur."
+    }
+  }
+} catch {
+  $hatlar["ido"] = [ordered]@{ durum = "hata"; hata = $_.Exception.Message }
+  if ($o -and $o.durum -eq "ok") { $uyarilar += "**İDO** seferleri okunamadı: $($_.Exception.Message)" }
+}
+
+$veri = [ordered]@{ guncelleme = $simdi; hatlar = $hatlar; ekHatlar = $ekHatlar; ekIskeleler = $ekIskeleler }
 $icerik = "// Bu dosya scripts/tarife-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin.`nwindow.TARIFE_VERISI = $($veri | ConvertTo-Json -Depth 8);`n"
 [IO.File]::WriteAllText($cikti, $icerik, (New-Object System.Text.UTF8Encoding $false))
 

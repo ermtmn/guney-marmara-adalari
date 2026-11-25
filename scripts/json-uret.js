@@ -23,6 +23,8 @@ const KAYNAKLAR = {
   duyurular: "DUYURU_VERISI",
   hava: "HAVA_VERISI",
   tarifeler: "TARIFE_VERISI",
+  rehber: "REHBER_VERISI",
+  eczane: "ECZANE_VERISI",
 };
 const Motor = require(path.join(kok, "assets", "sefer-motoru.js"));
 const okunan = {};

@@ -20,6 +20,7 @@
     <nav class="menu" aria-label="Site menüsü">
       <a href="index.html">⛴️ Seferler</a>
       <a href="adalar.html" aria-current="page">🏝️ Adalar</a>
+      <a href="rehber.html">🧭 Rehber</a>
       <a href="dernekler.html">🤝 Dernekler</a>
     </nav>
     <div class="hero-baslik">
@@ -68,6 +69,7 @@
       <ul class="ada-liste">${a.onecikanlar.map(o => `<li>${kacis(o)}</li>`).join("")}</ul>
       <div class="ada-dugmeler">
         <a class="ana" href="index.html?nereden=${a.seferNereden}&nereye=${a.iskeleler[0]}">⛴️ Sefer saatlerine bak</a>
+        <a href="rehber.html?ada=${a.id}">🧭 Eczane ve önemli telefonlar</a>
         ${dSayi ? `<a href="dernekler.html?ada=${encodeURIComponent(a.dernekAdi)}">🤝 Adanın dernekleri (${dSayi})</a>` : ""}
       </div>
     </article>`;

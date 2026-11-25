@@ -20,6 +20,7 @@
     <nav class="menu" aria-label="Site menüsü">
       <a href="index.html" aria-current="page">⛴️ Seferler</a>
       <a href="adalar.html">🏝️ Adalar</a>
+      <a href="rehber.html">🧭 Rehber</a>
       <a href="dernekler.html">🤝 Dernekler</a>
     </nav>
     <div class="hero-baslik">
@@ -199,7 +200,9 @@
     duyurulariCiz();
 
 
-    $("kaynak").innerHTML = `<div>İDO'nun ada seferleri (Avşa, Marmara, Ekinlik) yalnızca yaz sezonunda yapılıyor; sezon açılınca eklenecek.</div>`
+    // İDO sezonu açılınca seferleri data/tarifeler.js ile otomatik gelir; o zamana kadar not gösterilir
+    const idoVar = veri.hatlar.some(h => h.id === "ido");
+    $("kaynak").innerHTML = (idoVar ? "" : `<div>İDO'nun ada seferleri (Avşa, Marmara, Ekinlik) yalnızca yaz sezonunda yapılıyor; sezon açılınca otomatik eklenecek.</div>`)
       + `<div style="margin-top:6px">Güncelleme Tarihi: ${veri.guncelleme.split("-").reverse().join(".")}</div>`;
   }
 
