@@ -40,10 +40,6 @@
   </section>
 
   <div id="rehber"></div>
-
-  <footer>
-    <div>Telefonlar resmi kurum sitelerinden derlenmiştir. Gitmeden ya da aramadan önce değişmiş olabileceğini unutmayın; düzeltme ve önerileriniz için bize ulaşın.</div>
-  </footer>
 </main>
 
 <script src="data/adalar.js"></script>
@@ -101,8 +97,7 @@
       <h2>📞 Önemli telefonlar</h2>
       ${R.gruplar.map(g => `<h3 class="rehber-grup">${kacis(g.baslik)}</h3><div class="tel-liste">${g.kalemler.map(telSatiri).join("")}</div>`).join("")}
       ${R.not ? `<p class="small" style="margin-top:12px">ℹ️ ${kacis(R.not)}</p>` : ""}
-    </section>
-    <p class="small rehber-kaynak">Kaynaklar: ${R.kaynaklar.map(k => `<a href="${k.url}" target="_blank" rel="noopener">${kacis(k.ad)}</a> (${trTarih(k.tarih)})`).join(" · ")}</p>`;
+    </section>`;
 </script>
 </body>
 </html>
