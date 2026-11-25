@@ -141,9 +141,12 @@ foreach ($ist in $ISTASYONLAR.Keys) {
     $gorulen = @{}
     # Gün0 bugündür; MGM öğleden sonra Gün1'i yarına kaydırdığı için Gün0 da alınır
     foreach ($n in 0..5) {
-      $ham = [string]$t."tarihGun$n"
-      if (-not $ham -or $ham.Length -lt 10) { continue }
-      $tarihStr = $ham.Substring(0, 10)
+      # PowerShell 7 (GitHub) tarihleri DateTime'a çevirir, Windows PowerShell 5.1 metin bırakır
+      $ham = $t."tarihGun$n"
+      if ($null -eq $ham) { continue }
+      if ($ham -is [datetime]) { $tarihStr = $ham.ToUniversalTime().ToString("yyyy-MM-dd") }
+      elseif (([string]$ham).Length -ge 10) { $tarihStr = ([string]$ham).Substring(0, 10) }
+      else { continue }
       if ($gorulen.ContainsKey($tarihStr)) { continue }
       $gorulen[$tarihStr] = $true
       $gunler += [ordered]@{
