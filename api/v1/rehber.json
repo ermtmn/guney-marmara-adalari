@@ -19,16 +19,6 @@
    "ilce": "Marmara",
    "gruplar": [
     {
-     "baslik": "Ada içinde",
-     "kalemler": [
-      {
-       "ad": "Ekinlik Mahallesi muhtarlığı",
-       "tel": "",
-       "not": "Telefon yayımlanmamış; Marmara Belediyesi üzerinden ulaşılabilir"
-      }
-     ]
-    },
-    {
      "baslik": "Sağlık ve güvenlik",
      "kalemler": [
       {
@@ -115,60 +105,12 @@
        "tel": "0266 885 51 83"
       }
      ]
-    },
-    {
-     "baslik": "Adalar arası deniz ulaşımı",
-     "kalemler": [
-      {
-       "ad": "Gestaş",
-       "tel": "444 0 752"
-      },
-      {
-       "ad": "Marmara RoRo",
-       "tel": "0541 960 99 33"
-      },
-      {
-       "ad": "İDO",
-       "tel": "0850 222 44 36"
-      },
-      {
-       "ad": "Adalar 1",
-       "tel": "0554 342 52 57"
-      },
-      {
-       "ad": "Yavuz Naz",
-       "tel": "0535 962 77 42"
-      },
-      {
-       "ad": "Ömer Kaptan",
-       "tel": "0266 896 11 01"
-      }
-     ]
     }
    ],
-   "muhtarlar": [
-    {
-     "mahalle": "Ekinlik",
-     "muhtar": "Kenan Şengül"
-    }
-   ],
-   "ulasim": {
-    "metin": "Ekinlik için yayımlanmış bir dolmuş hattı ya da saati bulunamadı. Adaya ulaşım Gestaş seferleriyledir."
-   },
    "kaynaklar": [
     {
      "ad": "Marmara Belediyesi · Önemli Telefonlar",
      "url": "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Ulaşım",
-     "url": "https://www.marmara.bel.tr/sayfalar/ulasim",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Muhtarlıklar",
-     "url": "https://www.marmara.bel.tr/gunluk-bilgi/muhtarlar",
      "tarih": "2026-11-25"
     }
    ]
@@ -272,96 +214,12 @@
        "tel": "0266 885 51 83"
       }
      ]
-    },
-    {
-     "baslik": "Adalar arası deniz ulaşımı",
-     "kalemler": [
-      {
-       "ad": "Gestaş",
-       "tel": "444 0 752"
-      },
-      {
-       "ad": "Marmara RoRo",
-       "tel": "0541 960 99 33"
-      },
-      {
-       "ad": "İDO",
-       "tel": "0850 222 44 36"
-      },
-      {
-       "ad": "Adalar 1",
-       "tel": "0554 342 52 57"
-      },
-      {
-       "ad": "Yavuz Naz",
-       "tel": "0535 962 77 42"
-      },
-      {
-       "ad": "Ömer Kaptan",
-       "tel": "0266 896 11 01"
-      }
-     ]
     }
    ],
-   "muhtarlar": [
-    {
-     "mahalle": "Okullar",
-     "muhtar": "Metin Can"
-    },
-    {
-     "mahalle": "Cumhuriyet",
-     "muhtar": "Yüksel Karakurt"
-    },
-    {
-     "mahalle": "Hürriyet",
-     "muhtar": "Volkan Dinçer"
-    },
-    {
-     "mahalle": "Yenimahalle",
-     "muhtar": "Emre Birinci"
-    },
-    {
-     "mahalle": "Çınarlı",
-     "muhtar": "Bekir Köse"
-    },
-    {
-     "mahalle": "Gündoğdu",
-     "muhtar": "Fehmi Bayraktar"
-    },
-    {
-     "mahalle": "Topağaç",
-     "muhtar": "Ramazan Dağ"
-    },
-    {
-     "mahalle": "Asmalı",
-     "muhtar": "Yavuz Balta"
-    },
-    {
-     "mahalle": "Saraylar",
-     "muhtar": "Recep Budak"
-    },
-    {
-     "mahalle": "Abroz",
-     "muhtar": "Sultan Yıldız"
-    }
-   ],
-   "ulasim": {
-    "metin": "Dolmuş güzergâh ve saatleri belediye ya da kooperatif tarafından internette yayımlanmıyor. Yaz sezonunda iskeleden köylere dolmuş çalışır, kalkışlar genelde gemi saatlerine göre ayarlanır. Güncel saat için iskeledeki dolmuş durağına ya da belediyeye sorun. Kışın taksi daha yaygın."
-   },
    "kaynaklar": [
     {
      "ad": "Marmara Belediyesi · Önemli Telefonlar",
      "url": "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Ulaşım",
-     "url": "https://www.marmara.bel.tr/sayfalar/ulasim",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Muhtarlıklar",
-     "url": "https://www.marmara.bel.tr/gunluk-bilgi/muhtarlar",
      "tarih": "2026-11-25"
     }
    ]
@@ -465,68 +323,12 @@
        "tel": "0266 885 51 83"
       }
      ]
-    },
-    {
-     "baslik": "Adalar arası deniz ulaşımı",
-     "kalemler": [
-      {
-       "ad": "Gestaş",
-       "tel": "444 0 752"
-      },
-      {
-       "ad": "Marmara RoRo",
-       "tel": "0541 960 99 33"
-      },
-      {
-       "ad": "İDO",
-       "tel": "0850 222 44 36"
-      },
-      {
-       "ad": "Adalar 1",
-       "tel": "0554 342 52 57"
-      },
-      {
-       "ad": "Yavuz Naz",
-       "tel": "0535 962 77 42"
-      },
-      {
-       "ad": "Ömer Kaptan",
-       "tel": "0266 896 11 01"
-      }
-     ]
     }
    ],
-   "muhtarlar": [
-    {
-     "mahalle": "Avşa",
-     "muhtar": "Bintuğ Yasakçı"
-    },
-    {
-     "mahalle": "Deniz",
-     "muhtar": "Huzur Üstün"
-    },
-    {
-     "mahalle": "Yiğitler",
-     "muhtar": "Korhan Uygut"
-    }
-   ],
-   "ulasim": {
-    "metin": "Dolmuş güzergâh ve saatleri belediye ya da kooperatif tarafından internette yayımlanmıyor. Yaz sezonunda iskeleden köylere dolmuş çalışır, kalkışlar genelde gemi saatlerine göre ayarlanır. Güncel saat için iskeledeki dolmuş durağına ya da belediyeye sorun."
-   },
    "kaynaklar": [
     {
      "ad": "Marmara Belediyesi · Önemli Telefonlar",
      "url": "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Ulaşım",
-     "url": "https://www.marmara.bel.tr/sayfalar/ulasim",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Marmara Belediyesi · Muhtarlıklar",
-     "url": "https://www.marmara.bel.tr/gunluk-bilgi/muhtarlar",
      "tarih": "2026-11-25"
     }
    ]
@@ -542,48 +344,13 @@
        "tel": "0266 835 10 01"
       }
      ]
-    },
-    {
-     "baslik": "Adaya deniz ulaşımı",
-     "kalemler": [
-      {
-       "ad": "Gestaş",
-       "tel": "444 0 752"
-      }
-     ]
     }
    ],
-   "muhtarlar": [
-    {
-     "mahalle": "Paşalimanı",
-     "muhtar": "Hasan Hüseyin Uçar"
-    },
-    {
-     "mahalle": "Balıklı",
-     "muhtar": "Deniz Kıran"
-    },
-    {
-     "mahalle": "Harmanlı",
-     "muhtar": "Cemal Ülker"
-    },
-    {
-     "mahalle": "Poyrazlı",
-     "muhtar": "Nihat Karışık"
-    }
-   ],
-   "ulasim": {
-    "metin": "Paşalimanı için yayımlanmış bir dolmuş hattı ya da saati bulunamadı. Köyler arası ulaşım için muhtarlıklara danışın."
-   },
    "not": "Paşalimanı Erdek ilçesine bağlıdır; ada için ayrı bir hastane ya da belediye birimi listelenmiyor. Acil durumda 112'yi arayın.",
    "kaynaklar": [
     {
      "ad": "Erdek Kaymakamlığı · İletişim",
      "url": "https://www.erdek.gov.tr/iletisim1",
-     "tarih": "2026-11-25"
-    },
-    {
-     "ad": "Erdek Belediyesi · Muhtarlıklarımız",
-     "url": "https://www.erdek.bel.tr/muhtarliklarimiz",
      "tarih": "2026-11-25"
     }
    ]
