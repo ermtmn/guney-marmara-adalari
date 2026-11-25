@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-25T17:20",
+  "guncelleme": "2026-11-25T18:04",
   "yayin": "26.11.2026",
   "durum": "ok",
   "gunler": [
@@ -61,8 +61,8 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-27",
-          "enDusuk": 10,
-          "enYuksek": 18,
+          "enDusuk": 9,
+          "enYuksek": 17,
           "hadise": "CB",
           "ruzgarHiz": 14,
           "ruzgarYon": 136,
@@ -117,7 +117,7 @@ window.HAVA_VERISI = {
         {
           "tarih": "2026-11-26",
           "enDusuk": 6,
-          "enYuksek": 15,
+          "enYuksek": 14,
           "hadise": "PB",
           "ruzgarHiz": 10,
           "ruzgarYon": 158,
@@ -126,8 +126,8 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-27",
-          "enDusuk": 11,
-          "enYuksek": 19,
+          "enDusuk": 10,
+          "enYuksek": 18,
           "hadise": "CB",
           "ruzgarHiz": 17,
           "ruzgarYon": 164,
@@ -157,7 +157,7 @@ window.HAVA_VERISI = {
         {
           "tarih": "2026-11-30",
           "enDusuk": 5,
-          "enYuksek": 10,
+          "enYuksek": 9,
           "hadise": "Y",
           "ruzgarHiz": 51,
           "ruzgarYon": 41,
@@ -181,8 +181,8 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-26",
-          "enDusuk": 1,
-          "enYuksek": 14,
+          "enDusuk": 0,
+          "enYuksek": 13,
           "hadise": "PB",
           "ruzgarHiz": 8,
           "ruzgarYon": 166,
@@ -191,8 +191,8 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-27",
-          "enDusuk": 7,
-          "enYuksek": 18,
+          "enDusuk": 5,
+          "enYuksek": 17,
           "hadise": "CB",
           "ruzgarHiz": 11,
           "ruzgarYon": 146,
