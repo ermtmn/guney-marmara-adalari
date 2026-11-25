@@ -69,7 +69,7 @@
       <ul class="ada-liste">${a.onecikanlar.map(o => `<li>${kacis(o)}</li>`).join("")}</ul>
       <div class="ada-dugmeler">
         <a class="ana" href="index.html?nereden=${a.seferNereden}&nereye=${a.iskeleler[0]}">⛴️ Sefer saatlerine bak</a>
-        <a href="rehber.html?ada=${a.id}">🧭 Eczane ve önemli telefonlar</a>
+        <a href="rehber.html">🧭 Eczane ve önemli telefonlar</a>
         ${dSayi ? `<a href="dernekler.html?ada=${encodeURIComponent(a.dernekAdi)}">🤝 Adanın dernekleri (${dSayi})</a>` : ""}
       </div>
     </article>`;

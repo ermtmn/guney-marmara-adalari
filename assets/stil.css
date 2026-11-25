@@ -228,9 +228,7 @@ main { padding-top: 4px; }
 
 /* --- Ada rehberi (rehber.html) --- */
 .ada-chip[aria-pressed="true"] { background: var(--adarenk); border-color: var(--adarenk); color: #fff; }
-.rehber-ada .card { border-top: 4px solid var(--adarenk); }
 .rehber-acil { border-top: 4px solid #c8372d; }
-.rehber-not { background: var(--accent-soft); font-size: .92rem; }
 .rehber-grup { font-size: .8rem; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin: 14px 0 4px; }
 .tel-liste { display: grid; }
 .tel-satir { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap;
