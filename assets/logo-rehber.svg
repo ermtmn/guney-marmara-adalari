@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ada Rehberi">
-  <!-- Rehber logosu: turkuaz çerçeve, telefon rehberi defteri (spiral, sayfa kenarları, ayraç), kapakta telefon ahizesi -->
-  <circle cx="32" cy="32" r="32" fill="#0f6b6b"/>
+  <!-- Rehber logosu: açık kırmızı çerçeve, telefon rehberi defteri (spiral, sayfa kenarları, ayraç), kapakta telefon ahizesi -->
+  <circle cx="32" cy="32" r="32" fill="#e06666"/>
   <circle cx="32" cy="32" r="28.5" fill="#ffffff"/>
   <!-- arkadaki sayfalar -->
-  <rect x="22.5" y="15.5" width="24" height="33" rx="3" fill="#cfe8e5"/>
-  <rect x="21" y="14.5" width="24" height="33" rx="3" fill="#e8f4f2"/>
+  <rect x="22.5" y="15.5" width="24" height="33" rx="3" fill="#f6c9c9"/>
+  <rect x="21" y="14.5" width="24" height="33" rx="3" fill="#fde8e8"/>
   <!-- kapak -->
-  <rect x="18" y="13" width="25" height="34" rx="3" fill="#0f6b6b"/>
+  <rect x="18" y="13" width="25" height="34" rx="3" fill="#e06666"/>
   <!-- ayraç -->
   <path d="M36 13 V24 L38.5 21.8 L41 24 V13 Z" fill="#f2c14e"/>
   <!-- spiral -->
-  <g fill="none" stroke="#7fc4bd" stroke-width="1.8" stroke-linecap="round">
+  <g fill="none" stroke="#f2a7a7" stroke-width="1.8" stroke-linecap="round">
     <path d="M15.5 18 h5"/><path d="M15.5 23.5 h5"/><path d="M15.5 29 h5"/><path d="M15.5 34.5 h5"/><path d="M15.5 40 h5"/>
   </g>
   <g fill="#ffffff">
@@ -19,7 +19,7 @@
   </g>
   <!-- kapak etiketi ve telefon ahizesi -->
   <rect x="24.5" y="26" width="15" height="13.5" rx="2.2" fill="#ffffff"/>
-  <path d="M28.6 29.1 c.5-.5 1.3-.4 1.7.1 l1 1.4 c.3.5.3 1.1-.1 1.5 l-.6.6 c.6 1.2 1.6 2.2 2.8 2.8 l.6-.6 c.4-.4 1-.4 1.5-.1 l1.4 1 c.5.4.6 1.2.1 1.7 l-.7.7 c-.8.8-2 1-3 .5 -2.6-1.2-4.6-3.2-5.8-5.8 -.5-1-.3-2.2.5-3 z" fill="#ef6b57"/>
+  <path d="M28.6 29.1 c.5-.5 1.3-.4 1.7.1 l1 1.4 c.3.5.3 1.1-.1 1.5 l-.6.6 c.6 1.2 1.6 2.2 2.8 2.8 l.6-.6 c.4-.4 1-.4 1.5-.1 l1.4 1 c.5.4.6 1.2.1 1.7 l-.7.7 c-.8.8-2 1-3 .5 -2.6-1.2-4.6-3.2-5.8-5.8 -.5-1-.3-2.2.5-3 z" fill="#b83a3a"/>
   <!-- satırlar -->
-  <path d="M25 43 h14" stroke="#7fc4bd" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M25 43 h14" stroke="#f2a7a7" stroke-width="1.6" stroke-linecap="round"/>
 </svg>

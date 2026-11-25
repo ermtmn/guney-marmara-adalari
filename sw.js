@@ -7,7 +7,7 @@
 //  - Diğer her şey (sayfalar, stil, logolar, tarife): önce önbellek (hızlı açılış), arka planda tazelenir
 // Bu dosyada değişiklik yapınca SURUM'u artırın.
 
-const SURUM = "v3";
+const SURUM = "v4";
 const ONBELLEK = "adalar-" + SURUM;
 const UYGULAMA = [
   "./", "index.html", "adalar.html", "rehber.html", "dernekler.html", "manifest.webmanifest",
