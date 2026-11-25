@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Güney Marmara Adaları</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/stil.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-ic">
+    <nav class="menu" aria-label="Site menüsü">
+      <a href="index.html" aria-current="page">⛴️ Seferler</a>
+      <a href="adalar.html">🏝️ Adalar</a>
+      <a href="dernekler.html">🤝 Dernekler</a>
+    </nav>
+    <div class="hero-baslik">
+      <img class="logo" src="assets/logo.svg" alt="" width="64" height="64">
+      <h1>Güney Marmara Adalar Sefer Saatleri</h1>
+    </div>
+    <p class="hero-alt">Adalara giden tüm gemiler tek ekranda. Nereden nereye gideceğinizi seçin, size uygun seferi hemen bulun.</p>
+  </div>
+  <svg class="hero-dalga" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C180,58 360,6 540,26 C720,46 900,10 1080,28 C1260,46 1350,22 1440,30 L1440,60 L0,60 Z"></path>
+  </svg>
+</header>
+<main>
+
+  <section class="card">
+    <div class="row">
+      <div><label class="l" for="nereden">Nereden</label><select id="nereden"></select></div>
+      <button class="swap" id="degistir" type="button" aria-label="Yönleri değiştir">⇄</button>
+      <div><label class="l" for="nereye">Nereye</label><select id="nereye"></select></div>
+    </div>
+    <div class="chips" id="gunler" role="group" aria-label="Gün"></div>
+    <div class="filters-title">Firmalar ve araç</div>
+    <div class="chips" id="filtreler"></div>
+  </section>
+
+  <section class="card" id="havaKart">
+    <h2>Hava Tahmini <span class="small" style="font-weight:400;display:block;margin-top:2px" id="havaAlt"></span></h2>
+    <div id="hava"></div>
+    <p class="small" id="havaNot"></p>
+  </section>
+
+  <section class="card">
+    <h2 id="sonucBaslik">Seferler</h2>
+    <div id="sonuclar"></div>
+    <p class="small">Gemilerin kalkış ve varış saatleri yanaşma sürelerine göre değişiklik gösterebilir.</p>
+  </section>
+
+  <section class="card" id="iptal">
+    <h2>İptal/Ek Seferler</h2>
+    <p class="small" style="margin:0 0 12px">Hava muhalefeti nedeniyle iptal edilen ya da ek seferler yer almaktadır.</p>
+    <div id="iptalListe"></div>
+  </section>
+
+  <footer id="kaynak"></footer>
+</main>
+
+<script src="data/seferler.js"></script>
+<script src="data/duyurular.js"></script>
+<script src="data/hava.js"></script>
+<script>
+  const GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
+  const veri = window.SEFER_VERISI;
+  const iskeleler = veri.iskeleler;
+  const ad = k => iskeleler[k] || k;
+  const $ = id => document.getElementById(id);
+
+  const durum = {
+    nereden: "ERDEK", nereye: "AVSA",
+    gun: (new Date().getDay() + 6) % 7,
+    kapaliFirmalar: [], sadeceArac: false
+  };
+
+  // Kayıtlı seçimleri geri yükle (yalnızca bu tarayıcıda)
+  try {
+    const k = JSON.parse(localStorage.getItem("adalar-secim") || "null");
+    if (k && iskeleler[k.nereden] && iskeleler[k.nereye]) { durum.nereden = k.nereden; durum.nereye = k.nereye; }
+    if (k && Array.isArray(k.kapaliFirmalar)) durum.kapaliFirmalar = k.kapaliFirmalar;
+    if (k && typeof k.sadeceArac === "boolean") durum.sadeceArac = k.sadeceArac;
+  } catch (e) {}
+  // Başka sayfadan gelen seçim: index.html?nereden=ERDEK&nereye=AVSA
+  const adresParam = new URLSearchParams(location.search);
+  if (iskeleler[adresParam.get("nereden")]) durum.nereden = adresParam.get("nereden");
+  if (iskeleler[adresParam.get("nereye")]) durum.nereye = adresParam.get("nereye");
+
+  // Telefon: "0541 960 99 33" -> tel:+905419609933, "444 0 752" -> tel:4440752
+  function telLink(numara, etiket) {
+    const rakam = numara.replace(/\D/g, "");
+    const href = rakam.startsWith("0") ? "+90" + rakam.slice(1) : rakam;
+    return `<a class="tel" href="tel:${href}">📞 ${etiket ? etiket + ": " : ""}${numara}</a>`;
+  }
+
+  // Bir seferde gösterilecek numara: kalkış iskelesinin gişesi, yoksa firmanın genel numarası
+  function seferTelefonu(hat, iskele) {
+    const t = hat.telefon || {};
+    if (t.iskele && t.iskele[iskele]) return telLink(t.iskele[iskele], `${ad(iskele)} gişe`);
+    if (t.genel) return telLink(t.genel, t.genelAd);
+    return "";
+  }
+
+  const aracRozet = h => h.arac
+    ? `<span class="badge car">🚗 Araç da taşır</span>`
+    : `<span class="badge foot">🚶 Yalnız yolcu</span>`;
+
+  // --- Sefer arama ---
+
+  // "dongu" tipi: A'daki her kalkış için sonraki ilk B durağı.
+  // Arada gemi yine A'ya uğruyorsa daha geç A kalkışı kullanılır.
+  function donguAra(hat, gun, a, b) {
+    const saat = hat.saatler[gun], d = hat.duraklar, sonuc = [];
+    for (let i = 0; i < d.length; i++) {
+      if (d[i] !== a || !saat[i]) continue;
+      for (let j = i + 1; j < d.length; j++) {
+        if (!saat[j]) continue;
+        if (d[j] === a) break;
+        if (d[j] === b) {
+          const ara = [];
+          for (let k = i + 1; k < j; k++) if (saat[k]) ara.push(d[k]);
+          sonuc.push({ hat, kalkis: saat[i], varis: saat[j], varisKesin: j === d.length - 1, ara });
+          break;
+        }
+      }
+    }
+    return sonuc;
+  }
+
+  // "kalkislar" tipi: A'dan kalkan ve uğrak listesinde B olan seferler.
+  function kalkisAra(hat, gun, a, b) {
+    return hat.kalkislar
+      .filter(s => s.gunler.includes(gun) && s.kalkis === a && s.duraklar.includes(b))
+      .map(s => ({ hat, kalkis: s.saat, varis: null, ara: s.duraklar.slice(0, s.duraklar.indexOf(b)), sonra: s.duraklar.slice(s.duraklar.indexOf(b) + 1) }));
+  }
+
+  // "seferler" tipi: her seferde A'dan sonraki ilk B. Arada yine A varsa daha geç A kullanılır.
+  function seferlerAra(hat, gun, a, b) {
+    const sonuc = [];
+    hat.seferler.filter(s => s.gunler.includes(gun)).forEach(s => {
+      const d = s.duraklar;
+      for (let i = 0; i < d.length - 1; i++) {
+        if (d[i][0] !== a) continue;
+        for (let j = i + 1; j < d.length; j++) {
+          if (d[j][0] === a) break;
+          if (d[j][0] === b) {
+            sonuc.push({ hat, kalkis: d[i][2], varis: d[j][1], varisKesin: true, gemi: s.gemi,
+              ara: d.slice(i + 1, j).map(x => x[0]) });
+            break;
+          }
+        }
+      }
+    });
+    return sonuc;
+  }
+
+  const ARAYICILAR = { dongu: donguAra, kalkislar: kalkisAra, seferler: seferlerAra };
+  const siraSaati = s => s.kalkis || s.varis || "99:99";
+
+  function aktifHatlar() {
+    return veri.hatlar.filter(h => !durum.kapaliFirmalar.includes(h.id) && (!durum.sadeceArac || h.arac));
+  }
+
+  function seferBul(gun, a, b) {
+    return aktifHatlar()
+      .flatMap(h => ARAYICILAR[h.tip](h, gun, a, b))
+      .sort((x, y) => siraSaati(x).localeCompare(siraSaati(y)));
+  }
+
+  // Seçilen gün, A'dan sefer bulunan varış iskeleleri (aktif filtrelere göre)
+  function gidilebilir(gun, a) {
+    const hedef = new Set();
+    Object.keys(iskeleler).forEach(b => { if (b !== a && seferBul(gun, a, b).length) hedef.add(b); });
+    return hedef;
+  }
+
+  // Tarifelerde geçen tüm iskeleler
+  function tumIskeleler() {
+    const s = new Set();
+    veri.hatlar.forEach(h => {
+      if (h.tip === "dongu") h.duraklar.forEach(d => s.add(d));
+      else if (h.tip === "kalkislar") h.kalkislar.forEach(k => { s.add(k.kalkis); k.duraklar.forEach(d => s.add(d)); });
+      else h.seferler.forEach(k => k.duraklar.forEach(d => s.add(d[0])));
+    });
+    return [...s].sort((x, y) => ad(x).localeCompare(ad(y), "tr"));
+  }
+
+  // --- Arayüz ---
+
+  function kur() {
+    $("nereden").innerHTML = tumIskeleler().map(k => `<option value="${k}">${ad(k)}</option>`).join("");
+    $("nereden").value = durum.nereden;
+    ["nereden", "nereye"].forEach(alan => {
+      $(alan).onchange = e => { durum[alan] = e.target.value; ciz(); };
+    });
+
+    $("gunler").innerHTML = GUNLER.map((g, i) =>
+      `<button type="button" class="chip" data-gun="${i}">${g}</button>`).join("");
+    $("gunler").onclick = e => {
+      const b = e.target.closest("[data-gun]");
+      if (b) { durum.gun = +b.dataset.gun; ciz(); }
+    };
+
+    $("filtreler").innerHTML = veri.hatlar.map(h =>
+      `<button type="button" class="chip op" data-firma="${h.id}" style="--opc:${h.renk}"><span class="dot"></span>${h.isletmeci}</button>`).join("")
+      + `<button type="button" class="chip" id="aracFiltre">🚗 Sadece araçlı</button>`;
+    $("filtreler").onclick = e => {
+      const f = e.target.closest("[data-firma]");
+      if (f) {
+        const id = f.dataset.firma, i = durum.kapaliFirmalar.indexOf(id);
+        i >= 0 ? durum.kapaliFirmalar.splice(i, 1) : durum.kapaliFirmalar.push(id);
+        ciz();
+      } else if (e.target.closest("#aracFiltre")) {
+        durum.sadeceArac = !durum.sadeceArac; ciz();
+      }
+    };
+
+    $("degistir").onclick = () => {
+      if (!durum.nereye) return;
+      [durum.nereden, durum.nereye] = [durum.nereye, durum.nereden];
+      $("nereden").value = durum.nereden; $("nereye").value = durum.nereye; ciz();
+    };
+
+
+    duyurulariCiz();
+
+
+    $("kaynak").innerHTML = `<div>İDO'nun ada seferleri (Avşa, Marmara, Ekinlik) yalnızca yaz sezonunda yapılıyor; sezon açılınca eklenecek.</div>`
+      + `<div style="margin-top:6px">Güncelleme Tarihi: ${veri.guncelleme.split("-").reverse().join(".")}</div>`;
+  }
+
+  // --- İptal/Ek sefer duyuruları (data/duyurular.js, scripts/duyurular-guncelle.ps1 üretir) ---
+
+  const kacis = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  function duyurulariCiz() {
+    const d = window.DUYURU_VERISI;
+    if (!d) { $("iptalListe").innerHTML = `<p class="empty">Duyurular şu an yüklenemedi.</p>`; return; }
+    $("iptalListe").innerHTML = d.firmalar.map(f => {
+      let govde;
+      if (f.durum !== "ok") govde = `<p class="dy-yok">Duyurular alınamadı.</p>`;
+      else if (!f.duyurular.length) govde = `<p class="dy-yok">Güney Marmara için güncel iptal/ek sefer duyurusu yok.</p>`;
+      else govde = f.duyurular.map(x => `
+        <div class="dy">
+          ${x.tur && x.tur !== "Duyuru" ? `<span class="dy-tur${/iptal/i.test(x.tur) ? " iptal" : ""}">${kacis(x.tur)}</span>` : ""}
+          ${x.baslik ? `<b>${kacis(x.baslik)}</b>` : ""}
+          <div class="dy-metin">${kacis(x.metin).replace(/\n/g, "<br>")}</div>
+          ${x.tarih ? `<div class="small">${kacis(x.tarih)}</div>` : ""}
+        </div>`).join("");
+      return `<div class="dy-firma" style="--opc:${f.renk}">
+        <div class="ophead"><span class="dot"></span>${kacis(f.isletmeci)}</div>${govde}</div>`;
+    }).join("")
+    + `<p class="small">Son güncelleme: ${d.guncelleme.replace(/(\d+)-(\d+)-(\d+)T/, "$3.$2.$1 ")}</p>`;
+  }
+
+  // --- Hava tahmini (MGM; data/hava.js) ---
+  // Konum bazlı günlük tahmin (iskelenin bağlı olduğu ilçe) + Marmara deniz bülteni
+
+  const HADISE = {
+    A: ["☀️", "Açık"], AB: ["🌤️", "Az bulutlu"], PB: ["⛅", "Parçalı bulutlu"], CB: ["☁️", "Çok bulutlu"],
+    HY: ["🌦️", "Hafif yağmurlu"], Y: ["🌧️", "Yağmurlu"], KY: ["🌧️", "Kuvvetli yağmurlu"],
+    KKY: ["🌨️", "Karla karışık yağmurlu"], HKY: ["🌨️", "Hafif kar yağışlı"], K: ["🌨️", "Kar yağışlı"], YKY: ["❄️", "Yoğun kar yağışlı"],
+    HSY: ["🌦️", "Hafif sağanak yağışlı"], SY: ["🌧️", "Sağanak yağışlı"], KSY: ["🌧️", "Kuvvetli sağanak yağışlı"],
+    MSY: ["🌦️", "Mevzi sağanak yağışlı"], DY: ["🌨️", "Dolu"], GSY: ["⛈️", "Gök gürültülü sağanak yağışlı"],
+    KGY: ["⛈️", "Kuvvetli gök gürültülü sağanak"], SIS: ["🌫️", "Sisli"], PUS: ["🌫️", "Puslu"], DMN: ["🌫️", "Dumanlı"],
+    KF: ["🌪️", "Toz veya kum fırtınası"], R: ["💨", "Rüzgârlı"], GKR: ["💨", "Güneyli kuvvetli rüzgâr"],
+    KKR: ["💨", "Kuzeyli kuvvetli rüzgâr"], SCK: ["🌡️", "Sıcak"], SGK: ["🥶", "Soğuk"], HHY: ["🌧️", "Yağışlı"]
+  };
+  const YONLER = ["K", "KD", "D", "GD", "G", "GB", "B", "KB"];
+  const RUZGAR_ADI = { K: "Yıldız", KD: "Poyraz", D: "Gündoğusu", GD: "Keşişleme", G: "Kıble", GB: "Lodos", B: "Batı", KB: "Karayel" };
+  const ruzgarAdi = d => RUZGAR_ADI[YONLER[Math.round(d / 45) % 8]];
+  const BOFOR_SINIR = [1, 6, 12, 20, 29, 39, 50, 62, 75, 89, 103, 118];
+  const bofor = k => { const i = BOFOR_SINIR.findIndex(s => k < s); return i === -1 ? 12 : i; };
+  // "3 ila 5, akşam saatlerinden itibaren yer yer 6 kuvvetinde" -> 6
+  const enYuksekKuvvet = t => Math.max(0, ...(t.match(/\b(1[0-2]|[1-9])\b/g) || []).map(Number));
+
+  // Seçilen gün düğmesine karşılık gelen tarih (bugünden itibaren ilk o gün)
+  function seciliTarih() {
+    const bugun = new Date();
+    const fark = (durum.gun - (bugun.getDay() + 6) % 7 + 7) % 7;
+    const t = new Date(bugun.getFullYear(), bugun.getMonth(), bugun.getDate() + fark);
+    return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
+  }
+  const kisaTarih = s => { const [y, a, g] = s.split("-").map(Number); return new Date(y, a - 1, g).toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" }); };
+
+  function konumKutusu(iskele, tarih, h) {
+    const ist = veri.mgmIstasyon[iskele];
+    const lok = ist && h.lokasyon && h.lokasyon[ist];
+    const g = lok && lok.gunler.find(x => x.tarih === tarih);
+    const bas = `<div class="hv-ad">${ad(iskele)}${lok && lok.ad !== ad(iskele) ? ` <span>(${kacis(lok.ad)})</span>` : ""}</div>`;
+    if (!g) return `<div class="hv">${bas}<div class="hv-satir">${lok ? "Bu gün için tahmin yok" : "Tahmin yok"}</div></div>`;
+    const [ikon, metin] = HADISE[g.hadise] || ["🌡️", g.hadise];
+    const bf = bofor(g.ruzgarHiz);
+    const kuvvetli = bf >= 6;
+    return `<div class="hv${kuvvetli ? " uyari" : ""}">
+      ${bas}
+      <div class="hv-ust"><span class="hv-ikon">${ikon}</span><span class="hv-derece">${g.enYuksek}°<small> / ${g.enDusuk}°</small></span></div>
+      <div class="hv-satir">${metin}</div>
+      <div class="hv-satir">Rüzgâr: <b>${ruzgarAdi(g.ruzgarYon)} ${bf} bofor</b> (${g.ruzgarHiz} km/s)</div>
+      <div class="hv-satir">Nem: %${g.nemMin}–${g.nemMax}</div>
+      ${kuvvetli ? `<div class="hv-uyari">⚠️ Kuvvetli rüzgâr, sefer iptali olabilir</div>` : ""}
+    </div>`;
+  }
+
+  function denizBulteni(tarih, h) {
+    const g = h.durum === "ok" && h.gunler.find(x => x.tarih === tarih);
+    if (!g) return "";
+    const kuvvet = enYuksekKuvvet(g.ruzgar);
+    const uyari = kuvvet >= 6 || g.firtinaMarmara;
+    return `<div class="hv-deniz${uyari ? " uyari" : ""}">
+      <div class="hv-ad">🌊 Marmara Denizi</div>
+      <dl class="hv-liste">
+        <dt>Rüzgâr</dt><dd>${kacis(g.ruzgar)}</dd>
+        <dt>Dalga</dt><dd>${kacis(g.dalga)}</dd>
+        <dt>Görüş</dt><dd>${kacis(g.gorus)}</dd>
+      </dl>
+      ${g.firtinaMarmara ? `<div class="hv-uyari">⚠️ ${kacis(g.firtina)}</div>` : ""}
+      ${kuvvet >= 6 ? `<div class="hv-uyari">⚠️ Denizde ${kuvvet} kuvvetine varan rüzgâr bekleniyor.</div>` : ""}
+    </div>`;
+  }
+
+  function havaCiz() {
+    const h = window.HAVA_VERISI;
+    // Hava her zaman bugünü gösterir (seçilen sefer gününden bağımsız)
+    const b = new Date();
+    const tarih = `${b.getFullYear()}-${String(b.getMonth() + 1).padStart(2, "0")}-${String(b.getDate()).padStart(2, "0")}`;
+    $("havaAlt").textContent = `Bugün · ${kisaTarih(tarih)}`;
+    if (!h) {
+      $("hava").innerHTML = `<p class="empty">Hava tahmini şu an alınamadı.</p>`;
+      $("havaNot").textContent = "";
+      return;
+    }
+    const iskeleListe = [durum.nereden, durum.nereye].filter(Boolean);
+    $("hava").innerHTML = `<div class="hava">${iskeleListe.map(i => konumKutusu(i, tarih, h)).join("")}</div>` + denizBulteni(tarih, h);
+    $("havaNot").textContent = "Kaynak: Meteoroloji Genel Müdürlüğü";
+  }
+
+  // "Nereye" listesi: yalnızca seçilen gün, "Nereden"den gidilebilen iskeleler
+  function nereyeDoldur() {
+    const hedefler = tumIskeleler().filter(k => gidilebilir(durum.gun, durum.nereden).has(k));
+    const sel = $("nereye");
+    if (!hedefler.length) {
+      sel.innerHTML = `<option value="">Bu gün sefer yok</option>`;
+      sel.disabled = true;
+      durum.nereye = "";
+      return;
+    }
+    sel.disabled = false;
+    sel.innerHTML = hedefler.map(k => `<option value="${k}">${ad(k)}</option>`).join("");
+    if (!hedefler.includes(durum.nereye)) durum.nereye = hedefler[0];
+    sel.value = durum.nereye;
+  }
+
+  function ciz() {
+    nereyeDoldur();
+    havaCiz();
+    try { localStorage.setItem("adalar-secim", JSON.stringify(durum)); } catch (e) {}
+    document.querySelectorAll("[data-gun]").forEach(b => b.setAttribute("aria-pressed", +b.dataset.gun === durum.gun));
+    document.querySelectorAll("[data-firma]").forEach(b => b.setAttribute("aria-pressed", !durum.kapaliFirmalar.includes(b.dataset.firma)));
+    $("aracFiltre").setAttribute("aria-pressed", durum.sadeceArac);
+
+    const a = durum.nereden, b = durum.nereye, g = durum.gun;
+    $("sonucBaslik").textContent = `${ad(a)} → ${ad(b)} · ${GUNLER[g]}`;
+
+    if (!b) {
+      $("sonucBaslik").textContent = `${ad(a)} · ${GUNLER[g]}`;
+      $("sonuclar").innerHTML = `<p class="empty">${GUNLER[g]} günü ${ad(a)} iskelesinden sefer yok${durum.kapaliFirmalar.length || durum.sadeceArac ? " (filtreleri kontrol edin)" : ""}.</p>`;
+    } else {
+      const liste = seferBul(g, a, b);
+      $("sonuclar").innerHTML = liste.length ? liste.map(s => {
+        const varis = s.varis
+          ? `${ad(b)}<br><b>${s.varis}</b>`
+          : `${ad(b)}<br>varış saati<br>tarifede yok`;
+        const guzergah = s.ara.length ? "Uğradığı: " + s.ara.map(ad).join(", ") : "Direkt";
+        const devam = s.sonra && s.sonra.length ? ` · sonra ${s.sonra.map(ad).join(", ")}` : "";
+        const kalkis = s.kalkis ? s.kalkis : `<span style="font-size:1rem">Kalkış saati<br>tarifede yok</span>`;
+        return `
+        <div class="trip" style="--opc:${s.hat.renk}">
+          <div>
+            <div class="t-dep">${kalkis}</div>
+            <span class="opname">${s.hat.isletmeci}</span>${s.gemi ? ` <span class="op" style="color:var(--muted);font-size:.8rem">· ${s.gemi}</span>` : ""}
+          </div>
+          <div class="t-arr">${varis}</div>
+          <div class="t-meta">${aracRozet(s.hat)}<span>${guzergah}${devam}</span></div>
+          <div class="t-meta t-alt">${seferTelefonu(s.hat, a)}<a class="bilet" href="${s.hat.bilet}" target="_blank" rel="noopener" style="--opc:${s.hat.renk}">Bilet Al ↗</a></div>
+        </div>`;
+      }).join("")
+      : `<p class="empty">Bu gün için ${ad(a)} → ${ad(b)} seferi yok${durum.kapaliFirmalar.length || durum.sadeceArac ? " (filtreleri kontrol edin)" : ""}.</p>`;
+    }
+
+  }
+
+  // Adresle gelinen hedefe bugün sefer yoksa, sefer olan ilk günü seç
+  if (adresParam.get("nereye") === durum.nereye) {
+    for (let i = 0; i < 7; i++) {
+      const g = (durum.gun + i) % 7;
+      if (gidilebilir(g, durum.nereden).has(durum.nereye)) { durum.gun = g; break; }
+    }
+  }
+
+  kur();
+  ciz();
+</script>
+</body>
+</html>

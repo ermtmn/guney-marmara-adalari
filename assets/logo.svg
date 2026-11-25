@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Güney Marmara Adalar Sefer Saatleri">
+  <!-- C: Açık zemin. Beyaz daire, lacivert çerçeve, mercan güneş, lacivert gemi ve palmiyeli ada silueti -->
+  <defs><clipPath id="c-ic"><circle cx="32" cy="32" r="27.5"/></clipPath></defs>
+  <circle cx="32" cy="32" r="32" fill="#0b3a5b"/>
+  <circle cx="32" cy="32" r="28.5" fill="#ffffff"/>
+  <g clip-path="url(#c-ic)">
+    <circle cx="32" cy="34" r="12" fill="#ef6b57"/>
+    <path d="M38 40 Q46 31 60 40 Z" fill="#0b3a5b"/>
+    <path d="M49 34 Q50 29 48.5 25" fill="none" stroke="#0b3a5b" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M48.5 25 q-4 -1 -6.5 2 M48.5 25 q4 -2 6.5 1 M48.5 25 q-2 -3.5 -5 -4 M48.5 25 q2.5 -3.5 5.5 -3" fill="none" stroke="#0b3a5b" stroke-width="1.8" stroke-linecap="round"/>
+    <rect x="0" y="40" width="64" height="24" fill="#ffffff"/>
+    <!-- gemi silueti -->
+    <path d="M8 40 H48 L44 46.5 H12 Z" fill="#0b3a5b"/>
+    <path d="M13 40 V35 H38 V40 Z M18 35 V31 H31 V35 Z" fill="#0b3a5b"/>
+    <rect x="26" y="27" width="3.5" height="4" fill="#0b3a5b"/>
+    <g fill="#ffffff">
+      <rect x="15.5" y="36.6" width="2.6" height="1.8" rx=".3"/><rect x="20" y="36.6" width="2.6" height="1.8" rx=".3"/>
+      <rect x="24.5" y="36.6" width="2.6" height="1.8" rx=".3"/><rect x="29" y="36.6" width="2.6" height="1.8" rx=".3"/>
+      <rect x="33.5" y="36.6" width="2.6" height="1.8" rx=".3"/>
+      <circle cx="17" cy="43" r=".9"/><circle cx="22" cy="43" r=".9"/><circle cx="27" cy="43" r=".9"/>
+      <circle cx="32" cy="43" r=".9"/><circle cx="37" cy="43" r=".9"/><circle cx="42" cy="43" r=".9"/>
+    </g>
+    <!-- dalgalar -->
+    <path d="M4 51 q4 -3 8 0 t8 0 t8 0 t8 0 t8 0 t8 0 t8 0" fill="none" stroke="#1fa59a" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M8 56.5 q4 -3 8 0 t8 0 t8 0 t8 0 t8 0 t8 0" fill="none" stroke="#1fa59a" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

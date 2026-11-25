@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Güney Marmara Adaları</title>
+<link rel="icon" href="assets/logo-ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/stil.css">
+</head>
+<body class="tema-ada">
+<header class="hero">
+  <div class="hero-ic">
+    <nav class="menu" aria-label="Site menüsü">
+      <a href="index.html">⛴️ Seferler</a>
+      <a href="adalar.html" aria-current="page">🏝️ Adalar</a>
+      <a href="dernekler.html">🤝 Dernekler</a>
+    </nav>
+    <div class="hero-baslik">
+      <img class="logo" src="assets/logo-ada.svg" alt="" width="64" height="64">
+      <h1>Güney Marmara Adaları</h1>
+    </div>
+    <p class="hero-alt">Ekinlik, Marmara, Avşa ve Paşalimanı. Dört adanın tarihini, doğasını ve öne çıkan yerlerini yakından tanıyın.</p>
+  </div>
+  <svg class="hero-dalga" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C180,58 360,6 540,26 C720,46 900,10 1080,28 C1260,46 1350,22 1440,30 L1440,60 L0,60 Z"></path>
+  </svg>
+</header>
+<main>
+  <section class="card">
+    <div class="filters-title" style="margin-top:0">Adaya git</div>
+    <div class="chips" id="atla"></div>
+  </section>
+  <div id="adalar"></div>
+  <footer><div>Bilgiler; ada dernekleri, akademik çalışmalar ve açık kaynaklardan derlenmiştir. Düzeltme ve önerileriniz için bize ulaşın.</div></footer>
+</main>
+
+<script src="data/seferler.js"></script>
+<script src="data/dernekler.js"></script>
+<script src="data/adalar.js"></script>
+<script>
+  const $ = id => document.getElementById(id);
+  const kacis = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const sefer = window.SEFER_VERISI, dernek = window.DERNEK_VERISI;
+
+  $("atla").innerHTML = ADA_VERISI.adalar.map(a => `<a class="chip" style="text-decoration:none" href="#${a.id}">${a.simge} ${kacis(a.ad)}</a>`).join("");
+
+  $("adalar").innerHTML = ADA_VERISI.adalar.map(a => {
+    const dSayi = dernek.dernekler.filter(d => d.ada === a.dernekAdi).length;
+    return `
+    <article class="ada" id="${a.id}" style="--adarenk:${a.renk}">
+      <div class="ada-bas">
+        <span class="ada-simge" aria-hidden="true">${a.simge}</span>
+        <div>
+          <h2>${kacis(a.ad)}</h2>
+          <p class="ada-slogan">${kacis(a.slogan)}</p>
+        </div>
+      </div>
+      <p class="ada-ozet">${kacis(a.ozet)}</p>
+      <dl class="ada-bilgi">${a.bilgiler.map(([k, v]) => `<div><dt>${kacis(k)}</dt><dd>${kacis(v)}</dd></div>`).join("")}</dl>
+      <h3>Öne çıkanlar</h3>
+      <ul class="ada-liste">${a.onecikanlar.map(o => `<li>${kacis(o)}</li>`).join("")}</ul>
+      <div class="ada-dugmeler">
+        <a class="ana" href="index.html?nereden=${a.seferNereden}&nereye=${a.iskeleler[0]}">⛴️ Sefer saatlerine bak</a>
+        ${dSayi ? `<a href="dernekler.html?ada=${encodeURIComponent(a.dernekAdi)}">🤝 Adanın dernekleri (${dSayi})</a>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# İptal/ek sefer duyurularını ve MGM hava tahminini saatte bir günceller.
+# scripts/duyurular-guncelle.ps1 betiğini çalıştırır; data/duyurular.js ve data/hava.js değiştiyse kaydeder.
+name: Veri güncelle
+
+on:
+  schedule:
+    - cron: "5 * * * *"   # her saat başını 5 geçe (UTC)
+  workflow_dispatch:        # Actions sekmesinden elle çalıştırmak için
+
+permissions:
+  contents: write
+
+concurrency:
+  group: veri-guncelle
+  cancel-in-progress: false
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Istanbul
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Duyuru ve hava verisini çek
+        shell: pwsh
+        run: ./scripts/duyurular-guncelle.ps1
+
+      - name: Değişiklik varsa kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/duyurular.js data/hava.js
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+          else
+            git commit -m "Veri güncellemesi: $(date '+%d.%m.%Y %H:%M')"
+            git push
+          fi

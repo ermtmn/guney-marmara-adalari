@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Güney Marmara Adaları</title>
+<link rel="icon" href="assets/logo-dernek.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/stil.css">
+</head>
+<body class="tema-dernek">
+<header class="hero">
+  <div class="hero-ic">
+    <nav class="menu" aria-label="Site menüsü">
+      <a href="index.html">⛴️ Seferler</a>
+      <a href="adalar.html">🏝️ Adalar</a>
+      <a href="dernekler.html" aria-current="page">🤝 Dernekler</a>
+    </nav>
+    <div class="hero-baslik">
+      <img class="logo" src="assets/logo-dernek.svg" alt="" width="64" height="64">
+      <h1>Adalardaki Dernekler</h1>
+    </div>
+    <p class="hero-alt">Adaların kültürünü, doğasını ve dayanışmasını yaşatan dernekler. Hangi adada ne yapıldığını keşfedin, destek olun.</p>
+  </div>
+  <svg class="hero-dalga" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C180,58 360,6 540,26 C720,46 900,10 1080,28 C1260,46 1350,22 1440,30 L1440,60 L0,60 Z"></path>
+  </svg>
+</header>
+<main>
+  <section class="card">
+    <div class="filters-title" style="margin-top:0">Ada seçin</div>
+    <div class="chips" id="adalar" role="group" aria-label="Ada"></div>
+  </section>
+
+  <div id="liste"></div>
+
+  <footer id="alt"></footer>
+</main>
+
+<script src="data/dernekler.js"></script>
+<script src="data/adalar.js"></script>
+<script>
+  const veri = window.DERNEK_VERISI;
+  const $ = id => document.getElementById(id);
+  const kacis = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  // Başka sayfadan gelen seçim: dernekler.html?ada=Ekinlik%20Adası
+  let seciliAda = new URLSearchParams(location.search).get("ada") || "Tümü";
+  if (seciliAda !== "Tümü" && !veri.dernekler.some(d => d.ada === seciliAda)) seciliAda = "Tümü";
+  // Ada sırası: Ekinlik, Marmara, Avşa, Paşalimanı; listede olmayan adalar sonda alfabetik
+  const ADA_SIRASI = ["Ekinlik Adası", "Marmara Adası", "Avşa Adası", "Paşalimanı Adası"];
+  const adaKarsilastir = (a, b) => {
+    const x = ADA_SIRASI.indexOf(a), y = ADA_SIRASI.indexOf(b);
+    return (x < 0 ? 99 : x) - (y < 0 ? 99 : y) || a.localeCompare(b, "tr");
+  };
+  // Ada renk ve simgeleri Adalar sayfasının verisinden (data/adalar.js)
+  const ADA_BILGI = Object.fromEntries((window.ADA_VERISI ? ADA_VERISI.adalar : []).map(a => [a.ad, a]));
+  const adaRenk = ada => (ADA_BILGI[ada] || {}).renk || "#7d6a50";
+  const adaSimge = ada => (ADA_BILGI[ada] || {}).simge || "🏝️";
+  // Logosu olmayan dernekler için baş harfler: "Topağaç Köyü Kalkındırma..." -> "TK"
+  const basHarfler = ad => ad.split(/\s+/).filter(k => !/^(ve|ile)$/i.test(k)).slice(0, 2).map(k => k[0]).join("").toLocaleUpperCase("tr");
+
+  function ciz() {
+    const adalar = ["Tümü", ...new Set(veri.dernekler.map(d => d.ada))].sort((a, b) => a === "Tümü" ? -1 : b === "Tümü" ? 1 : adaKarsilastir(a, b));
+    $("adalar").innerHTML = adalar.map(a => {
+      const sayi = a === "Tümü" ? veri.dernekler.length : veri.dernekler.filter(d => d.ada === a).length;
+      const renk = a === "Tümü" ? "" : ` style="--accent:${adaRenk(a)}"`;
+      const simge = a === "Tümü" ? "" : `${adaSimge(a)} `;
+      return `<button type="button" class="chip ada-chip" data-ada="${kacis(a)}"${renk} aria-pressed="${a === seciliAda}">${simge}${kacis(a)} (${sayi})</button>`;
+    }).join("");
+
+    const liste = veri.dernekler
+      .filter(d => seciliAda === "Tümü" || d.ada === seciliAda)
+      .map((d, i) => [d, i]).sort(([x, i], [y, j]) => adaKarsilastir(x.ada, y.ada) || i - j).map(([d]) => d);
+    $("liste").innerHTML = liste.map(d => `
+      <article class="dernek dernek-renkli" style="--accent:${adaRenk(d.ada)};--accent-soft:${adaRenk(d.ada)}1f">
+        <div class="dernek-ust">
+          <div class="dernek-bas">
+            ${d.logo ? `<img class="dernek-logo" src="${kacis(d.logo)}" alt="${kacis(d.ad)} logosu" loading="lazy"${d.logoZemin ? ` style="background:${kacis(d.logoZemin)};border-color:${kacis(d.logoZemin)}"` : ""}>`
+              : `<div class="dernek-logo dernek-logo-yok" aria-hidden="true">${kacis(basHarfler(d.ad))}</div>`}
+            <h2>${kacis(d.ad)}</h2>
+          </div>
+          <span class="ada-rozet">${adaSimge(d.ada)} ${kacis(d.ada)}</span>
+        </div>
+        ${d.konum ? `<p class="dernek-konum">📍 ${kacis(d.konum)}</p>` : ""}
+        <p class="tanim">${kacis(d.tanim)}</p>
+        ${d.calismalar && d.calismalar.length ? `<div class="dernek-calisma">${d.calismalar.map(c => `<span>${kacis(c)}</span>`).join("")}</div>` : ""}
+        <div class="dernek-linkler">
+          ${d.linkler.map(([ad, url], i) => `<a href="${kacis(url)}"${i === 0 ? ' class="ana"' : ""}>${kacis(ad)}</a>`).join("")}
+        </div>
+      </article>`).join("");
+
+    $("alt").innerHTML = `<div>Derneğinizi eklemek ya da bilgileri güncellemek için bize ulaşın.</div>`
+      + `<div>Güncelleme Tarihi: ${veri.guncelleme.split("-").reverse().join(".")}</div>`;
+  }
+
+  $("adalar").onclick = e => {
+    const b = e.target.closest("[data-ada]");
+    if (b) { seciliAda = b.dataset.ada; ciz(); }
+  };
+  ciz();
+</script>
+</body>
+</html>
