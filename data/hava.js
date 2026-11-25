@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-25T13:17",
+  "guncelleme": "2026-11-25T13:19",
   "yayin": "26.11.2026",
   "durum": "ok",
   "gunler": [
@@ -40,7 +40,7 @@ window.HAVA_VERISI = {
       "ad": "Erdek",
       "gunler": [
         {
-          "tarih": "11/25/2026",
+          "tarih": "2026-11-25",
           "enDusuk": 6,
           "enYuksek": 10,
           "hadise": "PUS",
@@ -50,7 +50,7 @@ window.HAVA_VERISI = {
           "nemMax": 85
         },
         {
-          "tarih": "11/26/2026",
+          "tarih": "2026-11-26",
           "enDusuk": 5,
           "enYuksek": 14,
           "hadise": "PB",
@@ -60,7 +60,7 @@ window.HAVA_VERISI = {
           "nemMax": 94
         },
         {
-          "tarih": "11/27/2026",
+          "tarih": "2026-11-27",
           "enDusuk": 10,
           "enYuksek": 18,
           "hadise": "CB",
@@ -70,7 +70,7 @@ window.HAVA_VERISI = {
           "nemMax": 74
         },
         {
-          "tarih": "11/28/2026",
+          "tarih": "2026-11-28",
           "enDusuk": 11,
           "enYuksek": 16,
           "hadise": "CB",
@@ -80,7 +80,7 @@ window.HAVA_VERISI = {
           "nemMax": 89
         },
         {
-          "tarih": "11/29/2026",
+          "tarih": "2026-11-29",
           "enDusuk": 10,
           "enYuksek": 12,
           "hadise": "SY",
@@ -90,7 +90,7 @@ window.HAVA_VERISI = {
           "nemMax": 92
         },
         {
-          "tarih": "11/30/2026",
+          "tarih": "2026-11-30",
           "enDusuk": 5,
           "enYuksek": 9,
           "hadise": "Y",
@@ -105,7 +105,7 @@ window.HAVA_VERISI = {
       "ad": "Marmara",
       "gunler": [
         {
-          "tarih": "11/25/2026",
+          "tarih": "2026-11-25",
           "enDusuk": 6,
           "enYuksek": 11,
           "hadise": "PUS",
@@ -115,7 +115,7 @@ window.HAVA_VERISI = {
           "nemMax": 61
         },
         {
-          "tarih": "11/26/2026",
+          "tarih": "2026-11-26",
           "enDusuk": 6,
           "enYuksek": 15,
           "hadise": "PB",
@@ -125,7 +125,7 @@ window.HAVA_VERISI = {
           "nemMax": 76
         },
         {
-          "tarih": "11/27/2026",
+          "tarih": "2026-11-27",
           "enDusuk": 11,
           "enYuksek": 19,
           "hadise": "CB",
@@ -135,7 +135,7 @@ window.HAVA_VERISI = {
           "nemMax": 78
         },
         {
-          "tarih": "11/28/2026",
+          "tarih": "2026-11-28",
           "enDusuk": 12,
           "enYuksek": 16,
           "hadise": "CB",
@@ -145,7 +145,7 @@ window.HAVA_VERISI = {
           "nemMax": 90
         },
         {
-          "tarih": "11/29/2026",
+          "tarih": "2026-11-29",
           "enDusuk": 11,
           "enYuksek": 12,
           "hadise": "SY",
@@ -155,7 +155,7 @@ window.HAVA_VERISI = {
           "nemMax": 87
         },
         {
-          "tarih": "11/30/2026",
+          "tarih": "2026-11-30",
           "enDusuk": 5,
           "enYuksek": 10,
           "hadise": "Y",
@@ -170,7 +170,7 @@ window.HAVA_VERISI = {
       "ad": "Bandırma",
       "gunler": [
         {
-          "tarih": "11/25/2026",
+          "tarih": "2026-11-25",
           "enDusuk": 3,
           "enYuksek": 10,
           "hadise": "SIS",
@@ -180,7 +180,7 @@ window.HAVA_VERISI = {
           "nemMax": 81
         },
         {
-          "tarih": "11/26/2026",
+          "tarih": "2026-11-26",
           "enDusuk": 1,
           "enYuksek": 14,
           "hadise": "PB",
@@ -190,7 +190,7 @@ window.HAVA_VERISI = {
           "nemMax": 95
         },
         {
-          "tarih": "11/27/2026",
+          "tarih": "2026-11-27",
           "enDusuk": 7,
           "enYuksek": 18,
           "hadise": "CB",
@@ -200,7 +200,7 @@ window.HAVA_VERISI = {
           "nemMax": 71
         },
         {
-          "tarih": "11/28/2026",
+          "tarih": "2026-11-28",
           "enDusuk": 8,
           "enYuksek": 16,
           "hadise": "CB",
@@ -210,7 +210,7 @@ window.HAVA_VERISI = {
           "nemMax": 90
         },
         {
-          "tarih": "11/29/2026",
+          "tarih": "2026-11-29",
           "enDusuk": 8,
           "enYuksek": 11,
           "hadise": "SY",
@@ -220,7 +220,7 @@ window.HAVA_VERISI = {
           "nemMax": 92
         },
         {
-          "tarih": "11/30/2026",
+          "tarih": "2026-11-30",
           "enDusuk": 4,
           "enYuksek": 7,
           "hadise": "Y",
@@ -235,7 +235,7 @@ window.HAVA_VERISI = {
       "ad": "Süleymanpaşa",
       "gunler": [
         {
-          "tarih": "11/25/2026",
+          "tarih": "2026-11-25",
           "enDusuk": 2,
           "enYuksek": 11,
           "hadise": "PB",
@@ -245,7 +245,7 @@ window.HAVA_VERISI = {
           "nemMax": 66
         },
         {
-          "tarih": "11/26/2026",
+          "tarih": "2026-11-26",
           "enDusuk": 5,
           "enYuksek": 14,
           "hadise": "PUS",
@@ -255,7 +255,7 @@ window.HAVA_VERISI = {
           "nemMax": 77
         },
         {
-          "tarih": "11/27/2026",
+          "tarih": "2026-11-27",
           "enDusuk": 8,
           "enYuksek": 19,
           "hadise": "PB",
@@ -265,7 +265,7 @@ window.HAVA_VERISI = {
           "nemMax": 82
         },
         {
-          "tarih": "11/28/2026",
+          "tarih": "2026-11-28",
           "enDusuk": 10,
           "enYuksek": 18,
           "hadise": "KGY",
@@ -275,7 +275,7 @@ window.HAVA_VERISI = {
           "nemMax": 94
         },
         {
-          "tarih": "11/29/2026",
+          "tarih": "2026-11-29",
           "enDusuk": 7,
           "enYuksek": 11,
           "hadise": "SY",
@@ -285,7 +285,7 @@ window.HAVA_VERISI = {
           "nemMax": 88
         },
         {
-          "tarih": "11/30/2026",
+          "tarih": "2026-11-30",
           "enDusuk": 4,
           "enYuksek": 9,
           "hadise": "Y",
