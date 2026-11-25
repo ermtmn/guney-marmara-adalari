@@ -45,47 +45,6 @@
      ]
     },
     {
-     "baslik": "Resmi kurumlar",
-     "kalemler": [
-      {
-       "ad": "Marmara Kaymakamlığı",
-       "tel": "0266 885 50 06"
-      },
-      {
-       "ad": "Marmara Belediyesi",
-       "tel": "0266 885 54 89|0266 885 50 50"
-      },
-      {
-       "ad": "Marmara Adliyesi",
-       "tel": "0266 885 51 18"
-      },
-      {
-       "ad": "Sosyal Yardımlaşma Vakfı (SYDV)",
-       "tel": "0266 885 56 60"
-      },
-      {
-       "ad": "Müftülük",
-       "tel": "0266 885 54 32"
-      },
-      {
-       "ad": "Milli Eğitim Müdürlüğü",
-       "tel": "0266 885 58 59"
-      },
-      {
-       "ad": "Tapu Müdürlüğü",
-       "tel": "0266 280 11 14"
-      },
-      {
-       "ad": "Mal Müdürlüğü",
-       "tel": "0266 885 59 96"
-      },
-      {
-       "ad": "İlçe Tarım",
-       "tel": "0266 885 53 94"
-      }
-     ]
-    },
-    {
      "baslik": "Altyapı ve hizmetler",
      "kalemler": [
       {
@@ -150,47 +109,6 @@
       {
        "ad": "Liman Başkanlığı",
        "tel": "0266 885 59 95"
-      }
-     ]
-    },
-    {
-     "baslik": "Resmi kurumlar",
-     "kalemler": [
-      {
-       "ad": "Marmara Kaymakamlığı",
-       "tel": "0266 885 50 06"
-      },
-      {
-       "ad": "Marmara Belediyesi",
-       "tel": "0266 885 54 89|0266 885 50 50"
-      },
-      {
-       "ad": "Marmara Adliyesi",
-       "tel": "0266 885 51 18"
-      },
-      {
-       "ad": "Sosyal Yardımlaşma Vakfı (SYDV)",
-       "tel": "0266 885 56 60"
-      },
-      {
-       "ad": "Müftülük",
-       "tel": "0266 885 54 32"
-      },
-      {
-       "ad": "Milli Eğitim Müdürlüğü",
-       "tel": "0266 885 58 59"
-      },
-      {
-       "ad": "Tapu Müdürlüğü",
-       "tel": "0266 280 11 14"
-      },
-      {
-       "ad": "Mal Müdürlüğü",
-       "tel": "0266 885 59 96"
-      },
-      {
-       "ad": "İlçe Tarım",
-       "tel": "0266 885 53 94"
       }
      ]
     },
@@ -268,47 +186,6 @@
      ]
     },
     {
-     "baslik": "Resmi kurumlar",
-     "kalemler": [
-      {
-       "ad": "Marmara Kaymakamlığı",
-       "tel": "0266 885 50 06"
-      },
-      {
-       "ad": "Marmara Belediyesi",
-       "tel": "0266 885 54 89|0266 885 50 50"
-      },
-      {
-       "ad": "Marmara Adliyesi",
-       "tel": "0266 885 51 18"
-      },
-      {
-       "ad": "Sosyal Yardımlaşma Vakfı (SYDV)",
-       "tel": "0266 885 56 60"
-      },
-      {
-       "ad": "Müftülük",
-       "tel": "0266 885 54 32"
-      },
-      {
-       "ad": "Milli Eğitim Müdürlüğü",
-       "tel": "0266 885 58 59"
-      },
-      {
-       "ad": "Tapu Müdürlüğü",
-       "tel": "0266 280 11 14"
-      },
-      {
-       "ad": "Mal Müdürlüğü",
-       "tel": "0266 885 59 96"
-      },
-      {
-       "ad": "İlçe Tarım",
-       "tel": "0266 885 53 94"
-      }
-     ]
-    },
-    {
      "baslik": "Altyapı ve hizmetler",
      "kalemler": [
       {
@@ -345,25 +222,9 @@
   },
   "pasalimani": {
    "ilce": "Erdek",
-   "gruplar": [
-    {
-     "baslik": "Resmi kurumlar",
-     "kalemler": [
-      {
-       "ad": "Erdek Kaymakamlığı",
-       "tel": "0266 835 10 01"
-      }
-     ]
-    }
-   ],
-   "not": "Paşalimanı Erdek ilçesine bağlıdır; ada için ayrı bir hastane ya da belediye birimi listelenmiyor. Acil durumda 112'yi arayın.",
-   "kaynaklar": [
-    {
-     "ad": "Erdek Kaymakamlığı · İletişim",
-     "url": "https://www.erdek.gov.tr/iletisim1",
-     "tarih": "2026-11-25"
-    }
-   ]
+   "gruplar": [],
+   "not": "Paşalimanı Erdek ilçesine bağlıdır; ada için ayrı bir hastane ya da sağlık birimi listelenmiyor. Acil durumda 112'yi arayın.",
+   "kaynaklar": []
   }
  }
 }
