@@ -1,0 +1,800 @@
+{
+ "guncelleme": "2026-11-25",
+ "mgmIstasyon": {
+  "ERDEK": "91008",
+  "MARMARA": "91018",
+  "AVSA": "91018",
+  "EKINLIK": "91018",
+  "SARAYLAR": "91018",
+  "BALIKLI": "91008",
+  "BANDIRMA": "91003",
+  "TEKIRDAG": "95901"
+ },
+ "iskeleler": {
+  "AVSA": "Avşa",
+  "EKINLIK": "Ekinlik",
+  "MARMARA": "Marmara",
+  "SARAYLAR": "Saraylar (Marmara Adası)",
+  "BALIKLI": "Paşalimanı (Balıklı)",
+  "BADALAN": "Badalan",
+  "ERDEK": "Erdek",
+  "TEKIRDAG": "Tekirdağ (Ceyport)",
+  "BANDIRMA": "Bandırma"
+ },
+ "hatlar": [
+  {
+   "id": "gestas",
+   "tip": "dongu",
+   "isletmeci": "Gestaş",
+   "renk": "#0b6fa4",
+   "arac": true,
+   "ad": "Güney Marmara Adalar Hattı",
+   "aciklama": "Erdek - Avşa - Marmara - Paşalimanı (Balıklı) - Ekinlik",
+   "tarife": "Yürürlük tarihi belirtilmemiş",
+   "kaynak": "https://gdu.com.tr/sefer-tarifeleri",
+   "duyurular": "https://www.gdu.com.tr/gduonline/duyurular",
+   "bilet": "https://online.gdu.com.tr/bilet-al#bilet",
+   "telefon": {
+    "genel": "444 0 752",
+    "genelAd": "Çağrı merkezi (7/24)",
+    "iskele": {}
+   },
+   "duraklar": [
+    "AVSA",
+    "EKINLIK",
+    "MARMARA",
+    "BALIKLI",
+    "ERDEK",
+    "BALIKLI",
+    "AVSA",
+    "EKINLIK",
+    "MARMARA",
+    "EKINLIK",
+    "AVSA",
+    "BALIKLI",
+    "ERDEK",
+    "BALIKLI",
+    "MARMARA",
+    "EKINLIK",
+    "AVSA"
+   ],
+   "saatler": [
+    [
+     "06:00",
+     "06:20",
+     "07:00",
+     "08:00",
+     "11:00",
+     "12:00",
+     "13:00",
+     "13:20",
+     "16:00",
+     "16:30",
+     "17:00",
+     "18:00",
+     "19:30",
+     "20:30",
+     "21:30",
+     "22:00",
+     "22:15"
+    ],
+    [
+     "06:00",
+     null,
+     "06:45",
+     "07:45",
+     "11:00",
+     "12:00",
+     "13:00",
+     null,
+     "16:00",
+     null,
+     "16:45",
+     "17:45",
+     "19:15",
+     "20:15",
+     "21:15",
+     null,
+     "22:00"
+    ],
+    [
+     "06:00",
+     null,
+     "06:45",
+     "07:45",
+     "11:00",
+     "12:00",
+     "13:00",
+     null,
+     "16:00",
+     null,
+     "16:45",
+     "17:45",
+     "19:15",
+     "20:15",
+     "21:15",
+     null,
+     "22:00"
+    ],
+    [
+     "06:00",
+     "06:20",
+     "07:00",
+     "08:00",
+     "11:00",
+     "12:00",
+     "13:00",
+     "13:20",
+     "16:00",
+     "16:30",
+     "17:00",
+     "18:00",
+     "19:30",
+     "20:30",
+     "21:30",
+     "22:00",
+     "22:15"
+    ],
+    [
+     "06:00",
+     null,
+     "06:45",
+     "07:45",
+     "11:00",
+     "12:00",
+     "13:00",
+     null,
+     "16:00",
+     null,
+     "16:45",
+     "17:45",
+     "19:15",
+     "20:15",
+     "21:15",
+     "21:45",
+     "22:00"
+    ],
+    [
+     "06:00",
+     null,
+     "06:45",
+     "07:45",
+     "11:00",
+     "12:00",
+     "13:00",
+     null,
+     "16:00",
+     null,
+     "16:45",
+     "17:45",
+     "19:15",
+     "20:15",
+     "21:15",
+     null,
+     "22:00"
+    ],
+    [
+     "06:00",
+     null,
+     "06:45",
+     null,
+     "11:00",
+     "12:00",
+     "13:00",
+     null,
+     "16:00",
+     "16:30",
+     "17:00",
+     "18:00",
+     "19:30",
+     null,
+     "21:00",
+     null,
+     "21:45"
+    ]
+   ]
+  },
+  {
+   "id": "marmara-roro",
+   "tip": "kalkislar",
+   "isletmeci": "Marmara RoRo",
+   "renk": "#c8372d",
+   "arac": true,
+   "ad": "Marmara RoRo",
+   "aciklama": "Tekirdağ - Erdek - Marmara Adası - Avşa - Bandırma",
+   "tarife": "01.11.2026 tarihli kış tarifesi",
+   "kaynak": "https://www.marmararoro.com/seferlerimiz.html",
+   "duyurular": "https://www.marmararoro.com/seferlerimiz.html",
+   "bilet": "https://bilet.erdekroro.com/",
+   "telefon": {
+    "iskele": {
+     "ERDEK": "0541 960 99 33",
+     "TEKIRDAG": "0541 960 99 66",
+     "MARMARA": "0530 042 18 41",
+     "SARAYLAR": "0530 042 18 42",
+     "AVSA": "0530 042 18 47",
+     "BANDIRMA": "0533 059 60 93"
+    }
+   },
+   "kalkislar": [
+    {
+     "gunler": [
+      2
+     ],
+     "saat": "03:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "SARAYLAR"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "10:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "SARAYLAR"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "16:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "SARAYLAR",
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "saat": "16:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "BANDIRMA"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      5
+     ],
+     "saat": "17:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "MARMARA",
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "16:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "MARMARA",
+      "AVSA",
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "saat": "21:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "saat": "23:00",
+     "kalkis": "TEKIRDAG",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "02:30",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "SARAYLAR"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "05:00",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "SARAYLAR",
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      2,
+      4,
+      6
+     ],
+     "saat": "05:30",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "BADALAN"
+     ]
+    },
+    {
+     "gunler": [
+      0
+     ],
+     "saat": "15:30",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "SARAYLAR",
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      5
+     ],
+     "saat": "17:00",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "MARMARA",
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "17:00",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "AVSA",
+      "MARMARA",
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "saat": "23:00",
+     "kalkis": "ERDEK",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      5
+     ],
+     "saat": "18:40",
+     "kalkis": "MARMARA",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "19:40",
+     "kalkis": "MARMARA",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      5
+     ],
+     "saat": "19:20",
+     "kalkis": "MARMARA",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "18:20",
+     "kalkis": "MARMARA",
+     "duraklar": [
+      "AVSA",
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0
+     ],
+     "saat": "06:30",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "08:00",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6
+     ],
+     "saat": "13:30",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      2
+     ],
+     "saat": "14:00",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "16:00",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0
+     ],
+     "saat": "18:15",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "saat": "19:00",
+     "kalkis": "SARAYLAR",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "19:00",
+     "kalkis": "AVSA",
+     "duraklar": [
+      "MARMARA",
+      "TEKIRDAG"
+     ]
+    },
+    {
+     "gunler": [
+      4,
+      6
+     ],
+     "saat": "19:00",
+     "kalkis": "AVSA",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      2,
+      4,
+      6
+     ],
+     "saat": "13:00",
+     "kalkis": "BADALAN",
+     "duraklar": [
+      "ERDEK"
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ],
+     "saat": "23:00",
+     "kalkis": "BANDIRMA",
+     "duraklar": [
+      "TEKIRDAG"
+     ]
+    }
+   ],
+   "notlar": [
+    "Gerekli hallerde (aşırı yoğunluk, geminin bir tarafta kalması gibi) ek sefer düzenlenir."
+   ]
+  },
+  {
+   "id": "cnr-roro",
+   "tip": "seferler",
+   "isletmeci": "CNR RoRo",
+   "renk": "#c26a00",
+   "arac": true,
+   "ad": "Ciner Ro-Ro",
+   "aciklama": "Erdek - Marmara - Avşa · Saraylar - Bandırma · Tekirdağ - Avşa",
+   "tarife": "Sitede tarih ve gün bilgisi yok, her gün geçerli kabul edildi",
+   "kaynak": "https://cnrroro.com/#saatler",
+   "duyurular": "https://cnrroro.com/",
+   "bilet": "https://ciner.biletin.org",
+   "telefon": {
+    "iskele": {
+     "BANDIRMA": "0533 457 80 09",
+     "SARAYLAR": "0533 457 50 09",
+     "TEKIRDAG": "0536 833 22 53",
+     "MARMARA": "0536 833 22 46",
+     "AVSA": "0530 942 00 11",
+     "ERDEK": "0530 942 00 44"
+    }
+   },
+   "seferler": [
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "gemi": "Aydın Kaptan 2 (sabah)",
+     "duraklar": [
+      [
+       "ERDEK",
+       null,
+       "07:30"
+      ],
+      [
+       "MARMARA",
+       "09:00",
+       "09:15"
+      ],
+      [
+       "AVSA",
+       "09:45",
+       "11:00"
+      ],
+      [
+       "MARMARA",
+       "11:30",
+       "12:00"
+      ],
+      [
+       "ERDEK",
+       "13:30",
+       null
+      ]
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "gemi": "Aydın Kaptan 2 (akşam)",
+     "duraklar": [
+      [
+       "ERDEK",
+       null,
+       "14:30"
+      ],
+      [
+       "MARMARA",
+       "16:00",
+       "16:15"
+      ],
+      [
+       "AVSA",
+       "16:45",
+       "17:00"
+      ],
+      [
+       "MARMARA",
+       "17:30",
+       "17:45"
+      ],
+      [
+       "ERDEK",
+       "19:15",
+       null
+      ]
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "gemi": "Saraylar - Bandırma",
+     "duraklar": [
+      [
+       "BANDIRMA",
+       null,
+       "04:00"
+      ],
+      [
+       "SARAYLAR",
+       "07:00",
+       "09:00"
+      ],
+      [
+       "BANDIRMA",
+       "12:00",
+       "13:30"
+      ],
+      [
+       "SARAYLAR",
+       "16:30",
+       "17:30"
+      ],
+      [
+       "BANDIRMA",
+       "20:30",
+       null
+      ]
+     ]
+    },
+    {
+     "gunler": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "gemi": "Adalar 1",
+     "duraklar": [
+      [
+       "TEKIRDAG",
+       null,
+       "12:00"
+      ],
+      [
+       "AVSA",
+       "14:30",
+       null
+      ],
+      [
+       "TEKIRDAG",
+       "18:30",
+       null
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

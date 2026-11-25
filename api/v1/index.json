@@ -1,0 +1,27 @@
+{
+ "surum": 1,
+ "tabanAdres": "https://ermtmn.github.io/guney-marmara-adalari/",
+ "motor": "assets/sefer-motoru.js",
+ "dosyalar": {
+  "seferler": {
+   "adres": "api/v1/seferler.json",
+   "guncelleme": "2026-11-25"
+  },
+  "adalar": {
+   "adres": "api/v1/adalar.json",
+   "guncelleme": null
+  },
+  "dernekler": {
+   "adres": "api/v1/dernekler.json",
+   "guncelleme": "2026-11-25"
+  },
+  "duyurular": {
+   "adres": "api/v1/duyurular.json",
+   "guncelleme": "2026-11-25T17:20"
+  },
+  "hava": {
+   "adres": "api/v1/hava.json",
+   "guncelleme": "2026-11-25T17:20"
+  }
+ }
+}
