@@ -7,13 +7,13 @@
 //  - Diğer her şey (sayfalar, stil, logolar, tarife): önce önbellek (hızlı açılış), arka planda tazelenir
 // Bu dosyada değişiklik yapınca SURUM'u artırın.
 
-const SURUM = "v2";
+const SURUM = "v3";
 const ONBELLEK = "adalar-" + SURUM;
 const UYGULAMA = [
   "./", "index.html", "adalar.html", "rehber.html", "dernekler.html", "manifest.webmanifest",
   "data/rehber.js", "data/eczane.js",
   "assets/stil.css", "assets/sefer-motoru.js", "assets/pwa.js",
-  "assets/logo.svg", "assets/logo-ada.svg", "assets/logo-dernek.svg", "assets/ikon/icon-192.png",
+  "assets/logo.svg", "assets/logo-ada.svg", "assets/logo-rehber.svg", "assets/logo-dernek.svg", "assets/ikon/icon-192.png",
   "data/seferler.js", "data/adalar.js", "data/dernekler.js",
   "data/duyurular.js", "data/hava.js", "data/tarifeler.js"
 ];
