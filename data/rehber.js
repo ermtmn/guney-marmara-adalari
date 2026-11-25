@@ -36,6 +36,7 @@
   ];
 
   const KAYNAK_MB_TEL = { ad: "Marmara Belediyesi · Önemli Telefonlar", url: "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar", tarih: "2026-11-25" };
+  const KAYNAK_ISM_ASM = { ad: "Balıkesir İl Sağlık Müdürlüğü · Aile Sağlığı Merkezleri", url: "https://balikesirism.saglik.gov.tr/TR-128167/aile-sagligi-merkezleri-asm.html", tarih: "2026-11-25" };
 
   window.REHBER_VERISI = {
     guncelleme: "2026-11-25",
@@ -69,11 +70,12 @@
         ilce: "Marmara",
         gruplar: [
           { baslik: "Ada içinde", kalemler: [
+            { ad: "Avşa Aile Sağlığı Merkezi (sağlık ocağı)", tel: "0266 896 12 62", not: "Marmara 03 Nolu Avşa Nebahat Tanor ASM · Avşa Mahallesi" },
             { ad: "Avşa Ek Hizmet Binası (belediye)", tel: "0266 896 33 01" }
           ] },
           ...MARMARA_ILCE
         ],
-        kaynaklar: [KAYNAK_MB_TEL]
+        kaynaklar: [KAYNAK_MB_TEL, KAYNAK_ISM_ASM]
       },
 
       pasalimani: {
