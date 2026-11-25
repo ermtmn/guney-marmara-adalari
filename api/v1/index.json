@@ -17,11 +17,11 @@
   },
   "duyurular": {
    "adres": "api/v1/duyurular.json",
-   "guncelleme": "2026-11-25T20:51"
+   "guncelleme": "2026-11-25T21:52"
   },
   "hava": {
    "adres": "api/v1/hava.json",
-   "guncelleme": "2026-11-25T20:51"
+   "guncelleme": "2026-11-25T21:52"
   }
  }
 }
