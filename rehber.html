@@ -27,7 +27,7 @@
       <img class="logo" src="assets/logo-ada.svg" alt="" width="64" height="64">
       <h1>Ada Rehberi</h1>
     </div>
-    <p class="hero-alt">Nöbetçi eczane, önemli telefonlar, muhtarlıklar ve ada içi ulaşım. Adada ihtiyacınız olan bilgiler tek yerde.</p>
+    <p class="hero-alt">Nöbetçi eczane ve önemli telefonlar. Adada ihtiyacınız olan bilgiler tek yerde.</p>
   </div>
   <svg class="hero-dalga" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,32 C180,58 360,6 540,26 C720,46 900,10 1080,28 C1260,46 1350,22 1440,30 L1440,60 L0,60 Z"></path>
@@ -47,7 +47,7 @@
   <div id="rehber"></div>
 
   <footer>
-    <div>Telefonlar ve muhtarlıklar resmi kurum sitelerinden derlenmiştir. Gitmeden ya da aramadan önce değişmiş olabileceğini unutmayın; düzeltme ve önerileriniz için bize ulaşın.</div>
+    <div>Telefonlar resmi kurum sitelerinden derlenmiştir. Gitmeden ya da aramadan önce değişmiş olabileceğini unutmayın; düzeltme ve önerileriniz için bize ulaşın.</div>
   </footer>
 </main>
 
@@ -119,16 +119,6 @@
         <section class="card">
           <h2>📞 Önemli telefonlar</h2>
           ${r.gruplar.map(g => `<h3 class="rehber-grup">${kacis(g.baslik)}</h3><div class="tel-liste">${g.kalemler.map(telSatiri).join("")}</div>`).join("")}
-        </section>
-        <section class="card">
-          <h2>🏘️ Muhtarlıklar</h2>
-          <div class="muhtar-liste">${r.muhtarlar.map(m => `<div class="muhtar"><b>${kacis(m.mahalle)}</b><span>${kacis(m.muhtar)}</span></div>`).join("")}</div>
-          <p class="small">Muhtarlıkların telefonu resmi sitelerde yayımlanmıyor; ${r.ilce === "Erdek" ? "Erdek Kaymakamlığı" : "Marmara Belediyesi"} üzerinden ulaşabilirsiniz.</p>
-        </section>
-        <section class="card">
-          <h2>🚐 Ada içi ulaşım</h2>
-          <p>${kacis(r.ulasim.metin)}</p>
-          <a class="eylem" href="index.html?nereden=${ada.seferNereden}&nereye=${ada.iskeleler[0]}">⛴️ Adaya gemi seferleri</a>
         </section>
         <p class="small rehber-kaynak">Kaynaklar: ${r.kaynaklar.map(k => `<a href="${k.url}" target="_blank" rel="noopener">${kacis(k.ad)}</a> (${trTarih(k.tarih)})`).join(" · ")}</p>
       </div>`;

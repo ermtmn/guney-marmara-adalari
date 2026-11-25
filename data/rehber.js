@@ -1,5 +1,5 @@
-// Ada rehberi: önemli telefonlar, muhtarlıklar ve ada içi ulaşım (elle girilir).
-// Yalnızca resmi kaynaklardan doğrulanan bilgiler girilir; her bölümün kaynağı ve kontrol tarihi "kaynaklar"da yazar.
+// Ada rehberi: önemli telefonlar (elle girilir).
+// Yalnızca resmi kaynaklardan doğrulanan bilgiler girilir; her adanın kaynağı ve kontrol tarihi "kaynaklar"da yazar.
 // Nöbetçi eczaneler ayrı dosyada: data/eczane.js (scripts/eczane-guncelle.ps1 her gün otomatik çeker).
 //
 // Ada anahtarları data/adalar.js'teki id'lerle aynıdır: ekinlik, marmara, avsa, pasalimani.
@@ -35,23 +35,7 @@
     ] }
   ];
 
-  // Adalar arası ve adaya deniz ulaşımı (Kaynak: Marmara Belediyesi "Ulaşım" sayfası)
-  const DENIZ = { baslik: "Adalar arası deniz ulaşımı", kalemler: [
-    { ad: "Gestaş", tel: "444 0 752" },
-    { ad: "Marmara RoRo", tel: "0541 960 99 33" },
-    { ad: "İDO", tel: "0850 222 44 36" },
-    { ad: "Adalar 1", tel: "0554 342 52 57" },
-    { ad: "Yavuz Naz", tel: "0535 962 77 42" },
-    { ad: "Ömer Kaptan", tel: "0266 896 11 01" }
-  ] };
-
   const KAYNAK_MB_TEL = { ad: "Marmara Belediyesi · Önemli Telefonlar", url: "https://www.marmara.bel.tr/sayfalar/onemli-telefonlar", tarih: "2026-11-25" };
-  const KAYNAK_MB_ULASIM = { ad: "Marmara Belediyesi · Ulaşım", url: "https://www.marmara.bel.tr/sayfalar/ulasim", tarih: "2026-11-25" };
-  const KAYNAK_MB_MUHTAR = { ad: "Marmara Belediyesi · Muhtarlıklar", url: "https://www.marmara.bel.tr/gunluk-bilgi/muhtarlar", tarih: "2026-11-25" };
-
-  const DOLMUS_YOK = "Dolmuş güzergâh ve saatleri belediye ya da kooperatif tarafından internette yayımlanmıyor. "
-    + "Yaz sezonunda iskeleden köylere dolmuş çalışır, kalkışlar genelde gemi saatlerine göre ayarlanır. "
-    + "Güncel saat için iskeledeki dolmuş durağına ya da belediyeye sorun.";
 
   window.REHBER_VERISI = {
     guncelleme: "2026-11-25",
@@ -66,15 +50,8 @@
     adalar: {
       ekinlik: {
         ilce: "Marmara",
-        gruplar: [
-          { baslik: "Ada içinde", kalemler: [
-            { ad: "Ekinlik Mahallesi muhtarlığı", tel: "", not: "Telefon yayımlanmamış; Marmara Belediyesi üzerinden ulaşılabilir" }
-          ] },
-          ...MARMARA_ILCE, DENIZ
-        ],
-        muhtarlar: [{ mahalle: "Ekinlik", muhtar: "Kenan Şengül" }],
-        ulasim: { metin: "Ekinlik için yayımlanmış bir dolmuş hattı ya da saati bulunamadı. Adaya ulaşım Gestaş seferleriyledir." },
-        kaynaklar: [KAYNAK_MB_TEL, KAYNAK_MB_ULASIM, KAYNAK_MB_MUHTAR]
+        gruplar: [...MARMARA_ILCE],
+        kaynaklar: [KAYNAK_MB_TEL]
       },
 
       marmara: {
@@ -83,22 +60,9 @@
           { baslik: "Ada içinde", kalemler: [
             { ad: "Saraylar Ek Hizmet Binası (belediye)", tel: "0266 887 73 35" }
           ] },
-          ...MARMARA_ILCE, DENIZ
+          ...MARMARA_ILCE
         ],
-        muhtarlar: [
-          { mahalle: "Okullar", muhtar: "Metin Can" },
-          { mahalle: "Cumhuriyet", muhtar: "Yüksel Karakurt" },
-          { mahalle: "Hürriyet", muhtar: "Volkan Dinçer" },
-          { mahalle: "Yenimahalle", muhtar: "Emre Birinci" },
-          { mahalle: "Çınarlı", muhtar: "Bekir Köse" },
-          { mahalle: "Gündoğdu", muhtar: "Fehmi Bayraktar" },
-          { mahalle: "Topağaç", muhtar: "Ramazan Dağ" },
-          { mahalle: "Asmalı", muhtar: "Yavuz Balta" },
-          { mahalle: "Saraylar", muhtar: "Recep Budak" },
-          { mahalle: "Abroz", muhtar: "Sultan Yıldız" }
-        ],
-        ulasim: { metin: DOLMUS_YOK + " Kışın taksi daha yaygın." },
-        kaynaklar: [KAYNAK_MB_TEL, KAYNAK_MB_ULASIM, KAYNAK_MB_MUHTAR]
+        kaynaklar: [KAYNAK_MB_TEL]
       },
 
       avsa: {
@@ -107,15 +71,9 @@
           { baslik: "Ada içinde", kalemler: [
             { ad: "Avşa Ek Hizmet Binası (belediye)", tel: "0266 896 33 01" }
           ] },
-          ...MARMARA_ILCE, DENIZ
+          ...MARMARA_ILCE
         ],
-        muhtarlar: [
-          { mahalle: "Avşa", muhtar: "Bintuğ Yasakçı" },
-          { mahalle: "Deniz", muhtar: "Huzur Üstün" },
-          { mahalle: "Yiğitler", muhtar: "Korhan Uygut" }
-        ],
-        ulasim: { metin: DOLMUS_YOK },
-        kaynaklar: [KAYNAK_MB_TEL, KAYNAK_MB_ULASIM, KAYNAK_MB_MUHTAR]
+        kaynaklar: [KAYNAK_MB_TEL]
       },
 
       pasalimani: {
@@ -123,20 +81,11 @@
         gruplar: [
           { baslik: "Resmi kurumlar", kalemler: [
             { ad: "Erdek Kaymakamlığı", tel: "0266 835 10 01" }
-          ] },
-          { baslik: "Adaya deniz ulaşımı", kalemler: [{ ad: "Gestaş", tel: "444 0 752" }] }
+          ] }
         ],
-        muhtarlar: [
-          { mahalle: "Paşalimanı", muhtar: "Hasan Hüseyin Uçar" },
-          { mahalle: "Balıklı", muhtar: "Deniz Kıran" },
-          { mahalle: "Harmanlı", muhtar: "Cemal Ülker" },
-          { mahalle: "Poyrazlı", muhtar: "Nihat Karışık" }
-        ],
-        ulasim: { metin: "Paşalimanı için yayımlanmış bir dolmuş hattı ya da saati bulunamadı. Köyler arası ulaşım için muhtarlıklara danışın." },
         not: "Paşalimanı Erdek ilçesine bağlıdır; ada için ayrı bir hastane ya da belediye birimi listelenmiyor. Acil durumda 112'yi arayın.",
         kaynaklar: [
-          { ad: "Erdek Kaymakamlığı · İletişim", url: "https://www.erdek.gov.tr/iletisim1", tarih: "2026-11-25" },
-          { ad: "Erdek Belediyesi · Muhtarlıklarımız", url: "https://www.erdek.bel.tr/muhtarliklarimiz", tarih: "2026-11-25" }
+          { ad: "Erdek Kaymakamlığı · İletişim", url: "https://www.erdek.gov.tr/iletisim1", tarih: "2026-11-25" }
         ]
       }
     }
