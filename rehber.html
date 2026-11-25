@@ -116,11 +116,11 @@
       <div class="rehber-ada" style="--adarenk:${ada.renk}">
         ${r.not ? `<section class="card rehber-not">ℹ️ ${kacis(r.not)}</section>` : ""}
         ${eczaneKart(ada)}
-        <section class="card">
+        ${r.gruplar.length ? `<section class="card">
           <h2>📞 Önemli telefonlar</h2>
           ${r.gruplar.map(g => `<h3 class="rehber-grup">${kacis(g.baslik)}</h3><div class="tel-liste">${g.kalemler.map(telSatiri).join("")}</div>`).join("")}
-        </section>
-        <p class="small rehber-kaynak">Kaynaklar: ${r.kaynaklar.map(k => `<a href="${k.url}" target="_blank" rel="noopener">${kacis(k.ad)}</a> (${trTarih(k.tarih)})`).join(" · ")}</p>
+        </section>` : ""}
+        ${r.kaynaklar.length ? `<p class="small rehber-kaynak">Kaynaklar: ${r.kaynaklar.map(k => `<a href="${k.url}" target="_blank" rel="noopener">${kacis(k.ad)}</a> (${trTarih(k.tarih)})`).join(" · ")}</p>` : ""}
       </div>`;
   }
 
