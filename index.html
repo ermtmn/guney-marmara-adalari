@@ -46,6 +46,7 @@
 
   <section class="card">
     <h2 id="sonucBaslik">Seferler</h2>
+    <div id="simdi" aria-live="polite"></div>
     <div id="sonuclar"></div>
     <p class="small">Gemilerin kalkış ve varış saatleri yanaşma sürelerine göre değişiklik gösterebilir.</p>
   </section>
@@ -93,6 +94,9 @@
   const adresParam = new URLSearchParams(location.search);
   if (iskeleler[adresParam.get("nereden")]) durum.nereden = adresParam.get("nereden");
   if (iskeleler[adresParam.get("nereye")]) durum.nereye = adresParam.get("nereye");
+  // Paylaşılan sefer bağlantısı belirli bir günü açar: &gun=0..6 (0=Pazartesi)
+  const adresGun = /^[0-6]$/.test(adresParam.get("gun") || "") ? +adresParam.get("gun") : null;
+  if (adresGun !== null) durum.gun = adresGun;
 
   // Bir seferde gösterilecek numara (hesap assets/sefer-motoru.js'te)
   function seferTelefonu(hat, iskele) {
@@ -146,6 +150,21 @@
       $("nereden").value = durum.nereden; $("nereye").value = durum.nereye; ciz();
     };
 
+
+    // Sefer kartlarındaki "Takvime ekle" / "WhatsApp" düğmeleri
+    $("sonuclar").onclick = e => {
+      const d = e.target.closest("[data-eylem]");
+      if (!d) return;
+      const s = gosterilen[+d.closest(".trip").dataset.i];
+      if (!s) return;
+      d.dataset.eylem === "takvim" ? takvimeEkle(s) : whatsappPaylas(s);
+    };
+    // "Şimdi" kutusundaki "Göster": sonraki seferin gününe geç
+    $("simdi").onclick = e => {
+      const d = e.target.closest("[data-gun-git]");
+      if (d) { durum.gun = +d.dataset.gunGit; ciz(); }
+    };
+    setInterval(simdiCiz, 30000);   // kalan süre yarım dakikada bir yenilenir
 
     duyurulariCiz();
 
@@ -292,7 +311,8 @@
       $("sonuclar").innerHTML = `<p class="empty">${GUNLER[g]} günü ${ad(a)} iskelesinden sefer yok${durum.kapaliFirmalar.length || durum.sadeceArac ? " (filtreleri kontrol edin)" : ""}.</p>`;
     } else {
       const liste = seferBul(g, a, b);
-      $("sonuclar").innerHTML = liste.length ? liste.map(s => {
+      gosterilen = liste;
+      $("sonuclar").innerHTML = liste.length ? liste.map((s, i) => {
         const varis = s.varis
           ? `${ad(b)}<br><b>${s.varis}</b>`
           : `${ad(b)}<br>varış saati<br>tarifede yok`;
@@ -300,7 +320,7 @@
         const devam = s.sonra && s.sonra.length ? ` · sonra ${s.sonra.map(ad).join(", ")}` : "";
         const kalkis = s.kalkis ? s.kalkis : `<span style="font-size:1rem">Kalkış saati<br>tarifede yok</span>`;
         return `
-        <div class="trip" style="--opc:${s.hat.renk}">
+        <div class="trip" data-i="${i}" data-anahtar="${seferAnahtari(s)}" style="--opc:${s.hat.renk}">
           <div>
             <div class="t-dep">${kalkis}</div>
             <span class="opname">${s.hat.isletmeci}</span>${s.gemi ? ` <span class="op" style="color:var(--muted);font-size:.8rem">· ${s.gemi}</span>` : ""}
@@ -308,16 +328,137 @@
           <div class="t-arr">${varis}</div>
           <div class="t-meta">${aracRozet(s.hat)}<span>${guzergah}${devam}</span></div>
           ${s.hat.uyari ? `<div class="t-meta small">⚠️ ${s.hat.uyari}</div>` : ""}
-          <div class="t-meta t-alt">${seferTelefonu(s.hat, a)}<a class="bilet" href="${s.hat.bilet}" target="_blank" rel="noopener" style="--opc:${s.hat.renk}">Bilet Al ↗</a></div>
+          <div class="t-meta t-alt">${seferTelefonu(s.hat, a)}<span class="eylemler">${s.kalkis ? `<button type="button" class="eylem" data-eylem="takvim">📅 Takvime ekle</button>` : ""}<button type="button" class="eylem" data-eylem="paylas">💬 WhatsApp</button></span><a class="bilet" href="${s.hat.bilet}" target="_blank" rel="noopener" style="--opc:${s.hat.renk}">Bilet Al ↗</a></div>
         </div>`;
       }).join("")
       : `<p class="empty">Bu gün için ${ad(a)} → ${ad(b)} seferi yok${durum.kapaliFirmalar.length || durum.sadeceArac ? " (filtreleri kontrol edin)" : ""}.</p>`;
     }
+    if (!b) gosterilen = [];
+    simdiCiz();
+  }
 
+  // --- "Şimdi": seçilen yönde bir sonraki gemi ve kalan süre (Türkiye saatiyle) ---
+
+  let gosterilen = [];   // ekranda listelenen seferler (takvim/paylaş düğmeleri için)
+  const seferAnahtari = s => `${s.hat.id}|${s.kalkis}|${s.gemi || ""}`;
+  const dk = s => { const [h, m] = s.split(":").map(Number); return h * 60 + m; };
+
+  // Cihaz hangi saat diliminde olursa olsun İstanbul saati
+  function istanbulSimdi() {
+    const p = new Date().toLocaleString("sv-SE", { timeZone: "Europe/Istanbul" });   // "2026-11-25 22:10:05"
+    const [tarih, saat] = p.split(" ");
+    const [y, a, g] = tarih.split("-").map(Number);
+    return { tarih, saat: saat.slice(0, 5), gun: (new Date(y, a - 1, g).getDay() + 6) % 7 };
+  }
+
+  // Şu andan sonraki ilk sefer (bugün kalmadıysa sonraki günler)
+  function sonrakiSefer(a, b) {
+    const s = istanbulSimdi();
+    for (let fark = 0; fark < 8; fark++) {
+      const gun = (s.gun + fark) % 7;
+      const aday = seferBul(gun, a, b).filter(x => x.kalkis && (fark > 0 || dk(x.kalkis) > dk(s.saat)));
+      if (aday.length) return { gun, fark, sefer: aday[0], kalan: fark * 1440 + dk(aday[0].kalkis) - dk(s.saat) };
+    }
+    return null;
+  }
+
+  const sureYaz = d => d < 60 ? `${d} dk` : `${Math.floor(d / 60)} sa${d % 60 ? ` ${d % 60} dk` : ""}`;
+
+  function simdiCiz() {
+    const kutu = $("simdi");
+    document.querySelectorAll(".trip.siradaki").forEach(t => t.classList.remove("siradaki"));
+    if (!durum.nereye) { kutu.innerHTML = ""; return; }
+    const n = sonrakiSefer(durum.nereden, durum.nereye);
+    if (!n) { kutu.innerHTML = ""; return; }
+    const s = n.sefer;
+    const ne = n.fark === 0 ? `<b>${sureYaz(n.kalan)}</b> sonra` : n.fark === 1 ? "yarın" : GUNLER[n.gun];
+    const ust = `${ad(durum.nereden)} → ${ad(durum.nereye)} · ${n.fark === 0 ? "sonraki gemi" : "bugün başka sefer yok"}`;
+    const goster = durum.gun !== n.gun ? `<button type="button" class="simdi-git" data-gun-git="${n.gun}">Göster</button>` : "";
+    kutu.innerHTML = `<div class="simdi${n.fark === 0 && n.kalan <= 30 ? " yakin" : ""}" style="--opc:${s.hat.renk}">
+      <span class="simdi-ikon" aria-hidden="true">⛴️</span>
+      <div class="simdi-metin">
+        <div class="simdi-ust">${ust}</div>
+        <div><span class="simdi-saat">${s.kalkis}</span> ${ne} · <span class="opname">${s.hat.isletmeci}</span></div>
+      </div>${goster}</div>`;
+    if (durum.gun === n.gun) {
+      const kart = document.querySelector(`.trip[data-anahtar="${CSS.escape(seferAnahtari(s))}"]`);
+      if (kart) kart.classList.add("siradaki");
+    }
+  }
+
+  // --- Takvime ekle (.ics) ve WhatsApp'ta paylaş ---
+
+  // Seferin gerçek tarihi: seçilen günün bu haftaki (bugün dahil) karşılığı; bugün kalkmışsa gelecek hafta
+  function seferTarihi(s) {
+    const simdi = istanbulSimdi();
+    const fark = (durum.gun - simdi.gun + 7) % 7 || (s.kalkis && dk(s.kalkis) <= dk(simdi.saat) ? 7 : 0);
+    const [y, a, g] = simdi.tarih.split("-").map(Number);
+    const t = new Date(Date.UTC(y, a - 1, g + fark));
+    return t.toISOString().slice(0, 10);
+  }
+
+  // Türkiye UTC+3 (yaz saati uygulaması yok) -> takvim için UTC zaman damgası
+  function icsZaman(tarih, saat, ekGun) {
+    const [y, a, g] = tarih.split("-").map(Number), [h, m] = saat.split(":").map(Number);
+    return new Date(Date.UTC(y, a - 1, g + (ekGun || 0), h - 3, m)).toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  }
+  const icsKacis = t => String(t).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+
+  function seferMetni(s, tarih) {
+    const a = durum.nereden, b = durum.nereye;
+    return {
+      baslik: `⛴️ ${ad(a)} → ${ad(b)} (${s.hat.isletmeci})`,
+      satirlar: [
+        `📅 ${kisaTarih(tarih)}`,
+        `🕐 Kalkış ${s.kalkis || "tarifede yok"}${s.varis ? ` · Varış ${s.varis}` : ""}`,
+        `🚢 ${s.hat.isletmeci}${s.gemi ? ` · ${s.gemi}` : ""} · ${s.hat.arac ? "araç da taşır" : "yalnız yolcu"}`,
+        s.ara.length ? `Uğradığı: ${s.ara.map(ad).join(", ")}` : "Direkt",
+        `🎫 Bilet: ${s.hat.bilet}`
+      ]
+    };
+  }
+
+  function takvimeEkle(s) {
+    const tarih = seferTarihi(s), m = seferMetni(s, tarih);
+    const bitisGun = s.varis && dk(s.varis) < dk(s.kalkis) ? 1 : 0;   // gece yarısını geçen sefer
+    const bitis = s.varis ? icsZaman(tarih, s.varis, bitisGun)
+      : icsZaman(tarih, `${String(Math.floor(dk(s.kalkis) / 60) + 1).padStart(2, "0")}:${s.kalkis.slice(3)}`);
+    const tel = Motor.seferTelefonu(veri, s.hat, durum.nereden);
+    const aciklama = [...m.satirlar, s.varis ? "" : "Varış saati tarifede yok.", tel ? `📞 ${tel.numara}` : "",
+      "Saatler yanaşma sürelerine göre değişebilir; hava muhalefetinde iptal olabilir."].filter(Boolean).join("\n");
+    const ics = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Guney Marmara Adalari//Seferler//TR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      `UID:${Date.now()}-${Math.random().toString(36).slice(2)}@guney-marmara-adalari`,
+      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").slice(0, 15)}Z`,
+      `DTSTART:${icsZaman(tarih, s.kalkis)}`, `DTEND:${bitis}`,
+      `SUMMARY:${icsKacis(m.baslik)}`, `LOCATION:${icsKacis(ad(durum.nereden) + " İskelesi")}`,
+      `DESCRIPTION:${icsKacis(aciklama)}`, `URL:${s.hat.bilet}`,
+      "BEGIN:VALARM", "ACTION:DISPLAY", "TRIGGER:-PT30M", `DESCRIPTION:${icsKacis(m.baslik)}`, "END:VALARM",
+      "END:VEVENT", "END:VCALENDAR"
+    ].join("\r\n");
+    const dosyaAdi = `sefer-${durum.nereden}-${durum.nereye}-${tarih}-${s.kalkis.replace(":", "")}.ics`.toLowerCase();
+    // iPhone/iPad: dosyayı doğrudan açınca "Takvime ekle" ekranı gelir; diğerleri dosyayı indirip takvimle açar
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+      location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+      return;
+    }
+    const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+    const l = document.createElement("a");
+    l.href = url; l.download = dosyaAdi;
+    document.body.appendChild(l); l.click(); l.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }
+
+  function whatsappPaylas(s) {
+    const tarih = seferTarihi(s), m = seferMetni(s, tarih);
+    const link = `${location.href.split(/[?#]/)[0]}?nereden=${durum.nereden}&nereye=${durum.nereye}&gun=${durum.gun}`;
+    const metin = [m.baslik, ...m.satirlar, "", `Tüm seferler: ${link}`].join("\n");
+    window.open("https://wa.me/?text=" + encodeURIComponent(metin), "_blank", "noopener");
   }
 
   // Adresle gelinen hedefe bugün sefer yoksa, sefer olan ilk günü seç
-  if (adresParam.get("nereye") === durum.nereye) {
+  if (adresGun === null && adresParam.get("nereye") === durum.nereye) {
     for (let i = 0; i < 7; i++) {
       const g = (durum.gun + i) % 7;
       if (gidilebilir(g, durum.nereden).has(durum.nereye)) { durum.gun = g; break; }

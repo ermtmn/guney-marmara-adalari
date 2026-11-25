@@ -80,6 +80,26 @@ a.tel:hover { text-decoration: underline; }
 a.bilet { margin-left: auto; background: var(--opc); color: #fff; text-decoration: none; font-weight: 700;
   font-size: .85rem; padding: 7px 14px; border-radius: 8px; white-space: nowrap; }
 a.bilet:hover { filter: brightness(1.1); }
+/* Sefer kartı: takvim ve paylaş düğmeleri */
+.eylemler { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.eylemler + a.bilet { margin-left: 0; }
+.eylem { font: inherit; font-size: .8rem; font-weight: 600; color: var(--text); background: var(--card);
+  border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; cursor: pointer; white-space: nowrap; }
+.eylem:hover { border-color: var(--opc); color: var(--opc); }
+/* "Şimdi": sonraki gemi kutusu */
+.simdi { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; padding: 10px 14px;
+  background: var(--accent-soft); border: 1px solid var(--line); border-left: 5px solid var(--opc); border-radius: 10px; }
+.simdi-ikon { font-size: 1.6rem; line-height: 1; }
+.simdi-metin { flex: 1; min-width: 0; }
+.simdi-ust { font-size: .78rem; color: var(--muted); }
+.simdi-saat { font-size: 1.35rem; font-weight: 800; letter-spacing: .5px; }
+.simdi.yakin { background: var(--warn-bg); }
+.simdi.yakin b { color: var(--warn); }
+.simdi-git { font: inherit; font-size: .8rem; font-weight: 700; color: var(--accent); background: none;
+  border: 1px solid var(--accent); border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+.trip.siradaki { box-shadow: 0 0 0 2px var(--opc); }
+.trip.siradaki .t-dep::after { content: "Sıradaki"; margin-left: 8px; vertical-align: middle; font-size: .7rem; font-weight: 700;
+  color: #fff; background: var(--opc); padding: 2px 7px; border-radius: 6px; }
 .dy-firma { border: 1px solid var(--line); border-left: 5px solid var(--opc); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
 .dy-firma .ophead { margin: 0 0 4px; }
 .dy { padding: 6px 0; border-top: 1px solid var(--line); font-size: .9rem; }
