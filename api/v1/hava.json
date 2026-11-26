@@ -1,37 +1,37 @@
 {
- "guncelleme": "2026-11-26T12:04",
- "yayin": "26.11.2026",
+ "guncelleme": "2026-11-26T13:15",
+ "yayin": "27.11.2026",
  "durum": "ok",
  "gunler": [
-  {
-   "tarih": "2026-11-26",
-   "baslik": "26 Kasım 2026, Perşembe",
-   "firtina": "Fırtına beklenmiyor.",
-   "firtinaMarmara": false,
-   "hava": "Parçalı ve az bulutlu, batısı puslu, yer yer sisli",
-   "ruzgar": "Güney ve güneydoğudan, akşam saatlerinde güneybatıdan 3 ila 5 kuvvetinde",
-   "dalga": "0,5 ila 1,5 m",
-   "gorus": "İyi, pus anında orta, sis anında zayıf."
-  },
   {
    "tarih": "2026-11-27",
    "baslik": "27 Kasım 2026, Cuma",
    "firtina": "Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
    "firtinaMarmara": false,
-   "hava": "Parçalı ve az bulutlu",
-   "ruzgar": "Güneyli yönlerden 3 ila 5 kuvvetinde",
+   "hava": "Parçalı ve çok bulutlu",
+   "ruzgar": "Güney ve güneybatıdan 3 ila 5 kuvvetinde",
    "dalga": "0,5 ila 1,5 m",
    "gorus": "İyi."
   },
   {
    "tarih": "2026-11-28",
    "baslik": "28 Kasım 2026, Cumartesi",
-   "firtina": "Batı Karadeniz'de fırtına; Kuzey Ege'nin kuzeyi ile Doğu Akdeniz'in doğusunda fırtınamsı rüzgar bekleniyor.",
-   "firtinaMarmara": false,
-   "hava": "Parçalı bulutlu",
-   "ruzgar": "Kuzey ve kuzeydoğudan 3 ila 5, akşam saatlerinden itibaren yer yer 6 kuvvetinde",
-   "dalga": "0,5 ila 1,5 m, yer yer 2,0 m",
+   "firtina": "Batı Karadeniz'de fırtına; Marmara, Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+   "firtinaMarmara": true,
+   "hava": "Parçalı ve çok bulutlu",
+   "ruzgar": "Doğu ve kuzeydoğudan, sabah saatlerinde güneydoğudan 3 ila 5, akşam saatlerinde 5 ila 7 kuvvetinde",
+   "dalga": "0,5 ila 1,5 m, akşam saatlerinde 2,5 m",
    "gorus": "İyi."
+  },
+  {
+   "tarih": "2026-11-29",
+   "baslik": "29 Kasım 2026, Pazar",
+   "firtina": "Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz, Marmara'da fırtına; Güney Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+   "firtinaMarmara": true,
+   "hava": "Parçalı ve çok bulutlu, aralıklı sağanak yağışlı",
+   "ruzgar": "Kuzey ve kuzeydoğudan 6 ila 8 kuvvetinde",
+   "dalga": "2,0 ila 3,0 m",
+   "gorus": "İyi, yağış anında orta."
   }
  ],
  "lokasyon": {
@@ -50,42 +50,52 @@
     },
     {
      "tarih": "2026-11-27",
-     "enDusuk": 5,
-     "enYuksek": 17,
-     "hadise": "CB",
+     "enDusuk": 7,
+     "enYuksek": 18,
+     "hadise": "PB",
      "ruzgarHiz": 11,
-     "ruzgarYon": 146,
-     "nemMin": 53,
-     "nemMax": 71
+     "ruzgarYon": 150,
+     "nemMin": 50,
+     "nemMax": 74
     },
     {
      "tarih": "2026-11-28",
      "enDusuk": 8,
      "enYuksek": 16,
-     "hadise": "CB",
-     "ruzgarHiz": 18,
-     "ruzgarYon": 25,
-     "nemMin": 69,
-     "nemMax": 90
+     "hadise": "PB",
+     "ruzgarHiz": 15,
+     "ruzgarYon": 28,
+     "nemMin": 66,
+     "nemMax": 87
     },
     {
      "tarih": "2026-11-29",
-     "enDusuk": 8,
-     "enYuksek": 11,
+     "enDusuk": 9,
+     "enYuksek": 12,
      "hadise": "SY",
-     "ruzgarHiz": 41,
-     "ruzgarYon": 32,
-     "nemMin": 72,
+     "ruzgarHiz": 38,
+     "ruzgarYon": 35,
+     "nemMin": 80,
      "nemMax": 92
     },
     {
      "tarih": "2026-11-30",
-     "enDusuk": 4,
-     "enYuksek": 7,
+     "enDusuk": 5,
+     "enYuksek": 8,
      "hadise": "Y",
      "ruzgarHiz": 36,
-     "ruzgarYon": 39,
-     "nemMin": 65,
+     "ruzgarYon": 34,
+     "nemMin": 70,
+     "nemMax": 85
+    },
+    {
+     "tarih": "2026-12-01",
+     "enDusuk": 3,
+     "enYuksek": 7,
+     "hadise": "Y",
+     "ruzgarHiz": 31,
+     "ruzgarYon": 33,
+     "nemMin": 68,
      "nemMax": 83
     }
    ]
@@ -106,42 +116,52 @@
     {
      "tarih": "2026-11-27",
      "enDusuk": 9,
-     "enYuksek": 17,
-     "hadise": "CB",
+     "enYuksek": 18,
+     "hadise": "PB",
      "ruzgarHiz": 14,
-     "ruzgarYon": 136,
-     "nemMin": 59,
-     "nemMax": 74
+     "ruzgarYon": 155,
+     "nemMin": 55,
+     "nemMax": 78
     },
     {
      "tarih": "2026-11-28",
      "enDusuk": 11,
-     "enYuksek": 16,
-     "hadise": "CB",
-     "ruzgarHiz": 18,
-     "ruzgarYon": 39,
-     "nemMin": 68,
-     "nemMax": 89
-    },
-    {
-     "tarih": "2026-11-29",
-     "enDusuk": 10,
-     "enYuksek": 12,
-     "hadise": "SY",
-     "ruzgarHiz": 43,
-     "ruzgarYon": 40,
-     "nemMin": 75,
+     "enYuksek": 17,
+     "hadise": "PB",
+     "ruzgarHiz": 14,
+     "ruzgarYon": 46,
+     "nemMin": 66,
      "nemMax": 92
     },
     {
+     "tarih": "2026-11-29",
+     "enDusuk": 12,
+     "enYuksek": 13,
+     "hadise": "SY",
+     "ruzgarHiz": 41,
+     "ruzgarYon": 40,
+     "nemMin": 79,
+     "nemMax": 91
+    },
+    {
      "tarih": "2026-11-30",
-     "enDusuk": 5,
+     "enDusuk": 7,
      "enYuksek": 9,
      "hadise": "Y",
      "ruzgarHiz": 39,
-     "ruzgarYon": 43,
-     "nemMin": 62,
-     "nemMax": 78
+     "ruzgarYon": 40,
+     "nemMin": 70,
+     "nemMax": 82
+    },
+    {
+     "tarih": "2026-12-01",
+     "enDusuk": 5,
+     "enYuksek": 8,
+     "hadise": "Y",
+     "ruzgarHiz": 35,
+     "ruzgarYon": 41,
+     "nemMin": 71,
+     "nemMax": 81
     }
    ]
   },
@@ -160,43 +180,53 @@
     },
     {
      "tarih": "2026-11-27",
-     "enDusuk": 10,
+     "enDusuk": 11,
      "enYuksek": 18,
-     "hadise": "CB",
-     "ruzgarHiz": 17,
-     "ruzgarYon": 164,
-     "nemMin": 67,
-     "nemMax": 78
+     "hadise": "PB",
+     "ruzgarHiz": 19,
+     "ruzgarYon": 162,
+     "nemMin": 64,
+     "nemMax": 83
     },
     {
      "tarih": "2026-11-28",
      "enDusuk": 12,
      "enYuksek": 16,
-     "hadise": "CB",
-     "ruzgarHiz": 28,
-     "ruzgarYon": 37,
-     "nemMin": 79,
-     "nemMax": 90
+     "hadise": "PB",
+     "ruzgarHiz": 23,
+     "ruzgarYon": 51,
+     "nemMin": 82,
+     "nemMax": 88
     },
     {
      "tarih": "2026-11-29",
      "enDusuk": 11,
-     "enYuksek": 12,
+     "enYuksek": 14,
      "hadise": "SY",
      "ruzgarHiz": 53,
-     "ruzgarYon": 36,
-     "nemMin": 75,
-     "nemMax": 87
+     "ruzgarYon": 33,
+     "nemMin": 79,
+     "nemMax": 88
     },
     {
      "tarih": "2026-11-30",
-     "enDusuk": 5,
-     "enYuksek": 9,
+     "enDusuk": 7,
+     "enYuksek": 10,
      "hadise": "Y",
      "ruzgarHiz": 51,
-     "ruzgarYon": 41,
-     "nemMin": 62,
+     "ruzgarYon": 39,
+     "nemMin": 66,
      "nemMax": 75
+    },
+    {
+     "tarih": "2026-12-01",
+     "enDusuk": 4,
+     "enYuksek": 8,
+     "hadise": "Y",
+     "ruzgarHiz": 47,
+     "ruzgarYon": 37,
+     "nemMin": 69,
+     "nemMax": 90
     }
    ]
   },
@@ -219,39 +249,49 @@
      "enYuksek": 19,
      "hadise": "PB",
      "ruzgarHiz": 11,
-     "ruzgarYon": 210,
-     "nemMin": 64,
-     "nemMax": 82
+     "ruzgarYon": 177,
+     "nemMin": 61,
+     "nemMax": 81
     },
     {
      "tarih": "2026-11-28",
      "enDusuk": 10,
      "enYuksek": 18,
      "hadise": "KGY",
-     "ruzgarHiz": 19,
-     "ruzgarYon": 31,
-     "nemMin": 76,
-     "nemMax": 94
+     "ruzgarHiz": 16,
+     "ruzgarYon": 42,
+     "nemMin": 78,
+     "nemMax": 93
     },
     {
      "tarih": "2026-11-29",
      "enDusuk": 7,
      "enYuksek": 11,
-     "hadise": "SY",
+     "hadise": "Y",
      "ruzgarHiz": 38,
-     "ruzgarYon": 32,
-     "nemMin": 68,
-     "nemMax": 88
+     "ruzgarYon": 34,
+     "nemMin": 71,
+     "nemMax": 89
     },
     {
      "tarih": "2026-11-30",
      "enDusuk": 4,
      "enYuksek": 9,
      "hadise": "Y",
+     "ruzgarHiz": 35,
+     "ruzgarYon": 39,
+     "nemMin": 67,
+     "nemMax": 82
+    },
+    {
+     "tarih": "2026-12-01",
+     "enDusuk": 1,
+     "enYuksek": 6,
+     "hadise": "PB",
      "ruzgarHiz": 34,
-     "ruzgarYon": 29,
-     "nemMin": 71,
-     "nemMax": 85
+     "ruzgarYon": 10,
+     "nemMin": 70,
+     "nemMax": 84
     }
    ]
   }
