@@ -5,7 +5,7 @@
  "dosyalar": {
   "seferler": {
    "adres": "api/v1/seferler.json",
-   "guncelleme": "2026-11-26"
+   "guncelleme": "2026-11-27"
   },
   "adalar": {
    "adres": "api/v1/adalar.json",
@@ -17,15 +17,15 @@
   },
   "duyurular": {
    "adres": "api/v1/duyurular.json",
-   "guncelleme": "2026-11-26T23:59"
+   "guncelleme": "2026-11-27T00:55"
   },
   "hava": {
    "adres": "api/v1/hava.json",
-   "guncelleme": "2026-11-26T23:59"
+   "guncelleme": "2026-11-27T00:55"
   },
   "tarifeler": {
    "adres": "api/v1/tarifeler.json",
-   "guncelleme": "2026-11-26T23:59"
+   "guncelleme": "2026-11-27T00:55"
   },
   "rehber": {
    "adres": "api/v1/rehber.json",
@@ -33,7 +33,7 @@
   },
   "eczane": {
    "adres": "api/v1/eczane.json",
-   "guncelleme": "2026-11-26T23:59"
+   "guncelleme": "2026-11-27T00:55"
   }
  }
 }

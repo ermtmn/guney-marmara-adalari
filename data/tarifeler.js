@@ -1,6 +1,6 @@
 // Bu dosya scripts/tarife-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin.
 window.TARIFE_VERISI = {
-  "guncelleme": "2026-11-26T23:59",
+  "guncelleme": "2026-11-27T00:55",
   "hatlar": {
     "gestas": {
       "duraklar": [
@@ -158,7 +158,7 @@ window.TARIFE_VERISI = {
         ]
       ],
       "durum": "ok",
-      "sonBasarili": "2026-11-26T23:59",
+      "sonBasarili": "2026-11-27T00:55",
       "sonDegisiklik": "2026-11-25T21:56"
     },
     "cnr-roro": {
@@ -311,7 +311,7 @@ window.TARIFE_VERISI = {
         }
       ],
       "durum": "ok",
-      "sonBasarili": "2026-11-26T23:59",
+      "sonBasarili": "2026-11-27T00:55",
       "sonDegisiklik": "2026-11-25T21:56"
     },
     "marmara-roro": {
@@ -321,11 +321,11 @@ window.TARIFE_VERISI = {
         "https://www.marmararoro.com/uploads/images/2026-11/6ae6ec0f7becb.jpeg"
       ],
       "yeniGorseller": [],
-      "sonBasarili": "2026-11-26T23:59"
+      "sonBasarili": "2026-11-27T00:55"
     },
     "ido": {
       "durum": "sezon-disi",
-      "sonBasarili": "2026-11-26T23:59",
+      "sonBasarili": "2026-11-27T00:55",
       "limanlar": [
         "Yenikapı",
         "Bursa",
