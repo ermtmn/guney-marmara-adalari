@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-26T20:13",
+  "guncelleme": "2026-11-26T21:58",
   "yayin": "27.11.2026",
   "durum": "ok",
   "gunler": [
