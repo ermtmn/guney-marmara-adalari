@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-27T23:57",
+ "guncelleme": "2026-11-28T00:56",
  "hatlar": {
   "gestas": {
    "duraklar": [
@@ -157,7 +157,7 @@
     ]
    ],
    "durum": "ok",
-   "sonBasarili": "2026-11-27T23:57",
+   "sonBasarili": "2026-11-28T00:56",
    "sonDegisiklik": "2026-11-25T21:56"
   },
   "cnr-roro": {
@@ -310,7 +310,7 @@
     }
    ],
    "durum": "ok",
-   "sonBasarili": "2026-11-27T23:57",
+   "sonBasarili": "2026-11-28T00:56",
    "sonDegisiklik": "2026-11-25T21:56"
   },
   "marmara-roro": {
@@ -322,7 +322,7 @@
    "yeniGorseller": [
     "https://www.marmararoro.com/uploads/images/2026-11/6b091d1de0e07.jpeg"
    ],
-   "sonBasarili": "2026-11-27T23:57"
+   "sonBasarili": "2026-11-28T00:56"
   },
   "ido": {
    "durum": "hata",

@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-27T23:57",
+  "guncelleme": "2026-11-28T00:56",
   "yayin": "28.11.2026",
   "durum": "ok",
   "gunler": [
@@ -39,16 +39,6 @@ window.HAVA_VERISI = {
     "91008": {
       "ad": "Erdek",
       "gunler": [
-        {
-          "tarih": "2026-11-27",
-          "enDusuk": 9,
-          "enYuksek": 18,
-          "hadise": "PB",
-          "ruzgarHiz": 14,
-          "ruzgarYon": 155,
-          "nemMin": 55,
-          "nemMax": 78
-        },
         {
           "tarih": "2026-11-28",
           "enDusuk": 11,
@@ -105,16 +95,6 @@ window.HAVA_VERISI = {
       "ad": "Marmara",
       "gunler": [
         {
-          "tarih": "2026-11-27",
-          "enDusuk": 11,
-          "enYuksek": 18,
-          "hadise": "PB",
-          "ruzgarHiz": 19,
-          "ruzgarYon": 162,
-          "nemMin": 64,
-          "nemMax": 83
-        },
-        {
           "tarih": "2026-11-28",
           "enDusuk": 12,
           "enYuksek": 16,
@@ -170,16 +150,6 @@ window.HAVA_VERISI = {
       "ad": "Bandırma",
       "gunler": [
         {
-          "tarih": "2026-11-27",
-          "enDusuk": 7,
-          "enYuksek": 18,
-          "hadise": "PB",
-          "ruzgarHiz": 11,
-          "ruzgarYon": 150,
-          "nemMin": 50,
-          "nemMax": 74
-        },
-        {
           "tarih": "2026-11-28",
           "enDusuk": 8,
           "enYuksek": 16,
@@ -234,16 +204,6 @@ window.HAVA_VERISI = {
     "95901": {
       "ad": "Süleymanpaşa",
       "gunler": [
-        {
-          "tarih": "2026-11-27",
-          "enDusuk": 8,
-          "enYuksek": 18,
-          "hadise": "PB",
-          "ruzgarHiz": 11,
-          "ruzgarYon": 177,
-          "nemMin": 61,
-          "nemMax": 81
-        },
         {
           "tarih": "2026-11-28",
           "enDusuk": 10,
