@@ -17,15 +17,15 @@
   },
   "duyurular": {
    "adres": "api/v1/duyurular.json",
-   "guncelleme": "2026-11-28T00:56"
+   "guncelleme": "2026-11-28T01:57"
   },
   "hava": {
    "adres": "api/v1/hava.json",
-   "guncelleme": "2026-11-28T00:56"
+   "guncelleme": "2026-11-28T01:57"
   },
   "tarifeler": {
    "adres": "api/v1/tarifeler.json",
-   "guncelleme": "2026-11-28T00:56"
+   "guncelleme": "2026-11-28T01:57"
   },
   "rehber": {
    "adres": "api/v1/rehber.json",
@@ -33,7 +33,7 @@
   },
   "eczane": {
    "adres": "api/v1/eczane.json",
-   "guncelleme": "2026-11-28T00:56"
+   "guncelleme": "2026-11-28T01:57"
   }
  }
 }
