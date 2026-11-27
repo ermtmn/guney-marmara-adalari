@@ -1,17 +1,8 @@
 // Bu dosya scripts/eczane-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin. Kaynak: Balıkesir Eczacı Odası.
 window.ECZANE_VERISI = {
-  "guncelleme": "2026-11-27T08:11",
+  "guncelleme": "2026-11-27T10:18",
   "durum": "ok",
   "kaynak": "https://www.balikesireczaciodasi.org.tr/nobetci-eczaneler",
-  "toplam": 19,
-  "eczaneler": [
-    {
-      "ada": "avsa",
-      "ad": "CEYLAN ECZANESİ",
-      "ilce": "ALTIEYLÜL",
-      "adres": "Bahçelievler Mah. Savaştepe Cad. Demirtaş Kavşağı Ata Simit ve Bambi Yatak Karşısı, Yeni Ziraat Bankası Çaprazı",
-      "tel": "02662217239",
-      "konum": "39.621637,27.896354"
-    }
-  ]
+  "toplam": 29,
+  "eczaneler": []
 };

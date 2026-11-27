@@ -629,7 +629,8 @@
    "notlar": [
     "Gerekli hallerde (aşırı yoğunluk, geminin bir tarafta kalması gibi) ek sefer düzenlenir."
    ],
-   "tarifeDurum": "ok"
+   "tarifeDurum": "yeni-gorsel",
+   "uyari": "Firma yeni bir tarife yayımladı, bu saatler henüz güncellenmedi; kesin saat için firmayı arayın."
   },
   {
    "id": "cnr-roro",
