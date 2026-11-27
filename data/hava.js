@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-27T12:04",
+  "guncelleme": "2026-11-27T13:12",
   "yayin": "27.11.2026",
   "durum": "ok",
   "gunler": [
@@ -52,42 +52,52 @@ window.HAVA_VERISI = {
         {
           "tarih": "2026-11-28",
           "enDusuk": 11,
-          "enYuksek": 17,
+          "enYuksek": 16,
           "hadise": "PB",
           "ruzgarHiz": 14,
           "ruzgarYon": 46,
-          "nemMin": 66,
-          "nemMax": 92
+          "nemMin": 63,
+          "nemMax": 90
         },
         {
           "tarih": "2026-11-29",
           "enDusuk": 12,
           "enYuksek": 13,
           "hadise": "SY",
-          "ruzgarHiz": 41,
+          "ruzgarHiz": 43,
           "ruzgarYon": 40,
-          "nemMin": 79,
-          "nemMax": 91
+          "nemMin": 80,
+          "nemMax": 90
         },
         {
           "tarih": "2026-11-30",
-          "enDusuk": 7,
+          "enDusuk": 8,
           "enYuksek": 9,
           "hadise": "Y",
-          "ruzgarHiz": 39,
+          "ruzgarHiz": 41,
           "ruzgarYon": 40,
-          "nemMin": 70,
-          "nemMax": 82
+          "nemMin": 71,
+          "nemMax": 84
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": 5,
-          "enYuksek": 8,
+          "enDusuk": 6,
+          "enYuksek": 9,
           "hadise": "Y",
-          "ruzgarHiz": 35,
-          "ruzgarYon": 41,
-          "nemMin": 71,
-          "nemMax": 81
+          "ruzgarHiz": 39,
+          "ruzgarYon": 36,
+          "nemMin": 69,
+          "nemMax": 79
+        },
+        {
+          "tarih": "2026-12-02",
+          "enDusuk": 5,
+          "enYuksek": 6,
+          "hadise": "KKY",
+          "ruzgarHiz": 36,
+          "ruzgarYon": 34,
+          "nemMin": 78,
+          "nemMax": 93
         }
       ]
     },
@@ -109,40 +119,50 @@ window.HAVA_VERISI = {
           "enDusuk": 12,
           "enYuksek": 16,
           "hadise": "PB",
-          "ruzgarHiz": 23,
-          "ruzgarYon": 51,
-          "nemMin": 82,
+          "ruzgarHiz": 22,
+          "ruzgarYon": 50,
+          "nemMin": 78,
           "nemMax": 88
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 11,
+          "enDusuk": 12,
           "enYuksek": 14,
           "hadise": "SY",
-          "ruzgarHiz": 53,
-          "ruzgarYon": 33,
-          "nemMin": 79,
-          "nemMax": 88
+          "ruzgarHiz": 55,
+          "ruzgarYon": 38,
+          "nemMin": 80,
+          "nemMax": 87
         },
         {
           "tarih": "2026-11-30",
           "enDusuk": 7,
           "enYuksek": 10,
           "hadise": "Y",
-          "ruzgarHiz": 51,
-          "ruzgarYon": 39,
-          "nemMin": 66,
-          "nemMax": 75
+          "ruzgarHiz": 53,
+          "ruzgarYon": 38,
+          "nemMin": 70,
+          "nemMax": 77
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": 4,
-          "enYuksek": 8,
+          "enDusuk": 5,
+          "enYuksek": 10,
+          "hadise": "Y",
+          "ruzgarHiz": 50,
+          "ruzgarYon": 41,
+          "nemMin": 66,
+          "nemMax": 81
+        },
+        {
+          "tarih": "2026-12-02",
+          "enDusuk": 3,
+          "enYuksek": 7,
           "hadise": "Y",
           "ruzgarHiz": 47,
-          "ruzgarYon": 37,
-          "nemMin": 69,
-          "nemMax": 90
+          "ruzgarYon": 15,
+          "nemMin": 79,
+          "nemMax": 89
         }
       ]
     },
@@ -164,40 +184,50 @@ window.HAVA_VERISI = {
           "enDusuk": 8,
           "enYuksek": 16,
           "hadise": "PB",
-          "ruzgarHiz": 15,
-          "ruzgarYon": 28,
-          "nemMin": 66,
-          "nemMax": 87
+          "ruzgarHiz": 12,
+          "ruzgarYon": 31,
+          "nemMin": 62,
+          "nemMax": 89
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 9,
+          "enDusuk": 10,
           "enYuksek": 12,
           "hadise": "SY",
-          "ruzgarHiz": 38,
-          "ruzgarYon": 35,
-          "nemMin": 80,
-          "nemMax": 92
+          "ruzgarHiz": 40,
+          "ruzgarYon": 34,
+          "nemMin": 81,
+          "nemMax": 91
         },
         {
           "tarih": "2026-11-30",
           "enDusuk": 5,
           "enYuksek": 8,
           "hadise": "Y",
-          "ruzgarHiz": 36,
-          "ruzgarYon": 34,
+          "ruzgarHiz": 37,
+          "ruzgarYon": 32,
           "nemMin": 70,
-          "nemMax": 85
+          "nemMax": 88
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": 3,
+          "enDusuk": 4,
           "enYuksek": 7,
           "hadise": "Y",
-          "ruzgarHiz": 31,
+          "ruzgarHiz": 36,
           "ruzgarYon": 33,
-          "nemMin": 68,
-          "nemMax": 83
+          "nemMin": 71,
+          "nemMax": 79
+        },
+        {
+          "tarih": "2026-12-02",
+          "enDusuk": 3,
+          "enYuksek": 8,
+          "hadise": "Y",
+          "ruzgarHiz": 33,
+          "ruzgarYon": 36,
+          "nemMin": 63,
+          "nemMax": 86
         }
       ]
     },
@@ -217,42 +247,52 @@ window.HAVA_VERISI = {
         {
           "tarih": "2026-11-28",
           "enDusuk": 10,
-          "enYuksek": 18,
+          "enYuksek": 17,
           "hadise": "KGY",
-          "ruzgarHiz": 16,
-          "ruzgarYon": 42,
-          "nemMin": 78,
-          "nemMax": 93
+          "ruzgarHiz": 15,
+          "ruzgarYon": 41,
+          "nemMin": 76,
+          "nemMax": 94
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 7,
-          "enYuksek": 11,
-          "hadise": "Y",
+          "enDusuk": 9,
+          "enYuksek": 12,
+          "hadise": "SY",
           "ruzgarHiz": 38,
           "ruzgarYon": 34,
-          "nemMin": 71,
-          "nemMax": 89
+          "nemMin": 68,
+          "nemMax": 90
         },
         {
           "tarih": "2026-11-30",
           "enDusuk": 4,
-          "enYuksek": 9,
+          "enYuksek": 8,
           "hadise": "Y",
           "ruzgarHiz": 35,
-          "ruzgarYon": 39,
-          "nemMin": 67,
-          "nemMax": 82
+          "ruzgarYon": 40,
+          "nemMin": 62,
+          "nemMax": 76
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": 1,
+          "enDusuk": -1,
           "enYuksek": 6,
+          "hadise": "Y",
+          "ruzgarHiz": 33,
+          "ruzgarYon": 2,
+          "nemMin": 74,
+          "nemMax": 85
+        },
+        {
+          "tarih": "2026-12-02",
+          "enDusuk": 0,
+          "enYuksek": 7,
           "hadise": "PB",
-          "ruzgarHiz": 34,
-          "ruzgarYon": 10,
-          "nemMin": 70,
-          "nemMax": 84
+          "ruzgarHiz": 31,
+          "ruzgarYon": 350,
+          "nemMin": 66,
+          "nemMax": 83
         }
       ]
     }
