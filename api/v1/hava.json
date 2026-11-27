@@ -1,36 +1,36 @@
 {
- "guncelleme": "2026-11-27T13:12",
- "yayin": "27.11.2026",
+ "guncelleme": "2026-11-27T14:58",
+ "yayin": "28.11.2026",
  "durum": "ok",
  "gunler": [
   {
-   "tarih": "2026-11-27",
-   "baslik": "27 Kasım 2026, Cuma",
-   "firtina": "Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
-   "firtinaMarmara": false,
-   "hava": "Parçalı ve çok bulutlu",
-   "ruzgar": "Güney ve güneybatıdan 3 ila 5 kuvvetinde",
-   "dalga": "0,5 ila 1,5 m",
-   "gorus": "İyi."
-  },
-  {
    "tarih": "2026-11-28",
    "baslik": "28 Kasım 2026, Cumartesi",
-   "firtina": "Batı Karadeniz'de fırtına; Marmara, Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
-   "firtinaMarmara": true,
+   "firtina": "Batı Karadeniz, Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+   "firtinaMarmara": false,
    "hava": "Parçalı ve çok bulutlu",
-   "ruzgar": "Doğu ve kuzeydoğudan, sabah saatlerinde güneydoğudan 3 ila 5, akşam saatlerinde 5 ila 7 kuvvetinde",
-   "dalga": "0,5 ila 1,5 m, akşam saatlerinde 2,5 m",
+   "ruzgar": "Doğu ve kuzeydoğudan, sabah saatlerinde güneydoğudan 3 ila 5, akşam saatlerinde 4 ila 6 kuvvetinde",
+   "dalga": "0,5 ila 1,5 m, akşam saatlerinde 2,0 m",
    "gorus": "İyi."
   },
   {
    "tarih": "2026-11-29",
    "baslik": "29 Kasım 2026, Pazar",
-   "firtina": "Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz, Marmara'da fırtına; Güney Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+   "firtina": "Marmara ve Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz'de fırtına; Güney Ege ve Akdeniz'de fırtınamsı rüzgar bekleniyor.",
    "firtinaMarmara": true,
    "hava": "Parçalı ve çok bulutlu, aralıklı sağanak yağışlı",
-   "ruzgar": "Kuzey ve kuzeydoğudan 6 ila 8 kuvvetinde",
-   "dalga": "2,0 ila 3,0 m",
+   "ruzgar": "Kuzey ve kuzeydoğudan 6 ila 8 yer yer 9 kuvvetinde",
+   "dalga": "2,0 ila 3,0 m, yer yer 3,5 m",
+   "gorus": "İyi, yağış anında orta."
+  },
+  {
+   "tarih": "2026-11-30",
+   "baslik": "30 Kasım 2026, Pazartesi",
+   "firtina": "Marmara ve Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz ve Güney Ege'de fırtına; Doğu Karadeniz ve Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+   "firtinaMarmara": true,
+   "hava": "Parçalı ve çok bulutlu, aralıklı sağanak yağışlı",
+   "ruzgar": "Kuzey ve kuzeydoğudan 7 ila 9 kuvvetinde",
+   "dalga": "2,5 ila 3,5 m",
    "gorus": "İyi, yağış anında orta."
   }
  ],
