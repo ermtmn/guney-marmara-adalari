@@ -1,9 +1,9 @@
 // Bu dosya scripts/eczane-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin. Kaynak: Balıkesir Eczacı Odası.
 window.ECZANE_VERISI = {
-  "guncelleme": "2026-11-27T07:02",
+  "guncelleme": "2026-11-27T08:11",
   "durum": "ok",
   "kaynak": "https://www.balikesireczaciodasi.org.tr/nobetci-eczaneler",
-  "toplam": 26,
+  "toplam": 19,
   "eczaneler": [
     {
       "ada": "avsa",
