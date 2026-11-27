@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin.
 window.DUYURU_VERISI = {
-  "guncelleme": "2026-11-27T16:15",
+  "guncelleme": "2026-11-27T17:56",
   "firmalar": [
     {
       "isletmeci": "Gestaş",
@@ -30,7 +30,7 @@ window.DUYURU_VERISI = {
     {
       "isletmeci": "İDO",
       "renk": "#1a3d8f",
-      "durum": "ok",
+      "durum": "hata",
       "duyurular": []
     }
   ]

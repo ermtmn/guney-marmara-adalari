@@ -1,6 +1,6 @@
 // Bu dosya scripts/tarife-guncelle.ps1 tarafından otomatik oluşturulur. Elle düzenlemeyin.
 window.TARIFE_VERISI = {
-  "guncelleme": "2026-11-27T16:15",
+  "guncelleme": "2026-11-27T17:56",
   "hatlar": {
     "gestas": {
       "duraklar": [
@@ -158,7 +158,7 @@ window.TARIFE_VERISI = {
         ]
       ],
       "durum": "ok",
-      "sonBasarili": "2026-11-27T16:15",
+      "sonBasarili": "2026-11-27T17:56",
       "sonDegisiklik": "2026-11-25T21:56"
     },
     "cnr-roro": {
@@ -311,7 +311,7 @@ window.TARIFE_VERISI = {
         }
       ],
       "durum": "ok",
-      "sonBasarili": "2026-11-27T16:15",
+      "sonBasarili": "2026-11-27T17:56",
       "sonDegisiklik": "2026-11-25T21:56"
     },
     "marmara-roro": {
@@ -323,22 +323,11 @@ window.TARIFE_VERISI = {
       "yeniGorseller": [
         "https://www.marmararoro.com/uploads/images/2026-11/6b091d1de0e07.jpeg"
       ],
-      "sonBasarili": "2026-11-27T16:15"
+      "sonBasarili": "2026-11-27T17:56"
     },
     "ido": {
-      "durum": "sezon-disi",
-      "sonBasarili": "2026-11-27T16:15",
-      "limanlar": [
-        "Yenikapı",
-        "Bursa",
-        "Bandırma",
-        "Yalova",
-        "Pendik",
-        "Kadıköy",
-        "Armutlu",
-        "Armutlu Tatil Köyü",
-        "Kabataş"
-      ]
+      "durum": "hata",
+      "hata": "Response status code does not indicate success: 403 (Forbidden)."
     }
   },
   "ekHatlar": [],
