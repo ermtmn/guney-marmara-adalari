@@ -1,23 +1,13 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-28T11:52",
-  "yayin": "28.11.2026",
+  "guncelleme": "2026-11-28T12:53",
+  "yayin": "29.11.2026",
   "durum": "ok",
   "gunler": [
     {
-      "tarih": "2026-11-28",
-      "baslik": "28 Kasım 2026, Cumartesi",
-      "firtina": "Batı Karadeniz, Kuzey Ege ve Doğu Akdeniz'de fırtınamsı rüzgar bekleniyor.",
-      "firtinaMarmara": false,
-      "hava": "Parçalı ve çok bulutlu",
-      "ruzgar": "Doğu ve kuzeydoğudan, sabah saatlerinde güneydoğudan 3 ila 5, akşam saatlerinde 4 ila 6 kuvvetinde",
-      "dalga": "0,5 ila 1,5 m, akşam saatlerinde 2,0 m",
-      "gorus": "İyi."
-    },
-    {
       "tarih": "2026-11-29",
       "baslik": "29 Kasım 2026, Pazar",
-      "firtina": "Marmara ve Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz'de fırtına; Güney Ege ve Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+      "firtina": "Kuzey Ege'de tam fırtına; Marmara'da kuvvetli fırtına; Batı Karadeniz ve Doğu Akdeniz'de fırtına; Güney Ege ve Batı Akdeniz'de fırtınamsı rüzgar bekleniyor.",
       "firtinaMarmara": true,
       "hava": "Parçalı ve çok bulutlu, aralıklı sağanak yağışlı",
       "ruzgar": "Kuzey ve kuzeydoğudan 6 ila 8 yer yer 9 kuvvetinde",
@@ -27,12 +17,22 @@ window.HAVA_VERISI = {
     {
       "tarih": "2026-11-30",
       "baslik": "30 Kasım 2026, Pazartesi",
-      "firtina": "Marmara ve Kuzey Ege'de kuvvetli fırtına; Batı Karadeniz ve Güney Ege'de fırtına; Doğu Karadeniz ve Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+      "firtina": "Kuzey Ege'de tam fırtına; Marmara'da kuvvetli fırtına; Batı Karadeniz ve Güney Ege'de fırtına; Doğu Karadeniz ve Akdeniz'de fırtınamsı rüzgar bekleniyor.",
       "firtinaMarmara": true,
       "hava": "Parçalı ve çok bulutlu, aralıklı sağanak yağışlı",
       "ruzgar": "Kuzey ve kuzeydoğudan 7 ila 9 kuvvetinde",
       "dalga": "2,5 ila 3,5 m",
       "gorus": "İyi, yağış anında orta."
+    },
+    {
+      "tarih": "2026-12-01",
+      "baslik": "1 Aralık 2026, Salı",
+      "firtina": "Kuzey Ege'de tam fırtına; Batı Karadeniz, Marmara ve Güney Ege'de fırtına; Akdeniz'de fırtınamsı rüzgar bekleniyor.",
+      "firtinaMarmara": true,
+      "hava": "Parçalı ve çok bulutlu, yer yer kuvvetli olmak üzere sağanak yağışlı",
+      "ruzgar": "Kuzey ve kuzeydoğudan 6 ila 8 kuvvetinde",
+      "dalga": "2,0 ila 3,0 m",
+      "gorus": "İyi, yağış anında orta, kuvvetli anında zayıf."
     }
   ],
   "lokasyon": {
@@ -52,42 +52,52 @@ window.HAVA_VERISI = {
         {
           "tarih": "2026-11-29",
           "enDusuk": 12,
-          "enYuksek": 13,
-          "hadise": "SY",
+          "enYuksek": 12,
+          "hadise": "Y",
           "ruzgarHiz": 43,
           "ruzgarYon": 40,
-          "nemMin": 80,
-          "nemMax": 90
+          "nemMin": 79,
+          "nemMax": 95
         },
         {
           "tarih": "2026-11-30",
           "enDusuk": 8,
           "enYuksek": 9,
           "hadise": "Y",
-          "ruzgarHiz": 41,
-          "ruzgarYon": 40,
-          "nemMin": 71,
-          "nemMax": 84
+          "ruzgarHiz": 42,
+          "ruzgarYon": 42,
+          "nemMin": 73,
+          "nemMax": 87
         },
         {
           "tarih": "2026-12-01",
           "enDusuk": 6,
-          "enYuksek": 9,
+          "enYuksek": 8,
           "hadise": "Y",
-          "ruzgarHiz": 39,
-          "ruzgarYon": 36,
-          "nemMin": 69,
-          "nemMax": 79
+          "ruzgarHiz": 38,
+          "ruzgarYon": 41,
+          "nemMin": 72,
+          "nemMax": 80
         },
         {
           "tarih": "2026-12-02",
-          "enDusuk": 5,
+          "enDusuk": 4,
+          "enYuksek": 5,
+          "hadise": "KKY",
+          "ruzgarHiz": 37,
+          "ruzgarYon": 15,
+          "nemMin": 84,
+          "nemMax": 96
+        },
+        {
+          "tarih": "2026-12-03",
+          "enDusuk": 3,
           "enYuksek": 6,
           "hadise": "KKY",
-          "ruzgarHiz": 36,
-          "ruzgarYon": 34,
-          "nemMin": 78,
-          "nemMax": 93
+          "ruzgarHiz": 29,
+          "ruzgarYon": 7,
+          "nemMin": 79,
+          "nemMax": 92
         }
       ]
     },
@@ -106,43 +116,53 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 12,
-          "enYuksek": 14,
-          "hadise": "SY",
-          "ruzgarHiz": 55,
-          "ruzgarYon": 38,
-          "nemMin": 80,
-          "nemMax": 87
+          "enDusuk": 11,
+          "enYuksek": 13,
+          "hadise": "Y",
+          "ruzgarHiz": 54,
+          "ruzgarYon": 35,
+          "nemMin": 81,
+          "nemMax": 90
         },
         {
           "tarih": "2026-11-30",
           "enDusuk": 7,
           "enYuksek": 10,
           "hadise": "Y",
-          "ruzgarHiz": 53,
-          "ruzgarYon": 38,
+          "ruzgarHiz": 54,
+          "ruzgarYon": 36,
           "nemMin": 70,
-          "nemMax": 77
-        },
-        {
-          "tarih": "2026-12-01",
-          "enDusuk": 5,
-          "enYuksek": 10,
-          "hadise": "Y",
-          "ruzgarHiz": 50,
-          "ruzgarYon": 41,
-          "nemMin": 66,
           "nemMax": 81
         },
         {
-          "tarih": "2026-12-02",
-          "enDusuk": 3,
-          "enYuksek": 7,
+          "tarih": "2026-12-01",
+          "enDusuk": 4,
+          "enYuksek": 8,
           "hadise": "Y",
-          "ruzgarHiz": 47,
-          "ruzgarYon": 15,
-          "nemMin": 79,
+          "ruzgarHiz": 49,
+          "ruzgarYon": 11,
+          "nemMin": 70,
+          "nemMax": 90
+        },
+        {
+          "tarih": "2026-12-02",
+          "enDusuk": 2,
+          "enYuksek": 6,
+          "hadise": "HY",
+          "ruzgarHiz": 49,
+          "ruzgarYon": 7,
+          "nemMin": 76,
           "nemMax": 89
+        },
+        {
+          "tarih": "2026-12-03",
+          "enDusuk": 2,
+          "enYuksek": 7,
+          "hadise": "KKY",
+          "ruzgarHiz": 37,
+          "ruzgarYon": 360,
+          "nemMin": 70,
+          "nemMax": 91
         }
       ]
     },
@@ -163,11 +183,11 @@ window.HAVA_VERISI = {
           "tarih": "2026-11-29",
           "enDusuk": 10,
           "enYuksek": 12,
-          "hadise": "SY",
-          "ruzgarHiz": 40,
+          "hadise": "Y",
+          "ruzgarHiz": 41,
           "ruzgarYon": 34,
-          "nemMin": 81,
-          "nemMax": 91
+          "nemMin": 79,
+          "nemMax": 95
         },
         {
           "tarih": "2026-11-30",
@@ -175,8 +195,8 @@ window.HAVA_VERISI = {
           "enYuksek": 8,
           "hadise": "Y",
           "ruzgarHiz": 37,
-          "ruzgarYon": 32,
-          "nemMin": 70,
+          "ruzgarYon": 33,
+          "nemMin": 77,
           "nemMax": 88
         },
         {
@@ -187,17 +207,27 @@ window.HAVA_VERISI = {
           "ruzgarHiz": 36,
           "ruzgarYon": 33,
           "nemMin": 71,
-          "nemMax": 79
+          "nemMax": 81
         },
         {
           "tarih": "2026-12-02",
-          "enDusuk": 3,
-          "enYuksek": 8,
-          "hadise": "Y",
-          "ruzgarHiz": 33,
-          "ruzgarYon": 36,
-          "nemMin": 63,
-          "nemMax": 86
+          "enDusuk": 1,
+          "enYuksek": 4,
+          "hadise": "KKY",
+          "ruzgarHiz": 35,
+          "ruzgarYon": 6,
+          "nemMin": 77,
+          "nemMax": 95
+        },
+        {
+          "tarih": "2026-12-03",
+          "enDusuk": 0,
+          "enYuksek": 5,
+          "hadise": "KKY",
+          "ruzgarHiz": 28,
+          "ruzgarYon": 355,
+          "nemMin": 83,
+          "nemMax": 91
         }
       ]
     },
@@ -216,43 +246,53 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 9,
-          "enYuksek": 12,
-          "hadise": "SY",
-          "ruzgarHiz": 38,
-          "ruzgarYon": 34,
-          "nemMin": 68,
-          "nemMax": 90
+          "enDusuk": 7,
+          "enYuksek": 11,
+          "hadise": "Y",
+          "ruzgarHiz": 39,
+          "ruzgarYon": 32,
+          "nemMin": 76,
+          "nemMax": 88
         },
         {
           "tarih": "2026-11-30",
-          "enDusuk": 4,
+          "enDusuk": 5,
           "enYuksek": 8,
           "hadise": "Y",
-          "ruzgarHiz": 35,
-          "ruzgarYon": 40,
-          "nemMin": 62,
-          "nemMax": 76
+          "ruzgarHiz": 39,
+          "ruzgarYon": 37,
+          "nemMin": 66,
+          "nemMax": 72
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": -1,
-          "enYuksek": 6,
+          "enDusuk": 0,
+          "enYuksek": 5,
           "hadise": "Y",
-          "ruzgarHiz": 33,
-          "ruzgarYon": 2,
-          "nemMin": 74,
-          "nemMax": 85
+          "ruzgarHiz": 36,
+          "ruzgarYon": 360,
+          "nemMin": 71,
+          "nemMax": 84
         },
         {
           "tarih": "2026-12-02",
-          "enDusuk": 0,
-          "enYuksek": 7,
+          "enDusuk": -1,
+          "enYuksek": 5,
           "hadise": "PB",
           "ruzgarHiz": 31,
-          "ruzgarYon": 350,
-          "nemMin": 66,
-          "nemMax": 83
+          "ruzgarYon": 349,
+          "nemMin": 62,
+          "nemMax": 78
+        },
+        {
+          "tarih": "2026-12-03",
+          "enDusuk": -1,
+          "enYuksek": 4,
+          "hadise": "K",
+          "ruzgarHiz": 27,
+          "ruzgarYon": 325,
+          "nemMin": 62,
+          "nemMax": 85
         }
       ]
     }
