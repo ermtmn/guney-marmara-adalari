@@ -1,6 +1,6 @@
 // Bu dosya scripts/duyurular-guncelle.ps1 tarafından otomatik oluşturulur. Kaynak: MGM (deniz bülteni ve konum bazlı günlük tahmin).
 window.HAVA_VERISI = {
-  "guncelleme": "2026-11-28T17:53",
+  "guncelleme": "2026-11-28T18:47",
   "yayin": "29.11.2026",
   "durum": "ok",
   "gunler": [
@@ -51,9 +51,9 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 12,
+          "enDusuk": 11,
           "enYuksek": 12,
-          "hadise": "Y",
+          "hadise": "KSY",
           "ruzgarHiz": 43,
           "ruzgarYon": 40,
           "nemMin": 79,
@@ -118,7 +118,7 @@ window.HAVA_VERISI = {
           "tarih": "2026-11-29",
           "enDusuk": 11,
           "enYuksek": 13,
-          "hadise": "Y",
+          "hadise": "KSY",
           "ruzgarHiz": 54,
           "ruzgarYon": 35,
           "nemMin": 81,
@@ -183,7 +183,7 @@ window.HAVA_VERISI = {
           "tarih": "2026-11-29",
           "enDusuk": 10,
           "enYuksek": 12,
-          "hadise": "Y",
+          "hadise": "KSY",
           "ruzgarHiz": 41,
           "ruzgarYon": 34,
           "nemMin": 79,
@@ -246,8 +246,8 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-29",
-          "enDusuk": 7,
-          "enYuksek": 11,
+          "enDusuk": 9,
+          "enYuksek": 10,
           "hadise": "Y",
           "ruzgarHiz": 39,
           "ruzgarYon": 32,
@@ -256,7 +256,7 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-11-30",
-          "enDusuk": 5,
+          "enDusuk": 4,
           "enYuksek": 8,
           "hadise": "Y",
           "ruzgarHiz": 39,
@@ -266,7 +266,7 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-12-01",
-          "enDusuk": 0,
+          "enDusuk": -1,
           "enYuksek": 5,
           "hadise": "Y",
           "ruzgarHiz": 36,
@@ -276,7 +276,7 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-12-02",
-          "enDusuk": -1,
+          "enDusuk": -2,
           "enYuksek": 5,
           "hadise": "PB",
           "ruzgarHiz": 31,
@@ -286,7 +286,7 @@ window.HAVA_VERISI = {
         },
         {
           "tarih": "2026-12-03",
-          "enDusuk": -1,
+          "enDusuk": -2,
           "enYuksek": 4,
           "hadise": "K",
           "ruzgarHiz": 27,
